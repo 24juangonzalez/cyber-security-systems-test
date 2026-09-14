@@ -30,7 +30,7 @@
 
 - [ ] Interview [10] potential customers by [date].
 - [ ] Build or sketch the smallest testable prototype.
-- [ ] Find [3] potential design partners.
+- [ ] Find [3] potential design partners
 
 ## How we work
 
