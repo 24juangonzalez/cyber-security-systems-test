@@ -41,6 +41,7 @@
 
 ## Project documents
 
+- [Startup ideas and evaluations](docs/IDEAS.md)
 - [One-page business plan](docs/ONE_PAGE_PLAN.md)
 - [Founder alignment checklist](docs/FOUNDER_ALIGNMENT.md)
 - [Decision log](docs/DECISIONS.md)
