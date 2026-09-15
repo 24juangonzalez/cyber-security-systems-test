@@ -38,3 +38,26 @@ teammate. Keep entries short. Link supporting research, issues, and documents.
 - **Revisit when:** The founders intentionally decide to release a specific
   component as open source or legal counsel recommends a different structure.
 - **Links:** [Founder alignment checklist](FOUNDER_ALIGNMENT.md)
+
+### DEC-002: Validate the cloud attack-path direction
+
+- **Date:** 2026-09-14
+- **Status:** Proposed
+- **Owner:** Founders
+- **Context:** Ten cybersecurity ideas were evaluated. Cloud attack-path
+  mapping best combines the hypothesized customer pain, willingness to pay,
+  Python/AWS fit, and the founders' relevant experience. Building the complete
+  platform would still be too broad for an initial product.
+- **Decision:** For 90 days, validate a Cloud Attack-Path Mapper with AWS
+  credential and IAM blast-radius analysis as the first wedge. Use three
+  30-day gates covering problem validation, safe technical validation, and a
+  design-partner/purchase-path validation.
+- **Why:** This tests the broader “what can reach what?” thesis through one
+  narrow, demonstrable workflow.
+- **Consequences:** Focus on AWS metadata, identity, permissions, relationships,
+  evidence, and reporting. Defer multi-cloud, autonomous pentesting, automatic
+  remediation, API security, and AI-agent/MCP security.
+- **Revisit when:** 2026-12-13, or earlier if customer evidence invalidates the
+  problem, buyer, safe access model, or proposed value.
+- **Links:** [Game plan](GAME_PLAN.md), [one-page plan](ONE_PAGE_PLAN.md), and
+  [idea catalog](IDEAS.md)

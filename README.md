@@ -1,36 +1,51 @@
-# [Startup name]
+# Cloud Attack-Path Mapper
 
-> We help [customer] solve [problem] by [how we solve it].
+> We help AWS-based companies understand how compromised identities could
+> reach sensitive data—and what to fix first.
 
 **Stage:** Idea validation  
 **Founders:** [Name] and [Name]  
-**Current goal:** [Most important goal for this month]
+**Current goal:** Validate the problem, prove safe AWS analysis, and secure a
+design-partner pilot by 2026-12-13.
 
 ## The problem
 
-[Who has the problem, what is painful, and how they handle it today.]
+Cloud-based companies receive disconnected IAM, network, secret, and
+configuration findings. Small teams and managed service providers still have
+to determine which combinations create realistic paths to valuable systems or
+data, and which fixes matter first.
 
 ## Our product
 
-[Describe the smallest useful version in 2–3 sentences.]
+The first version connects to an authorized, read-only AWS account and maps
+identities, permissions, resources, and sensitive destinations. It reports a
+small number of evidence-backed potential attack paths with clear remediation
+steps. It does not retrieve secrets, exploit systems, or make changes.
 
 ## Who it is for
 
-- **User:** [Who uses it?]
-- **Buyer:** [Who pays for it?]
-- **First market:** [The narrow group we will approach first]
+- **User:** CTO, security engineer, cloud engineer, or MSP analyst
+- **Buyer:** CTO, security leader, founder, or managed service provider
+- **First market:** 20–300-person SaaS companies using AWS without a large
+  internal security team
 
 ## What we need to prove
 
-- [ ] Customers care enough about this problem.
-- [ ] Our solution produces a useful result.
-- [ ] At least one customer will pay for it.
+- [ ] Ten qualified interviews confirm that prioritization is a recurring pain.
+- [ ] Five prospects understand and trust an evidence-backed path report.
+- [ ] Two prospects agree to a design-partner pilot.
+- [ ] At least one prospect expresses credible willingness to pay.
 
 ## Current priorities
 
-- [ ] Interview [10] potential customers by [date].
-- [ ] Build or sketch the smallest testable prototype.
-- [ ] Find [3] potential design partners
+- [ ] Interview 10 potential customers and demonstrate a synthetic path by
+  2026-10-13.
+- [ ] Run a safe, read-only collector in a founder-controlled AWS sandbox by
+  2026-11-12.
+- [ ] Review evidence-backed reports with five qualified prospects by
+  2026-11-12.
+- [ ] Secure at least one authorized design-partner pilot and collect pricing
+  evidence by 2026-12-13.
 
 ## How we work
 
@@ -41,6 +56,7 @@
 
 ## Project documents
 
+- [Game plan and architecture](docs/GAME_PLAN.md)
 - [Startup ideas and evaluations](docs/IDEAS.md)
 - [One-page business plan](docs/ONE_PAGE_PLAN.md)
 - [Founder alignment checklist](docs/FOUNDER_ALIGNMENT.md)
