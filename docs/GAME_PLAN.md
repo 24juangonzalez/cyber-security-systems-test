@@ -18,6 +18,7 @@ an autonomous hacking system.
 ## The game plan
 
 ```mermaid
+<<<<<<< HEAD
 flowchart TB
     START[Start with assumptions]
 
@@ -72,7 +73,71 @@ flowchart TB
     G3 -- Strong evidence --> CONTINUE
     G3 -- Partial evidence --> NARROW
     G3 -- Weak evidence --> CHANGE
+=======
+flowchart LR
+    A[Define target AWS customer] --> B[Interview AWS users and buyers]
+    B --> C{Pain urgent and frequent?}
+
+    C -- No --> D[Narrow customer or problem]
+    D --> B
+
+    C -- Yes --> E[Understand current workflow and alternatives]
+    E --> F{Clear differentiated use case?}
+
+    F -- No --> D
+    F -- Yes --> G[Define one attack-path question]
+    G --> H[Confirm required AWS data and permissions]
+
+    H --> I{Safe read-only access feasible?}
+    I -- No --> J[Redesign collection approach]
+    J --> H
+
+    I -- Yes --> K[Build one synthetic path]
+    K --> L[Create known-answer test]
+    L --> M{Report understood and trusted?}
+
+    M -- No --> N[Improve evidence and explanation]
+    N --> K
+
+    M -- Yes --> O[Run in founder AWS sandbox]
+    O --> P{Safe complete and accurate?}
+
+    P -- No --> Q[Fix collection and path rules]
+    Q --> O
+
+    P -- Yes --> R[Define pilot success metrics]
+    R --> S[Design-partner pilot]
+    S --> T{Customer takes meaningful action?}
+
+    T -- No --> D
+    T -- Yes --> U[Verify remediation removed path]
+    U --> V{Buyer commits to paying?}
+
+    V -- No --> W[Revise value pricing or customer]
+    W --> D
+
+    V -- Yes --> X[Test repeatable onboarding]
+    X --> Y{Works without founder-heavy support?}
+
+    Y -- No --> Z[Automate setup and reporting]
+    Z --> X
+
+    Y -- Yes --> AA[Build repeatable product]
+
+    classDef startEnd fill:#111111,color:#ffffff,stroke:#000000,stroke-width:2px
+    classDef process fill:#e5e5e5,color:#111111,stroke:#333333,stroke-width:1.5px
+    classDef decision fill:#666666,color:#ffffff,stroke:#111111,stroke-width:2px
+    classDef correction fill:#bdbdbd,color:#111111,stroke:#333333,stroke-width:1.5px
+
+    class A,AA startEnd
+    class B,E,G,H,K,L,N,O,R,S,U,X process
+    class C,F,I,M,P,T,V,Y decision
+    class D,J,Q,W,Z correction
+
+    linkStyle default stroke:#333333,stroke-width:1.5px
+>>>>>>> origin/main
 ```
+
 
 Every build phase has a customer or evidence gate. Passing a technical demo
 alone does not justify adding more features.
