@@ -18,22 +18,60 @@ an autonomous hacking system.
 ## The game plan
 
 ```mermaid
-flowchart LR
-    A[Interview AWS teams] --> B{Pain confirmed?}
-    B -- No --> C[Narrow customer or problem]
-    C --> A
-    B -- Yes --> D[Build one synthetic path]
-    D --> E{Report understood and trusted?}
-    E -- No --> F[Improve evidence and explanation]
-    F --> D
-    E -- Yes --> G[Run in founder AWS sandbox]
-    G --> H{Safe and accurate?}
-    H -- No --> I[Fix collection and path rules]
-    I --> G
-    H -- Yes --> J[Design-partner pilot]
-    J --> K{Meaningful action and willingness to pay?}
-    K -- No --> C
-    K -- Yes --> L[Build repeatable product]
+flowchart TB
+    START[Start with assumptions]
+
+    subgraph DISCOVERY["Phase 1 · Prove the problem"]
+        direction TB
+        D1[Interview 10 AWS teams]
+        D2[Capture pain, buyer,<br/>workflow, and access concerns]
+        D3[Build one synthetic path<br/>and evidence-backed report]
+        D4[Review report with<br/>3 prospects]
+        D1 --> D2 --> D3 --> D4
+    end
+
+    G1{"Gate 1<br/>6 confirm the pain<br/>3 understand the report?"}
+    R1[Refine customer, problem,<br/>evidence, or report]
+
+    subgraph TECHNICAL["Phase 2 · Prove safe AWS analysis"]
+        direction TB
+        T1[Create isolated<br/>AWS sandbox]
+        T2[Build read-only collectors<br/>with tests]
+        T3[Normalize assets and<br/>evidence into a graph]
+        T4[Detect and explain<br/>the known path]
+        T5[Review sandbox result<br/>with 5 prospects]
+        T1 --> T2 --> T3 --> T4 --> T5
+    end
+
+    G2{"Gate 2<br/>Safe and accurate?<br/>3 of 5 would act?"}
+    R2[Fix permissions, collection,<br/>rules, or evidence]
+
+    subgraph PILOT["Phase 3 · Prove a market"]
+        direction TB
+        P1[Define pilot scope,<br/>authorization, and retention]
+        P2[Run one authorized or<br/>sanitized evaluation]
+        P3[Manually verify every<br/>reported path]
+        P4[Measure remediation<br/>and present a price]
+        P1 --> P2 --> P3 --> P4
+    end
+
+    G3{"Gate 3<br/>1 evaluation + 2 partner talks<br/>+ purchase evidence?"}
+
+    CONTINUE[Continue<br/>Build repeatable product]
+    NARROW[Narrow<br/>Credential or IAM wedge]
+    CHANGE[Change direction<br/>Return to idea catalog]
+
+    START --> D1
+    D4 --> G1
+    G1 -- Not yet --> R1 --> D1
+    G1 -- Yes --> T1
+    T5 --> G2
+    G2 -- Not yet --> R2 --> T1
+    G2 -- Yes --> P1
+    P4 --> G3
+    G3 -- Strong evidence --> CONTINUE
+    G3 -- Partial evidence --> NARROW
+    G3 -- Weak evidence --> CHANGE
 ```
 
 Every build phase has a customer or evidence gate. Passing a technical demo
@@ -191,7 +229,7 @@ The validation period contains three 30-day gates. At each gate, review the
 evidence and explicitly continue, narrow, or change direction.
 
 ```mermaid
-flowchart LR
+flowchart TB
     P1[Days 1–30<br/>Problem + synthetic report]
     G1{Gate 1<br/>Pain and clarity}
     P2[Days 31–60<br/>Safe AWS collection]
