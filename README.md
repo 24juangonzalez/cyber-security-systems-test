@@ -48,7 +48,34 @@
 
 ## Development
 
-Setup and run instructions will go here when the first prototype is added.
+The project uses Python 3.13 and `uv` so macOS and WSL developers use the same
+locked dependencies.
+
+### First-time setup
+
+Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/), then run:
+
+```bash
+uv sync
+cp .env.example .env
+```
+
+`uv sync` installs Python when needed, creates `.venv`, and generates
+`uv.lock`. Commit `uv.lock`; do not commit `.venv` or `.env`.
+
+You normally do not need to activate the environment. Run tools through `uv`:
+
+```bash
+uv run pytest
+uv run ruff check .
+uv run ruff format .
+```
+
+The equivalent shortcuts are `make test`, `make lint`, `make format`, and
+`make check`.
+
+Add a runtime dependency with `uv add <package>` and a development dependency
+with `uv add --dev <package>`.
 
 ## License
 
