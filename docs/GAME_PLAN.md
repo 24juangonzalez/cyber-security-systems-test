@@ -18,42 +18,49 @@ an autonomous hacking system.
 ## The game plan
 
 ```mermaid
-<<<<<<< HEAD
 flowchart TB
     START[Start with assumptions]
 
     subgraph DISCOVERY["Phase 1 · Prove the problem"]
         direction TB
-        D1[Interview 10 AWS teams]
-        D2[Capture pain, buyer,<br/>workflow, and access concerns]
-        D3[Build one synthetic path<br/>and evidence-backed report]
-        D4[Review report with<br/>3 prospects]
-        D1 --> D2 --> D3 --> D4
+        D1[Define target AWS customer]
+        D2[Interview 10 users and buyers]
+        D3[Capture pain, buyer,<br/>workflow, and alternatives]
+        D4[Define one attack-path question]
+        D5[Confirm required data<br/>and safe permissions]
+        D6[Build one synthetic path]
+        D7[Create known-answer test]
+        D8[Review report with 3 prospects]
+        D1 --> D2 --> D3 --> D4 --> D5 --> D6 --> D7 --> D8
     end
 
-    G1{"Gate 1<br/>6 confirm the pain<br/>3 understand the report?"}
-    R1[Refine customer, problem,<br/>evidence, or report]
+    G1{"Gate 1<br/>6 confirm pain<br/>3 trust the report<br/>safe access feasible?"}
+    R1[Refine customer, problem,<br/>value, access, or evidence]
 
     subgraph TECHNICAL["Phase 2 · Prove safe AWS analysis"]
         direction TB
         T1[Create isolated<br/>AWS sandbox]
         T2[Build read-only collectors<br/>with tests]
         T3[Normalize assets and<br/>evidence into a graph]
-        T4[Detect and explain<br/>the known path]
-        T5[Review sandbox result<br/>with 5 prospects]
-        T1 --> T2 --> T3 --> T4 --> T5
+        T4[Detect the known path<br/>and reject unsupported paths]
+        T5[Verify safe failure with<br/>partial or denied access]
+        T6[Review sandbox result<br/>with 5 prospects]
+        T1 --> T2 --> T3 --> T4 --> T5 --> T6
     end
 
-    G2{"Gate 2<br/>Safe and accurate?<br/>3 of 5 would act?"}
-    R2[Fix permissions, collection,<br/>rules, or evidence]
+    G2{"Gate 2<br/>Safe and accurate<br/>3 of 5 would act?"}
+    R2[Fix permissions, collection,<br/>rules, priority, or explanation]
 
     subgraph PILOT["Phase 3 · Prove a market"]
         direction TB
-        P1[Define pilot scope,<br/>authorization, and retention]
+        P1[Define pilot success,<br/>scope, authorization, and retention]
         P2[Run one authorized or<br/>sanitized evaluation]
-        P3[Manually verify every<br/>reported path]
-        P4[Measure remediation<br/>and present a price]
-        P1 --> P2 --> P3 --> P4
+        P3[Manually verify every path]
+        P4[Measure customer action]
+        P5[Verify remediation<br/>removed the path]
+        P6[Present a concrete price]
+        P7[Test repeatable onboarding]
+        P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7
     end
 
     G3{"Gate 3<br/>1 evaluation + 2 partner talks<br/>+ purchase evidence?"}
@@ -63,79 +70,16 @@ flowchart TB
     CHANGE[Change direction<br/>Return to idea catalog]
 
     START --> D1
-    D4 --> G1
+    D8 --> G1
     G1 -- Not yet --> R1 --> D1
     G1 -- Yes --> T1
-    T5 --> G2
+    T6 --> G2
     G2 -- Not yet --> R2 --> T1
     G2 -- Yes --> P1
-    P4 --> G3
+    P7 --> G3
     G3 -- Strong evidence --> CONTINUE
     G3 -- Partial evidence --> NARROW
     G3 -- Weak evidence --> CHANGE
-=======
-flowchart LR
-    A[Define target AWS customer] --> B[Interview AWS users and buyers]
-    B --> C{Pain urgent and frequent?}
-
-    C -- No --> D[Narrow customer or problem]
-    D --> B
-
-    C -- Yes --> E[Understand current workflow and alternatives]
-    E --> F{Clear differentiated use case?}
-
-    F -- No --> D
-    F -- Yes --> G[Define one attack-path question]
-    G --> H[Confirm required AWS data and permissions]
-
-    H --> I{Safe read-only access feasible?}
-    I -- No --> J[Redesign collection approach]
-    J --> H
-
-    I -- Yes --> K[Build one synthetic path]
-    K --> L[Create known-answer test]
-    L --> M{Report understood and trusted?}
-
-    M -- No --> N[Improve evidence and explanation]
-    N --> K
-
-    M -- Yes --> O[Run in founder AWS sandbox]
-    O --> P{Safe complete and accurate?}
-
-    P -- No --> Q[Fix collection and path rules]
-    Q --> O
-
-    P -- Yes --> R[Define pilot success metrics]
-    R --> S[Design-partner pilot]
-    S --> T{Customer takes meaningful action?}
-
-    T -- No --> D
-    T -- Yes --> U[Verify remediation removed path]
-    U --> V{Buyer commits to paying?}
-
-    V -- No --> W[Revise value pricing or customer]
-    W --> D
-
-    V -- Yes --> X[Test repeatable onboarding]
-    X --> Y{Works without founder-heavy support?}
-
-    Y -- No --> Z[Automate setup and reporting]
-    Z --> X
-
-    Y -- Yes --> AA[Build repeatable product]
-
-    classDef startEnd fill:#111111,color:#ffffff,stroke:#000000,stroke-width:2px
-    classDef process fill:#e5e5e5,color:#111111,stroke:#333333,stroke-width:1.5px
-    classDef decision fill:#666666,color:#ffffff,stroke:#111111,stroke-width:2px
-    classDef correction fill:#bdbdbd,color:#111111,stroke:#333333,stroke-width:1.5px
-
-    class A,AA startEnd
-    class B,E,G,H,K,L,N,O,R,S,U,X process
-    class C,F,I,M,P,T,V,Y decision
-    class D,J,Q,W,Z correction
-
-    linkStyle default stroke:#333333,stroke-width:1.5px
->>>>>>> origin/main
 ```
 
 
