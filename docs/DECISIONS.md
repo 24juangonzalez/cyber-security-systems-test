@@ -55,7 +55,8 @@ teammate. A decision may govern only the current validation phase.
   OT discovery or production SaaS infrastructure during Phase 1.
 - **Revisit when:** Phase 2 demonstrations are complete or customer evidence
   invalidates the problem, access model, user, buyer, or channel.
-- **Links:** `NORTH_STAR.md`, `PROTOTYPE_SCOPE.md`, `ROADMAP.md`
+- **Links:** `NORTH_STAR.md`, `PROJECT_CHARTER.md`, `PROTOTYPE_SCOPE.md`,
+  `DELIVERY_PLAN.md`
 
 ## Decision template
 
@@ -73,4 +74,3 @@ teammate. A decision may govern only the current validation phase.
 - Revisit when:
 - Links:
 ```
-

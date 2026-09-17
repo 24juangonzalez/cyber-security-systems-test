@@ -52,10 +52,12 @@ the path disappears after remediation.
 
 ## Current documents
 
+- [Product strategy, business plan, and project charter (Word)](docs/Industrial_Access_Path_Product_Strategy_Business_Plan_and_Project_Charter.docx)
 - [North star](docs/NORTH_STAR.md)
+- [Project charter](docs/PROJECT_CHARTER.md)
 - [Product strategy](docs/PRODUCT_STRATEGY.md)
 - [Prototype scope](docs/PROTOTYPE_SCOPE.md)
-- [Roadmap](docs/ROADMAP.md)
+- [Delivery plan](docs/DELIVERY_PLAN.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Domain model](docs/DOMAIN_MODEL.md)
 - [Finding schema](docs/FINDING_SCHEMA.md)
@@ -92,4 +94,3 @@ uv run cyber-path compare \
 
 No real credentials, customer data, private network details, or secret values
 belong in source control, fixtures, test output, or logs.
-
