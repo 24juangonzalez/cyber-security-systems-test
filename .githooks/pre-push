@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+cd "$(git rev-parse --show-toplevel)"
+printf '%s\n' 'Running lint, formatting checks, and tests before push...'
+UV_LOCKED=true exec make check </dev/null

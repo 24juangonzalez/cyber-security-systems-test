@@ -86,10 +86,24 @@ The equivalent shortcuts are `make test`, `make lint`, and `make format`.
 Use `make format-check` to check formatting without changing files, or
 `make check` to run linting, formatting checks, and tests together.
 
+Enable automatic checks before pushing once per clone:
+
+```bash
+make hooks
+```
+
+This sets the clone's Git hooks directory to `.githooks`. The pre-push hook
+runs `make check` with locked dependencies and blocks the push if a check
+fails. It checks the current working tree, so commit the changes you intend
+to push and keep the working tree clean. GitHub Actions also checks the pushed
+commits independently. Git hooks can be bypassed; they do not replace CI.
+
 GitHub Actions runs `make check` on pushes and pull requests using Python 3.13
 and the committed lockfile. You can also start the `CI` workflow manually from
 the Actions tab. The workflow uses read-only repository permissions and does
 not require AWS credentials. Keep tests offline and use synthetic data.
+
+The following CLI commands are planned and are not implemented yet:
 
 ```bash
 uv run cyber-path validate fixtures/industrial/vendor_access.json
@@ -101,3 +115,29 @@ uv run cyber-path compare \
 
 No real credentials, customer data, private network details, or secret values
 belong in source control, fixtures, test output, or logs.
+
+## Source layout
+
+The package scaffold follows [Architecture](docs/ARCHITECTURE.md) and the active
+[Prototype scope](docs/PROTOTYPE_SCOPE.md):
+
+```text
+src/cyber_security_systems/
+├── domain/          # Provider-neutral entities and evidence
+├── ingestion/       # Fixtures and authorized source adapters
+├── normalization/   # Source records to domain objects
+├── analysis/        # Graph construction and deterministic rules
+└── reporting/       # Findings and human-readable reports
+
+tests/
+├── unit/            # Individual component behavior
+├── integration/     # Local fixture-to-report flow
+├── known_answer/    # Expected paths and negative cases
+└── fixtures/        # Synthetic test inputs and expected results
+```
+
+These packages establish boundaries; their implementation is still pending.
+Existing `infrastructure/` and `lambdas/` modules are earlier placeholders.
+Start with domain models and synthetic industrial fixtures, then implement
+normalization, analysis, reporting, and the CLI. Add modules as their behavior
+is implemented. Keep provider SDKs out of `domain/` and `analysis/`.
