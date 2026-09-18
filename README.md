@@ -75,6 +75,18 @@ they conflict with the documents above, the current documents govern.
 
 The project uses Python 3.13 and `uv`.
 
+Use one root `.venv` for this project's source code and tests. Run `uv sync`
+after cloning or changing dependencies. Subdirectories do not need their own
+environments.
+
+For VS Code, open the repository root and install the recommended Python
+extensions. Workspace settings default to `.venv` and enable activation in
+new integrated terminals. If you previously selected another interpreter, use
+**Python: Select Interpreter** to choose `.venv/bin/python` once, then open a
+new terminal. These settings do not activate environments in standalone
+terminals; `uv run` and the Makefile commands select the project environment
+without manual activation.
+
 ```bash
 uv sync
 uv run pytest
@@ -136,8 +148,10 @@ tests/
 └── fixtures/        # Synthetic test inputs and expected results
 ```
 
-These packages establish boundaries; their implementation is still pending.
-Existing `infrastructure/` and `lambdas/` modules are earlier placeholders.
-Start with domain models and synthetic industrial fixtures, then implement
+The `domain/` package implements entities, evidence, relationships, and
+analysis-run metadata; see [Domain model](docs/DOMAIN_MODEL.md) for validation
+rules and remaining work. The other packages are scaffolds. Existing
+`infrastructure/` and `lambdas/` modules are earlier placeholders.
+Next, add synthetic industrial fixtures and input validation, followed by
 normalization, analysis, reporting, and the CLI. Add modules as their behavior
 is implemented. Keep provider SDKs out of `domain/` and `analysis/`.
