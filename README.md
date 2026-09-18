@@ -53,7 +53,7 @@ the path disappears after remediation.
 
 ## Current documents
 
-- [Product strategy, business plan, and project charter (Word)](docs/Industrial_Access_Path_Product_Strategy_Business_Plan_and_Project_Charter.docx)
+- [Product strategy, business plan, and project charter v2 (Word)](docs/Industrial_Access_Path_Product_Strategy_Business_Plan_and_Project_Charter_.docx)
 - [North star](docs/NORTH_STAR.md)
 - [Project charter](docs/PROJECT_CHARTER.md)
 - [Product strategy](docs/PRODUCT_STRATEGY.md)
