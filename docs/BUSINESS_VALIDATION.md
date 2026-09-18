@@ -101,9 +101,26 @@ Product direction should be chosen from commitments, not compliments.
 - Existing tools already solve the problem satisfactorily at an acceptable
   price.
 
+## Parallel discovery work from v2
+
+Use `templates/DISCOVERY_INTERVIEW.md` before and after showing the synthetic
+report. The proposed sample is 15 structured interviews across at least eight
+independent organizations, including five budget owners or people able to
+explain the purchasing process. This is a learning target, not a statistically
+representative sample or evidence that interviews have occurred.
+
+Record which approved inputs two organizations could safely supply before
+selecting a live adapter. Seek a concrete customer decision, then evaluate a
+bounded reviewed assessment. Pricing, the proposed validation budget, recurring
+offers, and hiring assumptions from v2 require founder decisions; they are not
+approved by the technical implementation.
+
+Keep discovery moving alongside the synthetic build. No outreach, interview,
+customer-data receipt, or purchase evidence is recorded by this change. Assign
+a named discovery owner and qualified reviewer before external evaluations.
+
 ## Interview data handling
 
 Keep raw notes and recordings in a restricted system. Commit only sanitized,
 permissioned summaries. Do not store personal information, customer network
 details, contractual information, or customer exports in this repository.
-

@@ -1,0 +1,367 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Synthetic industrial fixture version 1.0",
+  "description": "Structural interchange schema. The local parser additionally enforces timestamp ordering, immutable model invariants, uniqueness, references, value integrity, and safe text. No external schema or reference is fetched at runtime.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "parser_version": {
+      "const": "synthetic-json-1"
+    },
+    "scope": {
+      "$ref": "#/$defs/scope"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entity"
+      },
+      "maxItems": 2000
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      },
+      "maxItems": 10000
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      },
+      "maxItems": 10000
+    }
+  },
+  "required": [
+    "schema_version",
+    "parser_version",
+    "scope",
+    "entities",
+    "evidence",
+    "relationships"
+  ],
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,127}$",
+      "maxLength": 128
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "source_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "observed_from": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "observed_until": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "completeness": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "complete",
+            "partial",
+            "failed"
+          ]
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/text"
+          },
+          "maxItems": 100
+        }
+      },
+      "required": [
+        "id",
+        "source_id",
+        "observed_from",
+        "observed_until",
+        "completeness"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "collected_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "source_version": {
+          "$ref": "#/$defs/identifier"
+        },
+        "parser_version": {
+          "$ref": "#/$defs/identifier"
+        },
+        "scope_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "permitted_use": {
+          "const": "synthetic_demo"
+        },
+        "integrity_reference": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "collected_at",
+        "source_version",
+        "parser_version",
+        "scope_id",
+        "permitted_use",
+        "integrity_reference"
+      ]
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "identity",
+            "credential",
+            "access_group",
+            "remote_access_service",
+            "host",
+            "network_zone",
+            "application",
+            "data_store",
+            "operational_asset"
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/text"
+        },
+        "criticality": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "sensitivity": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "label"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "source_type": {
+          "const": "synthetic_fixture"
+        },
+        "source_reference": {
+          "$ref": "#/$defs/text"
+        },
+        "observed_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sanitization": {
+          "const": "synthetic"
+        },
+        "completeness": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "complete",
+            "partial",
+            "failed"
+          ]
+        },
+        "collection_error": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/text"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      },
+      "required": [
+        "id",
+        "source_type",
+        "source_reference",
+        "observed_at",
+        "sanitization",
+        "completeness",
+        "provenance"
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "context": {
+          "$ref": "#/$defs/identifier"
+        },
+        "effect": {
+          "type": "string",
+          "enum": [
+            "allow",
+            "deny"
+          ]
+        },
+        "protocol": {
+          "$ref": "#/$defs/identifier"
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "expires_at": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/timestamp"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "context",
+        "effect",
+        "protocol",
+        "port"
+      ]
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "source_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "destination_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "MEMBER_OF",
+            "CAN_AUTHENTICATE_TO",
+            "CAN_CONNECT_TO",
+            "CAN_ROUTE_TO",
+            "CAN_ASSUME",
+            "CAN_READ",
+            "CAN_WRITE",
+            "MANAGES",
+            "HOSTS",
+            "TRUSTS",
+            "DEPENDS_ON",
+            "CONTAINS",
+            "PROTECTS",
+            "REFERENCES"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "maxItems": 100,
+          "uniqueItems": true
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/text"
+          },
+          "maxItems": 100
+        },
+        "observation": {
+          "type": "string",
+          "enum": [
+            "unknown",
+            "observed",
+            "absent"
+          ]
+        },
+        "policy": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/policy"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "source_id",
+        "destination_id",
+        "kind",
+        "evidence_ids",
+        "observation"
+      ]
+    }
+  }
+}
