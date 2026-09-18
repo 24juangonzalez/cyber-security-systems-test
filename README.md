@@ -91,6 +91,8 @@ and the committed lockfile. You can also start the `CI` workflow manually from
 the Actions tab. The workflow uses read-only repository permissions and does
 not require AWS credentials. Keep tests offline and use synthetic data.
 
+The following CLI commands are planned and are not implemented yet:
+
 ```bash
 uv run cyber-path validate fixtures/industrial/vendor_access.json
 uv run cyber-path analyze fixtures/industrial/vendor_access.json
@@ -101,3 +103,29 @@ uv run cyber-path compare \
 
 No real credentials, customer data, private network details, or secret values
 belong in source control, fixtures, test output, or logs.
+
+## Source layout
+
+The package scaffold follows [Architecture](docs/ARCHITECTURE.md) and the active
+[Prototype scope](docs/PROTOTYPE_SCOPE.md):
+
+```text
+src/cyber_security_systems/
+├── domain/          # Provider-neutral entities and evidence
+├── ingestion/       # Fixtures and authorized source adapters
+├── normalization/   # Source records to domain objects
+├── analysis/        # Graph construction and deterministic rules
+└── reporting/       # Findings and human-readable reports
+
+tests/
+├── unit/            # Individual component behavior
+├── integration/     # Local fixture-to-report flow
+├── known_answer/    # Expected paths and negative cases
+└── fixtures/        # Synthetic test inputs and expected results
+```
+
+These packages establish boundaries; their implementation is still pending.
+Existing `infrastructure/` and `lambdas/` modules are earlier placeholders.
+Start with domain models and synthetic industrial fixtures, then implement
+normalization, analysis, reporting, and the CLI. Add modules as their behavior
+is implemented. Keep provider SDKs out of `domain/` and `analysis/`.
