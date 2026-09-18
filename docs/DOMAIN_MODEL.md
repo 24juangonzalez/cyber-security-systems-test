@@ -1,8 +1,8 @@
 # Domain Model
 
-- **Status:** Proposed for Phase 1
+- **Status:** Foundation implemented; findings and remediation models pending
 - **Owner:** Technical founder
-- **Last updated:** 2026-09-16
+- **Last updated:** 2026-09-17
 
 ## Design goals
 
@@ -89,3 +89,41 @@ Missing entities, failed collections, unresolved references, and uncertain
 routes are represented explicitly. An incomplete relationship cannot be
 upgraded to confirmed merely because a possible graph path exists.
 
+## Implemented foundation
+
+The public types are exported from `cyber_security_systems.domain`:
+
+- `Entity` uses an `EntityType` for the nine node categories above. Separate
+  subclasses are unnecessary until a category needs its own behavior.
+  `Criticality` and `Sensitivity` default to `UNKNOWN`; labels never determine
+  either classification. Credential nodes have no secret-value field.
+- `Evidence` records source type, reference, an aware observation timestamp,
+  optional metadata text, sanitization, completeness, and an optional sanitized
+  collection error. Complete evidence requires a value and an explicit
+  sanitization state with no collection error. Failed evidence requires an
+  error. Sanitization is a caller assertion, not automatic secret detection.
+- `Relationship` records directed endpoints, a supported relationship type,
+  immutable evidence references and conditions, and an observation state.
+  `OBSERVED` and `ABSENT` require evidence references. Empty evidence is allowed
+  only for `UNKNOWN`; evidence references alone never promote that state.
+- `AnalysisRun` records an aware timestamp, completeness, and collection
+  issues. Completeness defaults to `UNKNOWN`. A complete run cannot have issues;
+  a failed run must have at least one issue.
+
+These are frozen, keyword-only dataclasses using only the standard library.
+Enum fields require enum members; the future input adapter must parse strings
+explicitly. IDs are 1–128 ASCII characters, start with a letter or digit, and
+allow letters, digits, `_`, `.`, `:`, `/`, and `-`. Text must be nonblank and
+contain no Unicode control or formatting characters. Metadata values are
+limited to 4096 characters; other text fields are limited to 512.
+
+Validation errors omit supplied values. Labels, evidence text, source
+references, collection errors, conditions, and run issues are excluded from
+object representations. This does not sanitize stored data or serialization;
+callers must supply synthetic or appropriately sanitized metadata.
+
+Constructors validate individual records. Inventory-wide uniqueness, reference
+resolution, evidence freshness and completeness across records, JSON parsing
+and serialization, findings, and remediation verification remain future work.
+An observed relationship is not proof of a usable or exploitable path, and an
+absent relationship alone does not establish that a finding is resolved.
