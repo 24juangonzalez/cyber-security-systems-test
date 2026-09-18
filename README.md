@@ -115,6 +115,13 @@ and the committed lockfile. You can also start the `CI` workflow manually from
 the Actions tab. The workflow uses read-only repository permissions and does
 not require AWS credentials. Keep tests offline and use synthetic data.
 
+Dependabot checks Python dependencies (`pyproject.toml` and `uv.lock`) and
+GitHub Actions references weekly after `.github/dependabot.yml` reaches the
+default branch. Python minor and patch updates are grouped; major updates and
+action updates are reviewed separately. Review each update PR and its CI
+results before merging. This configuration does not enable automatic merging
+or change repository-level Dependabot alerts and security-update settings.
+
 The following CLI commands are planned and are not implemented yet:
 
 ```bash
