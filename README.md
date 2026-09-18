@@ -87,8 +87,14 @@ uv run ruff check .
 uv run ruff format .
 ```
 
-The equivalent shortcuts are `make test`, `make lint`, `make format`, and
-`make check`.
+The equivalent shortcuts are `make test`, `make lint`, and `make format`.
+Use `make format-check` to check formatting without changing files, or
+`make check` to run linting, formatting checks, and tests together.
+
+GitHub Actions runs `make check` on pushes and pull requests using Python 3.13
+and the committed lockfile. You can also start the `CI` workflow manually from
+the Actions tab. The workflow uses read-only repository permissions and does
+not require AWS credentials. Keep tests offline and use synthetic data.
 
 Add a runtime dependency with `uv add <package>` and a development dependency
 with `uv add --dev <package>`.

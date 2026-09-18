@@ -1,4 +1,4 @@
-.PHONY: setup test lint format check clean
+.PHONY: setup test lint format format-check check clean
 
 setup:
 	uv sync
@@ -12,7 +12,10 @@ lint:
 format:
 	uv run ruff format .
 
-check: lint test
+format-check:
+	uv run ruff format --check .
+
+check: lint format-check test
 
 clean:
 	find . -path ./.git -prune -o -path ./.venv -prune -o \
