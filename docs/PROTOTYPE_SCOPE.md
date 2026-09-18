@@ -69,6 +69,10 @@ output/
 - The vulnerable fixture produces the expected finding.
 - The remediated fixture does not produce an active path.
 - Comparison marks the original finding as resolved.
+- Resolution requires explicit absence evidence, comparable scope, compatible
+  versions, and a later or equal observation window. Missing assets, narrower
+  scope, failed imports, and missing relationships produce `unassessable`.
+- Removing one path must not hide other supported paths to the destination.
 - Every path edge has at least one evidence reference.
 - Missing evidence produces `incomplete_analysis`.
 - Unsupported relationships do not create findings.
@@ -76,6 +80,25 @@ output/
 - No provider-specific type appears in the core domain model.
 - Tests, linting, and formatting pass.
 - The report states limitations and collection completeness.
+- Stale, conflicting, unknown, and unsupported evidence blocks confirmation.
+- A network route or connection cannot substitute for login or application
+  authorization. Supported policy direction, protocol, port, context, expiry,
+  and deny precedence are tested explicitly.
+- Duplicate IDs, dangling entity references, invalid types, duplicate JSON
+  keys, unsupported versions, and oversized inputs fail safely.
+- Rule traversal, result counts, and execution time are bounded; reaching a
+  limit produces incomplete analysis rather than silent truncation.
+- Reports retain input hashes, observation windows, provenance, and schema,
+  parser, and rule versions. JSON and human-readable conclusions agree.
+
+## Current implementation boundary
+
+The local CLI implements one normalized synthetic rule described in
+`FIXTURE_FORMAT.md`, with TCP port 443 and exact-match deny precedence in one
+explicit policy context. It does not interpret raw vendor policies or perform
+live collection. Synthetic declarations and hashes do not establish authenticity.
+Independent reproduction and qualified review remain required before declaring
+Stage One complete. No benchmark or production performance promise is implied.
 
 ## Phase 2
 
@@ -121,4 +144,3 @@ Phase 1 is complete when another developer can install the project, run the
 three CLI commands, reproduce the known vulnerable path, observe it resolved
 in the remediated fixture, inspect evidence for every relationship, and run the
 full test suite successfully.
-

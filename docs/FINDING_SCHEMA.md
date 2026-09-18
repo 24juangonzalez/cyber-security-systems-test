@@ -1,6 +1,6 @@
 # Finding Schema
 
-- **Status:** Proposed for Phase 1
+- **Status:** Synthetic report contract implemented; broader lifecycle planned
 - **Owner:** Technical founder
 - **Last updated:** 2026-09-16
 
@@ -37,9 +37,25 @@ traceable, reproducible, and honest about uncertainty.
 - `potential_path`: the path is plausible, but one or more runtime conditions
   are unverified.
 - `incomplete_analysis`: required evidence could not be collected or supplied.
-- `resolved`: the supporting relationship is no longer present in a later run.
-- `suppressed`: a human accepted or deferred the finding with a recorded
-  reason.
+- `resolved`: comparable sufficient evidence explicitly establishes absence
+  of a supporting relationship. Missing records alone do not qualify.
+
+The current implementation reports confirmed synthetic configuration paths
+and an analysis-level `incomplete_analysis` state. Runtime preconditions remain
+unverified and are stated separately. Potential-path classification beyond
+this narrow contract is planned.
+
+Comparison records use `newly_introduced`, `persisting`, `resolved`, and
+`unassessable`, separately from current finding status. Suppression is a future
+human workflow record with a reason and review date; it must not overwrite the
+underlying analytical state.
+
+The current output envelope contains scope, counts, issues, versions, input
+hash, deterministic run identity, current findings, and the supplied evidence
+inventory. Comparison retains the baseline report as well. Each finding has
+ordered path references, required application-authorization references,
+evidence IDs, preconditions, uncertainty, conditional impact, and one proposed
+membership-removal option. Recommendations are never applied.
 
 ## Reporting language
 
@@ -65,4 +81,3 @@ apply the recommendation.
 Finding identity should remain stable across runs when the rule, entry point,
 destination, and material path are unchanged. Presentation text must not
 determine identity.
-

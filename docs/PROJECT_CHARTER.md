@@ -162,7 +162,7 @@ criteria.
 No cost or schedule baseline is approved. A credible baseline requires named
 owners, available capacity, and evidence about the first live input. Until
 those facts are known, the project is controlled by stage entry and exit
-criteria in `DELIVERY_PLAN.md`, not by an arbitrary date.
+criteria in `ROADMAP.md`, not by an arbitrary date.
 
 Before committing external delivery dates or material spending, the founders
 must record the expected labor, infrastructure, security review, legal, data

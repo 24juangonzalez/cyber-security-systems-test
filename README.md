@@ -1,7 +1,8 @@
 # Industrial Access Path Security Prototype
 
-This repository contains a working prototype and validation program for a
-provider-neutral, evidence-backed access-path analysis engine.
+This repository contains an early local synthetic prototype and validation
+program for a provider-neutral, evidence-backed access-path analysis engine.
+It is not ready to ingest customer exports or assess a real environment.
 
 The proposed north star is to help smaller industrial and logistics
 organizations understand how identities and remote-access connections could
@@ -57,7 +58,9 @@ the path disappears after remediation.
 - [Project charter](docs/PROJECT_CHARTER.md)
 - [Product strategy](docs/PRODUCT_STRATEGY.md)
 - [Prototype scope](docs/PROTOTYPE_SCOPE.md)
-- [Delivery plan](docs/DELIVERY_PLAN.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Synthetic fixture format and supported rule](docs/FIXTURE_FORMAT.md)
+- [Discovery interview and evaluation scorecard](docs/templates/DISCOVERY_INTERVIEW.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Domain model](docs/DOMAIN_MODEL.md)
 - [Finding schema](docs/FINDING_SCHEMA.md)
@@ -122,15 +125,28 @@ action updates are reviewed separately. Review each update PR and its CI
 results before merging. This configuration does not enable automatic merging
 or change repository-level Dependabot alerts and security-update settings.
 
-The following CLI commands are planned and are not implemented yet:
+Run the synthetic demo (use new output directories for subsequent runs):
 
 ```bash
 uv run cyber-path validate fixtures/industrial/vendor_access.json
-uv run cyber-path analyze fixtures/industrial/vendor_access.json
+mkdir -p output
+uv run cyber-path analyze fixtures/industrial/vendor_access.json --output output/analysis
 uv run cyber-path compare \
   fixtures/industrial/vendor_access.json \
-  fixtures/industrial/vendor_access_remediated.json
+  fixtures/industrial/vendor_access_remediated.json --output output/comparison
 ```
+
+Each analysis produces `finding.json`, `report.md`, and `graph.json`. The
+vulnerable fixture produces one configuration finding; comparable explicit
+membership-absence evidence resolves it in the remediated fixture. A separate
+application authorization is required; reachability alone is insufficient.
+Exit codes are `0` for a completed supported analysis, `2` for invalid input or
+an output error, and `3` for incomplete analysis/comparison. Zero findings or
+exit code zero never establishes that an environment is safe.
+
+The current rule is deliberately limited to normalized synthetic assertions
+and the policy semantics documented in [Fixture format](docs/FIXTURE_FORMAT.md).
+Independent reproduction, qualified review, and discovery are still pending.
 
 No real credentials, customer data, private network details, or secret values
 belong in source control, fixtures, test output, or logs.
@@ -155,10 +171,12 @@ tests/
 └── fixtures/        # Synthetic test inputs and expected results
 ```
 
-The `domain/` package implements entities, evidence, relationships, and
-analysis-run metadata; see [Domain model](docs/DOMAIN_MODEL.md) for validation
-rules and remaining work. The other packages are scaffolds. Existing
+The `domain/` package implements entities, evidence, relationships, scope,
+provenance, and analysis-run metadata. Ingestion validates bounded JSON;
+normalization checks evidence across records; analysis evaluates one rule and
+compares snapshots; reporting produces JSON and Markdown. See
+[Domain model](docs/DOMAIN_MODEL.md) for validation rules. Existing
 `infrastructure/` and `lambdas/` modules are earlier placeholders.
-Next, add synthetic industrial fixtures and input validation, followed by
-normalization, analysis, reporting, and the CLI. Add modules as their behavior
-is implemented. Keep provider SDKs out of `domain/` and `analysis/`.
+Next, independently reproduce and review the demo while running discovery.
+Select any future adapter from obtainable customer evidence. Keep provider SDKs
+out of `domain/` and `analysis/`.

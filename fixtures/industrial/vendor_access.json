@@ -1,0 +1,246 @@
+{
+  "schema_version": "1.0",
+  "parser_version": "synthetic-json-1",
+  "scope": {
+    "id": "industrial-demo",
+    "source_id": "synthetic-lab",
+    "observed_from": "2026-09-17T12:00:00+00:00",
+    "observed_until": "2026-09-17T12:00:00+00:00",
+    "completeness": "complete",
+    "issues": []
+  },
+  "entities": [
+    {
+      "id": "vendor",
+      "kind": "identity",
+      "label": "Synthetic vendor",
+      "criticality": "unknown",
+      "sensitivity": "unknown"
+    },
+    {
+      "id": "vpn",
+      "kind": "access_group",
+      "label": "Synthetic VPN group",
+      "criticality": "unknown",
+      "sensitivity": "unknown"
+    },
+    {
+      "id": "jump",
+      "kind": "host",
+      "label": "Synthetic jump host",
+      "criticality": "unknown",
+      "sensitivity": "unknown"
+    },
+    {
+      "id": "engineering",
+      "kind": "network_zone",
+      "label": "Synthetic engineering network",
+      "criticality": "unknown",
+      "sensitivity": "unknown"
+    },
+    {
+      "id": "management",
+      "kind": "application",
+      "label": "Synthetic management application",
+      "criticality": "unknown",
+      "sensitivity": "unknown"
+    },
+    {
+      "id": "operations",
+      "kind": "operational_asset",
+      "label": "Synthetic protected environment",
+      "criticality": "critical",
+      "sensitivity": "unknown"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "evidence:membership",
+      "source_type": "synthetic_fixture",
+      "source_reference": "industrial-demo:membership",
+      "observed_at": "2026-09-17T12:00:00+00:00",
+      "value": "Synthetic normalized assertion: vendor MEMBER_OF vpn.",
+      "sanitization": "synthetic",
+      "completeness": "complete",
+      "collection_error": null,
+      "provenance": {
+        "collected_at": "2026-09-17T12:00:00+00:00",
+        "source_version": "synthetic-1",
+        "parser_version": "synthetic-json-1",
+        "scope_id": "industrial-demo",
+        "permitted_use": "synthetic_demo",
+        "integrity_reference": "sha256:448ddb86a7cd8666f402411580ed1c17a45586ee4a76e0cc17dfc8abaf950167"
+      }
+    },
+    {
+      "id": "evidence:login",
+      "source_type": "synthetic_fixture",
+      "source_reference": "industrial-demo:login",
+      "observed_at": "2026-09-17T12:00:00+00:00",
+      "value": "Synthetic normalized assertion: vpn CAN_AUTHENTICATE_TO jump.",
+      "sanitization": "synthetic",
+      "completeness": "complete",
+      "collection_error": null,
+      "provenance": {
+        "collected_at": "2026-09-17T12:00:00+00:00",
+        "source_version": "synthetic-1",
+        "parser_version": "synthetic-json-1",
+        "scope_id": "industrial-demo",
+        "permitted_use": "synthetic_demo",
+        "integrity_reference": "sha256:1fca594290eab879b385bf8c392b2830b16bdb979ffc8d4dc0db68a5874987a9"
+      }
+    },
+    {
+      "id": "evidence:route",
+      "source_type": "synthetic_fixture",
+      "source_reference": "industrial-demo:route",
+      "observed_at": "2026-09-17T12:00:00+00:00",
+      "value": "Synthetic normalized assertion: jump CAN_ROUTE_TO engineering.",
+      "sanitization": "synthetic",
+      "completeness": "complete",
+      "collection_error": null,
+      "provenance": {
+        "collected_at": "2026-09-17T12:00:00+00:00",
+        "source_version": "synthetic-1",
+        "parser_version": "synthetic-json-1",
+        "scope_id": "industrial-demo",
+        "permitted_use": "synthetic_demo",
+        "integrity_reference": "sha256:c387a6cd9bb0f75e6fa71417c29cd22d19a08ac5a2228f4ee244657bd2c2361a"
+      }
+    },
+    {
+      "id": "evidence:network",
+      "source_type": "synthetic_fixture",
+      "source_reference": "industrial-demo:network",
+      "observed_at": "2026-09-17T12:00:00+00:00",
+      "value": "Synthetic normalized assertion: engineering CAN_CONNECT_TO management.",
+      "sanitization": "synthetic",
+      "completeness": "complete",
+      "collection_error": null,
+      "provenance": {
+        "collected_at": "2026-09-17T12:00:00+00:00",
+        "source_version": "synthetic-1",
+        "parser_version": "synthetic-json-1",
+        "scope_id": "industrial-demo",
+        "permitted_use": "synthetic_demo",
+        "integrity_reference": "sha256:d08ef10785abb27bf3e2298019a20788e28a2b5f6094d04a38050c55e63203d9"
+      }
+    },
+    {
+      "id": "evidence:association",
+      "source_type": "synthetic_fixture",
+      "source_reference": "industrial-demo:association",
+      "observed_at": "2026-09-17T12:00:00+00:00",
+      "value": "Synthetic normalized assertion: management REFERENCES operations.",
+      "sanitization": "synthetic",
+      "completeness": "complete",
+      "collection_error": null,
+      "provenance": {
+        "collected_at": "2026-09-17T12:00:00+00:00",
+        "source_version": "synthetic-1",
+        "parser_version": "synthetic-json-1",
+        "scope_id": "industrial-demo",
+        "permitted_use": "synthetic_demo",
+        "integrity_reference": "sha256:ac746736622058f2d2fc3cb83f63f17933cc3bd45fe0adfff1d288af88ad5e79"
+      }
+    },
+    {
+      "id": "evidence:application_login",
+      "source_type": "synthetic_fixture",
+      "source_reference": "industrial-demo:application_login",
+      "observed_at": "2026-09-17T12:00:00+00:00",
+      "value": "Synthetic normalized assertion: vendor CAN_AUTHENTICATE_TO management.",
+      "sanitization": "synthetic",
+      "completeness": "complete",
+      "collection_error": null,
+      "provenance": {
+        "collected_at": "2026-09-17T12:00:00+00:00",
+        "source_version": "synthetic-1",
+        "parser_version": "synthetic-json-1",
+        "scope_id": "industrial-demo",
+        "permitted_use": "synthetic_demo",
+        "integrity_reference": "sha256:65fc58181ec81d5676661b451e3c54aaa0640a9bfaece93ff8c85d8bb04d0b46"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "membership",
+      "source_id": "vendor",
+      "destination_id": "vpn",
+      "kind": "MEMBER_OF",
+      "evidence_ids": [
+        "evidence:membership"
+      ],
+      "conditions": [],
+      "observation": "observed",
+      "policy": null
+    },
+    {
+      "id": "login",
+      "source_id": "vpn",
+      "destination_id": "jump",
+      "kind": "CAN_AUTHENTICATE_TO",
+      "evidence_ids": [
+        "evidence:login"
+      ],
+      "conditions": [],
+      "observation": "observed",
+      "policy": null
+    },
+    {
+      "id": "route",
+      "source_id": "jump",
+      "destination_id": "engineering",
+      "kind": "CAN_ROUTE_TO",
+      "evidence_ids": [
+        "evidence:route"
+      ],
+      "conditions": [],
+      "observation": "observed",
+      "policy": null
+    },
+    {
+      "id": "network",
+      "source_id": "engineering",
+      "destination_id": "management",
+      "kind": "CAN_CONNECT_TO",
+      "evidence_ids": [
+        "evidence:network"
+      ],
+      "conditions": [],
+      "observation": "observed",
+      "policy": {
+        "context": "synthetic-access-v1",
+        "effect": "allow",
+        "protocol": "tcp",
+        "port": 443,
+        "expires_at": null
+      }
+    },
+    {
+      "id": "association",
+      "source_id": "management",
+      "destination_id": "operations",
+      "kind": "REFERENCES",
+      "evidence_ids": [
+        "evidence:association"
+      ],
+      "conditions": [],
+      "observation": "observed",
+      "policy": null
+    },
+    {
+      "id": "application_login",
+      "source_id": "vendor",
+      "destination_id": "management",
+      "kind": "CAN_AUTHENTICATE_TO",
+      "evidence_ids": [
+        "evidence:application_login"
+      ],
+      "conditions": [],
+      "observation": "observed",
+      "policy": null
+    }
+  ]
+}
