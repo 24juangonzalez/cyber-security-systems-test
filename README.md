@@ -1,100 +1,164 @@
-# Cloud Attack-Path Mapper
+# Industrial Access Path Security Prototype
 
-> We help AWS-based companies understand how compromised identities could
-> reach sensitive data—and what to fix first.
+This repository contains a working prototype and validation program for a
+provider-neutral, evidence-backed access-path analysis engine.
 
-**Stage:** Idea validation  
-**Founders:** [Name] and [Name]  
-**Current goal:** Validate the problem, prove safe AWS analysis, and secure a
-design-partner pilot by 2026-12-13.
+The proposed north star is to help smaller industrial and logistics
+organizations understand how identities and remote-access connections could
+reach operationally sensitive systems without actively scanning or interfering
+with control equipment.
 
-## The problem
+## Current stage
 
-Cloud-based companies receive disconnected IAM, network, secret, and
-configuration findings. Small teams and managed service providers still have
-to determine which combinations create realistic paths to valuable systems or
-data, and which fixes matter first.
+- **Stage:** Prototype and market validation
+- **Current build:** Synthetic industrial remote-access path analysis
+- **Primary scenario:** Vendor account to operationally sensitive system
+- **Secondary scenario:** AWS identity to sensitive cloud resource
+- **Commercial status:** Customer, buyer, channel, pricing, and business model
+  remain hypotheses
 
-## Our product
+The industrial direction is accepted for prototype validation. It is not an
+irreversible company commitment. Existing AWS plans remain useful technical
+and market hypotheses, but they are not the controlling product specification.
 
-The first version connects to an authorized, read-only AWS account and maps
-identities, permissions, resources, and sensitive destinations. It reports a
-small number of evidence-backed potential attack paths with clear remediation
-steps. It does not retrieve secrets, exploit systems, or make changes.
+## What we are building now
 
-## Who it is for
+The first milestone is a local CLI that analyzes a synthetic environment and
+produces an evidence-backed before-and-after report for this path:
 
-- **User:** CTO, security engineer, cloud engineer, or MSP analyst
-- **Buyer:** CTO, security leader, founder, or managed service provider
-- **First market:** 20–300-person SaaS companies using AWS without a large
-  internal security team
+```text
+Vendor account
+→ VPN access group
+→ jump host
+→ engineering network
+→ WCS or management server
+→ operationally sensitive environment
+```
 
-## What we need to prove
+The prototype must show the evidence behind every relationship, identify
+unknowns, recommend the smallest change that breaks the path, and verify that
+the path disappears after remediation.
 
-- [ ] Ten qualified interviews confirm that prioritization is a recurring pain.
-- [ ] Five prospects understand and trust an evidence-backed path report.
-- [ ] Two prospects agree to a design-partner pilot.
-- [ ] At least one prospect expresses credible willingness to pay.
+## What we are not building now
 
-## Current priorities
+- Active PLC, controller, or OT scanning
+- Exploitation or autonomous penetration testing
+- Packet capture or continuous monitoring
+- A SIEM, SOC, EDR, or vulnerability scanner
+- Automatic remediation
+- Production SaaS infrastructure, billing, or multi-tenancy
+- A general compliance platform
+- AI-generated security facts or findings
 
-- [ ] Interview 10 potential customers and demonstrate a synthetic path by
-  2026-10-13.
-- [ ] Run a safe, read-only collector in a founder-controlled AWS sandbox by
-  2026-11-12.
-- [ ] Review evidence-backed reports with five qualified prospects by
-  2026-11-12.
-- [ ] Secure at least one authorized design-partner pilot and collect pricing
-  evidence by 2026-12-13.
+## Current documents
 
-## How we work
-
-- Every task has one owner.
-- Important choices go in the [decision log](docs/DECISIONS.md).
-- We do not commit secrets, credentials, or customer data.
-- We review progress and choose the next priority every [week].
-
-## Project documents
-
-- [Game plan and architecture](docs/GAME_PLAN.md)
-- [Startup ideas and evaluations](docs/IDEAS.md)
-- [One-page business plan](docs/ONE_PAGE_PLAN.md)
-- [Founder alignment checklist](docs/FOUNDER_ALIGNMENT.md)
+- [Product strategy, business plan, and project charter (Word)](docs/Industrial_Access_Path_Product_Strategy_Business_Plan_and_Project_Charter.docx)
+- [North star](docs/NORTH_STAR.md)
+- [Project charter](docs/PROJECT_CHARTER.md)
+- [Product strategy](docs/PRODUCT_STRATEGY.md)
+- [Prototype scope](docs/PROTOTYPE_SCOPE.md)
+- [Delivery plan](docs/DELIVERY_PLAN.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Domain model](docs/DOMAIN_MODEL.md)
+- [Finding schema](docs/FINDING_SCHEMA.md)
+- [Security and safety](docs/SECURITY_AND_SAFETY.md)
+- [Business validation](docs/BUSINESS_VALIDATION.md)
+- [Go to market hypotheses](docs/GO_TO_MARKET.md)
+- [Experiment register](docs/EXPERIMENTS.md)
 - [Decision log](docs/DECISIONS.md)
+
+Earlier documents such as `GAME_PLAN.md` and `ONE_PAGE_PLAN.md` describe the
+previous AWS-first hypothesis. They are retained as historical context. Where
+they conflict with the documents above, the current documents govern.
 
 ## Development
 
-The project uses Python 3.13 and `uv` so macOS and WSL developers use the same
-locked dependencies.
+The project uses Python 3.13 and `uv`.
 
-### First-time setup
+Use one root `.venv` for this project's source code and tests. Run `uv sync`
+after cloning or changing dependencies. Subdirectories do not need their own
+environments.
 
-Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/), then run:
+For VS Code, open the repository root and install the recommended Python
+extensions. Workspace settings default to `.venv` and enable activation in
+new integrated terminals. If you previously selected another interpreter, use
+**Python: Select Interpreter** to choose `.venv/bin/python` once, then open a
+new terminal. These settings do not activate environments in standalone
+terminals; `uv run` and the Makefile commands select the project environment
+without manual activation.
 
 ```bash
 uv sync
-cp .env.example .env
-```
-
-`uv sync` installs Python when needed, creates `.venv`, and generates
-`uv.lock`. Commit `uv.lock`; do not commit `.venv` or `.env`.
-
-You normally do not need to activate the environment. Run tools through `uv`:
-
-```bash
 uv run pytest
 uv run ruff check .
 uv run ruff format .
 ```
 
-The equivalent shortcuts are `make test`, `make lint`, `make format`, and
-`make check`.
+The equivalent shortcuts are `make test`, `make lint`, and `make format`.
+Use `make format-check` to check formatting without changing files, or
+`make check` to run linting, formatting checks, and tests together.
 
-Add a runtime dependency with `uv add <package>` and a development dependency
-with `uv add --dev <package>`.
+Enable automatic checks before pushing once per clone:
 
-## License
+```bash
+make hooks
+```
 
-Proprietary and confidential. No permission is granted to use, copy, modify, or
-distribute this project without written authorization from the copyright
-owner. See [DEC-001](docs/DECISIONS.md#dec-001-use-a-proprietary-codebase).
+This sets the clone's Git hooks directory to `.githooks`. The pre-push hook
+runs `make check` with locked dependencies and blocks the push if a check
+fails. It checks the current working tree, so commit the changes you intend
+to push and keep the working tree clean. GitHub Actions also checks the pushed
+commits independently. Git hooks can be bypassed; they do not replace CI.
+
+GitHub Actions runs `make check` on pushes and pull requests using Python 3.13
+and the committed lockfile. You can also start the `CI` workflow manually from
+the Actions tab. The workflow uses read-only repository permissions and does
+not require AWS credentials. Keep tests offline and use synthetic data.
+
+Dependabot checks Python dependencies (`pyproject.toml` and `uv.lock`) and
+GitHub Actions references weekly after `.github/dependabot.yml` reaches the
+default branch. Python minor and patch updates are grouped; major updates and
+action updates are reviewed separately. Review each update PR and its CI
+results before merging. This configuration does not enable automatic merging
+or change repository-level Dependabot alerts and security-update settings.
+
+The following CLI commands are planned and are not implemented yet:
+
+```bash
+uv run cyber-path validate fixtures/industrial/vendor_access.json
+uv run cyber-path analyze fixtures/industrial/vendor_access.json
+uv run cyber-path compare \
+  fixtures/industrial/vendor_access.json \
+  fixtures/industrial/vendor_access_remediated.json
+```
+
+No real credentials, customer data, private network details, or secret values
+belong in source control, fixtures, test output, or logs.
+
+## Source layout
+
+The package scaffold follows [Architecture](docs/ARCHITECTURE.md) and the active
+[Prototype scope](docs/PROTOTYPE_SCOPE.md):
+
+```text
+src/cyber_security_systems/
+├── domain/          # Provider-neutral entities and evidence
+├── ingestion/       # Fixtures and authorized source adapters
+├── normalization/   # Source records to domain objects
+├── analysis/        # Graph construction and deterministic rules
+└── reporting/       # Findings and human-readable reports
+
+tests/
+├── unit/            # Individual component behavior
+├── integration/     # Local fixture-to-report flow
+├── known_answer/    # Expected paths and negative cases
+└── fixtures/        # Synthetic test inputs and expected results
+```
+
+The `domain/` package implements entities, evidence, relationships, and
+analysis-run metadata; see [Domain model](docs/DOMAIN_MODEL.md) for validation
+rules and remaining work. The other packages are scaffolds. Existing
+`infrastructure/` and `lambdas/` modules are earlier placeholders.
+Next, add synthetic industrial fixtures and input validation, followed by
+normalization, analysis, reporting, and the CLI. Add modules as their behavior
+is implemented. Keep provider SDKs out of `domain/` and `analysis/`.
