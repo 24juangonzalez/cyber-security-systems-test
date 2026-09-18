@@ -1,7 +1,10 @@
-.PHONY: setup test lint format format-check check clean
+.PHONY: setup hooks test lint format format-check check clean
 
 setup:
 	uv sync
+
+hooks:
+	git config --local core.hooksPath .githooks
 
 test:
 	uv run pytest

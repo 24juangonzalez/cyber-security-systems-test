@@ -86,6 +86,18 @@ The equivalent shortcuts are `make test`, `make lint`, and `make format`.
 Use `make format-check` to check formatting without changing files, or
 `make check` to run linting, formatting checks, and tests together.
 
+Enable automatic checks before pushing once per clone:
+
+```bash
+make hooks
+```
+
+This sets the clone's Git hooks directory to `.githooks`. The pre-push hook
+runs `make check` with locked dependencies and blocks the push if a check
+fails. It checks the current working tree, so commit the changes you intend
+to push and keep the working tree clean. GitHub Actions also checks the pushed
+commits independently. Git hooks can be bypassed; they do not replace CI.
+
 GitHub Actions runs `make check` on pushes and pull requests using Python 3.13
 and the committed lockfile. You can also start the `CI` workflow manually from
 the Actions tab. The workflow uses read-only repository permissions and does
