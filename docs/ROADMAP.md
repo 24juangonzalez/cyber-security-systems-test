@@ -1,6 +1,6 @@
-# Delivery Plan
+# Roadmap
 
-- **Status:** Proposed stage-gate plan
+- **Status:** Technical sequence aligned with v2; commercial expansion proposed
 - **Owner:** Founders
 - **Last updated:** 2026-09-16
 - **Review cadence:** At each stage exit and after a material change
@@ -50,6 +50,9 @@ met and ends only when its acceptance conditions are satisfied.
 - JSON and human-readable reports
 - Command-line interface
 - Automated tests
+- Stable finding identifiers and explicit coverage/uncertainty
+- Remediation-to-relationship mapping and before-and-after comparison
+- Versioned input manifests and reproducible release evidence
 
 ### Exit
 
@@ -66,10 +69,8 @@ met and ends only when its acceptance conditions are satisfied.
 
 ### Deliverables
 
-- Stable finding identifiers
-- Evidence completeness and uncertainty classifications
-- Remediation-to-relationship mapping
-- Before-and-after comparison
+- Independently reproduce the Stage One analysis and comparison
+- Refine report clarity and limitations using reviewer feedback
 - Five-minute demonstration
 - Structured feedback script and record
 - Secondary AWS fixture, if it can be added without delaying industrial
@@ -136,6 +137,32 @@ met and ends only when its acceptance conditions are satisfied.
 - Data is retained or deleted according to the approved plan.
 - The founders decide whether to continue, narrow, change direction, or stop.
 
+## Stage Five Repeatable Paid Delivery (proposed)
+
+This is a proposed commercial gate from the v2 business plan, not authorization
+to collect customer data, commit spending, or promise a service.
+
+- Test a bounded, human-reviewed assessment before investing in hosting.
+- Before scaling delivery, seek three paid assessments across at least two
+  independent customers and measure at least 40% gross margin including labor.
+- Consider recurrence after two signed annual agreements and measured service
+  effort. Consider partner delivery only after two partner analysts reproduce
+  accepted outputs without founder correction.
+- Founders must approve offers, budgets, owners, and expansion decisions in
+  `DECISIONS.md`. All v2 pricing and financial figures remain assumptions.
+
+## Current implementation sequence
+
+1. Align the technical contract with v2 and retain the safety exclusions.
+2. Extend scope, provenance, and structured policy metadata.
+3. Validate synthetic positive, remediated, and negative inputs.
+4. Build one bounded deterministic rule, reports, and conservative comparison.
+5. Independently reproduce the demo and run structured discovery in parallel.
+
+Passing local tests is not Stage One sign-off or evidence of customer demand.
+Record independent reproduction, qualified review, and founder stage decisions
+before claiming the relevant gate has passed.
+
 ## Work control
 
 For each active stage, maintain a short prioritized backlog. Every work item
@@ -153,4 +180,3 @@ Dates are added only after the relevant owner estimates the work and the
 founders confirm capacity and dependencies. A date does not replace an exit
 criterion. If an approved date or cost changes materially, record the reason,
 effect, decision, and revised baseline.
-

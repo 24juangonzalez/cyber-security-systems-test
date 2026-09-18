@@ -15,6 +15,16 @@
 | EXP-006 | Before-and-after verification creates repeat value | Demonstrate remediated comparison | Prospects request reanalysis or verification | Planned |
 | EXP-007 | An integrator or MSP can distribute the product | Walk through partner workflow | One partner offers a customer introduction or pilot | Planned |
 
+## Proposed v2 extensions
+
+These experiments are planned; no result or commercial approval is implied.
+
+| ID | Hypothesis | Method | Proposed signal | Status |
+| --- | --- | --- | --- | --- |
+| EXP-008 | Required evidence is obtainable | Map approved minimum fields with source owners | Two independent organizations can safely supply sufficient supported inputs | Planned |
+| EXP-009 | Analysis changes a customer decision | Record action or justified acceptance during authorized evaluations | Documented decision in two of the first three completed evaluations | Planned |
+| EXP-010 | Reviewed delivery is repeatable and economic | Track paid scopes, all delivery hours, and direct costs | Three assessments across two independent customers; at least 40% gross margin before scaling | Proposed; founder approval required |
+
 ## Experiment rules
 
 - Define success and failure before running the experiment.
@@ -23,4 +33,3 @@
 - Link product work to the experiment it supports.
 - Sanitize all committed notes.
 - Record decisions created by the result.
-
