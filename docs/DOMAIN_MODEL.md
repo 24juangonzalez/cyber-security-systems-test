@@ -93,6 +93,11 @@ upgraded to confirmed merely because a possible graph path exists.
 
 The public types are exported from `cyber_security_systems.domain`:
 
+Definitions are grouped in `domain/enums.py` (the allowed vocabulary) and
+`domain/models.py` (immutable records and their invariants). Shared field
+checks stay in `_validation.py`. Import through the public package rather than
+depending on the internal file layout. Example resource IDs remain in fixtures.
+
 - `Entity` uses an `EntityType` for the nine node categories above. Separate
   subclasses are unnecessary until a category needs its own behavior.
   `Criticality` and `Sensitivity` default to `UNKNOWN`; labels never determine
