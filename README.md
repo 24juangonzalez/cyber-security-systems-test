@@ -125,28 +125,108 @@ action updates are reviewed separately. Review each update PR and its CI
 results before merging. This configuration does not enable automatic merging
 or change repository-level Dependabot alerts and security-update settings.
 
-Run the synthetic demo (use new output directories for subsequent runs):
+## Run and understand the demo
+
+You are running `cyber-path`, this project's local Python command-line tool.
+`uv run` runs it using the project's virtual environment and dependencies.
+The tool reads the supplied JSON files, checks their evidence, evaluates one
+industrial access-path rule, and writes reports to your computer. It does not
+connect to AWS, scan a network, test credentials, or change any systems.
+
+A **fixture** is a fictional example with a known expected result. The two
+included fixtures describe the same environment before and after a modeled
+change. You do not need to create an input file for your first run.
+
+| File or folder | Purpose |
+| --- | --- |
+| `fixtures/industrial/vendor_access.json` | Input with the supported vendor-access path |
+| `fixtures/industrial/vendor_access_remediated.json` | Input with explicit evidence that the vendor group membership is absent |
+| `schemas/synthetic-fixture.schema.json` | Defines the input structure; this is not the environment data |
+| `output/analysis/` | Generated report for the original environment |
+| `output/comparison/` | Generated before-and-after comparison |
+
+Run the following commands from the repository root, where `pyproject.toml`
+and the Makefile live.
+
+### 1. Install the project and check the input
 
 ```bash
+uv sync --locked
 uv run cyber-path validate fixtures/industrial/vendor_access.json
+```
+
+`validate` checks the JSON structure, identifiers, references, and evidence
+consistency. It prints a summary without writing reports. For the included
+fixture, expect `"valid": true`, `"status": "complete"`, and an empty issues list.
+Valid input does not mean that no access path exists.
+
+### 2. Analyze the original example
+
+```bash
 mkdir -p output
-uv run cyber-path analyze fixtures/industrial/vendor_access.json --output output/analysis
+uv run cyber-path analyze \
+  fixtures/industrial/vendor_access.json --output output/analysis
+```
+
+`analyze` builds a directed graph from supported relationships and checks for
+the vendor → group → jump host → network → application → operational-asset
+scenario. A separate application-authorization assertion is required;
+network reachability alone cannot establish login permission.
+
+Expect `"status": "complete"` and `"findings": 1` in the terminal. Open
+`output/analysis/report.md` in your editor to inspect the path, evidence,
+limitations, and suggested membership change. The application-to-asset
+relationship is an association, not proof of operational control.
+
+### 3. Compare with the remediated example
+
+```bash
 uv run cyber-path compare \
   fixtures/industrial/vendor_access.json \
   fixtures/industrial/vendor_access_remediated.json --output output/comparison
 ```
 
-Each analysis produces `finding.json`, `report.md`, and `graph.json`. The
-vulnerable fixture produces one configuration finding; comparable explicit
-membership-absence evidence resolves it in the remediated fixture. A separate
-application authorization is required; reachability alone is insufficient.
+`compare` analyzes both snapshots and checks whether comparable evidence
+establishes removal of the original path. It does not perform the remediation;
+the second fixture already describes the modeled change.
+
+Expect `"status": "complete"` and `"findings": 0` in the terminal. Open
+`output/comparison/report.md` and look for `resolved` in its Comparison section.
+The zero count refers to current findings; the report retains the original
+finding and its evidence. Missing data alone would not establish resolution.
+
+### Read the outputs and run again
+
+Both `analyze` and `compare` write these files inside the directory supplied
+with `--output`:
+
+| Output | What to read it for |
+| --- | --- |
+| `report.md` | Human-readable explanation; start here |
+| `finding.json` | Full structured results, evidence, and comparison details where applicable |
+| `graph.json` | Supplied normalized entities and relationships, including absent assertions |
+
+Use a **new output directory for each run**, such as `output/analysis-2`.
+The parent directory must exist; the final directory must not already exist.
+The tool refuses to overwrite existing output. Generated `output/` files are
+ignored by Git.
+
 Exit codes are `0` for a completed supported analysis, `2` for invalid input or
 an output error, and `3` for incomplete analysis/comparison. Zero findings or
 exit code zero never establishes that an environment is safe.
 
-The current rule is deliberately limited to normalized synthetic assertions
-and the policy semantics documented in [Fixture format](docs/FIXTURE_FORMAT.md).
-Independent reproduction, qualified review, and discovery are still pending.
+### What this demonstrates and what comes next
+
+This demonstrates one supported path and evidence-based comparison using
+synthetic JSON. Arbitrary PDF/Word reports, vendor exports, and real customer
+configurations are not supported inputs. The accepted fields and policy limits
+are documented in [Fixture format](docs/FIXTURE_FORMAT.md).
+
+Next, have another developer reproduce these results using the
+[review checklist](docs/templates/REPRODUCTION_REVIEW.md), review whether the
+report is understandable with qualified prospects, and use that feedback to
+select a future input adapter. Independent reproduction, qualified review,
+and discovery remain separate from passing automated tests.
 
 No real credentials, customer data, private network details, or secret values
 belong in source control, fixtures, test output, or logs.
