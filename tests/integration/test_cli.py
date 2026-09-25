@@ -1,4 +1,5 @@
 import json
+import os
 import socket
 from pathlib import Path
 
@@ -48,6 +49,38 @@ def test_validate_analyze_compare_commands(tmp_path, capsys):
     assert "Invalid" not in capsys.readouterr().err
 
 
+def test_commands_without_unix_open_flags(tmp_path, monkeypatch, capsys):
+    monkeypatch.delattr(os, "O_NONBLOCK", raising=False)
+    monkeypatch.delattr(os, "O_NOFOLLOW", raising=False)
+    test_validate_analyze_compare_commands(tmp_path, capsys)
+
+
+def test_symlink_rejected_without_unix_open_flags(tmp_path, monkeypatch):
+    link = tmp_path / "input.json"
+    link.symlink_to(FIXTURES / "vendor_access.json")
+    monkeypatch.delattr(os, "O_NONBLOCK", raising=False)
+    monkeypatch.delattr(os, "O_NOFOLLOW", raising=False)
+    with pytest.raises(FixtureError):
+        load_fixture(link)
+
+
+def test_input_replaced_during_open_is_rejected(tmp_path, monkeypatch):
+    path = tmp_path / "input.json"
+    replacement = tmp_path / "replacement.json"
+    path.write_bytes((FIXTURES / "vendor_access.json").read_bytes())
+    replacement.write_bytes(path.read_bytes())
+    original_open = os.open
+
+    def replace_then_open(candidate, flags):
+        replacement.replace(path)
+        return original_open(candidate, flags)
+
+    monkeypatch.delattr(os, "O_NOFOLLOW", raising=False)
+    monkeypatch.setattr(os, "open", replace_then_open)
+    with pytest.raises(FixtureError, match="changed while opening"):
+        load_fixture(path)
+
+
 @pytest.mark.parametrize("command", ["analyze", "compare"])
 def test_missing_output_parents_are_created(tmp_path, command):
     output = tmp_path / "new" / "nested" / "reports"
@@ -60,7 +93,8 @@ def test_missing_output_parents_are_created(tmp_path, command):
         "graph.json",
         "report.md",
     }
-    assert output.stat().st_mode & 0o777 == 0o700
+    if os.name != "nt":
+        assert output.stat().st_mode & 0o777 == 0o700
 
 
 def test_output_parent_file_is_preserved(tmp_path, capsys):
