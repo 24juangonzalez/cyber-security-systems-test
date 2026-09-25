@@ -11,6 +11,32 @@ with control equipment.
 
 ## Current stage
 
+### Run the local UI
+
+From the repository directory, run:
+
+```bash
+make ui
+```
+
+This installs the locked optional Streamlit dependencies and starts the app at
+`http://127.0.0.1:8501`. Open that address in your browser. Stop it with **Ctrl+C**
+in the terminal.
+
+Choose **Bundled demo**, then **Run analysis** to see the vendor access finding.
+Choose **Compare before and after** to see why removing VPN membership resolves
+that path. **Upload JSON** accepts your own synthetic files using the
+[supported fixture format](docs/FIXTURE_FORMAT.md), up to 4 MiB each. It does not
+accept arbitrary PDFs, spreadsheets, or real customer exports.
+
+Review the evidence on the page and download `report.md`, `finding.json`, or
+`graph.json`. Uploads and results stay in the local app session; the UI does not
+write them to `output/`. Changing an input clears the previous result.
+The app listens on localhost and is intended for local use, not public hosting.
+Run `make check` to include the UI regression tests along with the existing tests.
+
+### Project status
+
 - **Stage:** Prototype and market validation
 - **Current build:** Synthetic industrial remote-access path analysis
 - **Primary scenario:** Vendor account to operationally sensitive system
@@ -92,7 +118,7 @@ without manual activation.
 
 ```bash
 uv sync
-uv run pytest
+uv run --extra ui pytest
 uv run ruff check .
 uv run ruff format .
 ```

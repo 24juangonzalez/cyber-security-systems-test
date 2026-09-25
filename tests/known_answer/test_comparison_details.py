@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 
+from cyber_security_systems.analysis.comparison import add_comparison_details
 from cyber_security_systems.analysis.engine import compare
 from cyber_security_systems.ingestion.fixtures import parse_fixture
 from cyber_security_systems.reporting.reports import markdown_report
@@ -36,6 +37,14 @@ def test_resolution_explains_the_change_and_its_evidence(examples):
     assert "| Relationship | Before | After |" in report
     assert "vendor" in report and "vpn" in report
     assert "2026" in report
+
+
+def test_comparison_details_reject_missing_finding(examples):
+    before, after = (parse_fixture(raw) for raw in examples)
+    result = compare(before, after)
+    result["comparison"][0]["finding_id"] = "missing-finding"
+    with pytest.raises(ValueError, match="references a missing finding"):
+        add_comparison_details(result, before, after)
 
 
 def test_unchanged_snapshot_explains_persistence(examples):
