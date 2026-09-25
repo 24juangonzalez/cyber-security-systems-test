@@ -9,6 +9,10 @@ from time import monotonic
 
 import networkx as nx
 
+from cyber_security_systems.analysis.comparison import (
+    add_comparison_details,
+    scope_issues,
+)
 from cyber_security_systems.domain import (
     Effect,
     EntityType,
@@ -243,16 +247,7 @@ def analyze(
 
 
 def _comparable(before: Snapshot, after: Snapshot) -> bool:
-    before_nodes = {(node.id, node.kind) for node in before.entities}
-    after_nodes = {(node.id, node.kind) for node in after.entities}
-    return (
-        before.scope.id == after.scope.id
-        and before.scope.source_id == after.scope.source_id
-        and before.schema_version == after.schema_version
-        and before.parser_version == after.parser_version
-        and after.scope.observed_from >= before.scope.observed_until
-        and before_nodes <= after_nodes
-    )
+    return not scope_issues(before, after)
 
 
 def _resolved(finding: dict, before: Snapshot, after: Snapshot) -> bool:
@@ -314,4 +309,5 @@ def compare(before: Snapshot, after: Snapshot) -> dict:
         result["issues"] = sorted(
             set(result["issues"]) | {"incompatible_comparison_scope_or_time"}
         )
+    add_comparison_details(result, before, after)
     return result

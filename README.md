@@ -118,6 +118,15 @@ and the committed lockfile. You can also start the `CI` workflow manually from
 the Actions tab. The workflow uses read-only repository permissions and does
 not require AWS credentials. Keep tests offline and use synthetic data.
 
+CI also builds the source distribution and wheel, installs the wheel with locked
+runtime dependencies in a separate environment, and runs the CLI outside the
+repository. It checks that the synthetic example produces one finding and that
+the remediated comparison marks it resolved. This catches packaging and CLI
+integration problems; it does not establish accuracy on customer environments.
+After a successful run, open **Actions → CI → the run → Artifacts** and download
+`synthetic-demo-reports` to inspect the analysis and comparison JSON/Markdown
+reports. These synthetic reports are retained for seven days.
+
 Dependabot checks Python dependencies (`pyproject.toml` and `uv.lock`) and
 GitHub Actions references weekly after `.github/dependabot.yml` reaches the
 default branch. Python minor and patch updates are grouped; major updates and
@@ -163,7 +172,6 @@ Valid input does not mean that no access path exists.
 ### 2. Analyze the original example
 
 ```bash
-mkdir -p output
 uv run cyber-path analyze \
   fixtures/industrial/vendor_access.json --output output/analysis
 ```
@@ -195,6 +203,18 @@ Expect `"status": "complete"` and `"findings": 0` in the terminal. Open
 The zero count refers to current findings; the report retains the original
 finding and its evidence. Missing data alone would not establish resolution.
 
+The Comparison section now includes a status summary, reasons for each result,
+and a before/after table of relationship assertions and evidence timestamps.
+It shows how many supported current paths remain to the same destination, so
+resolving one path does not hide an alternative. Missing records are labeled
+as not recorded, not as confirmed absence. Scope or evidence problems appear as
+comparison blockers, including when no findings can be assessed.
+
+These details are also available in `finding.json` as `comparison_summary`,
+`comparison_issues`, and each comparison entry's `reason_codes`, `explanation`,
+and `relationships`. See the [comparison scenarios](docs/COMPARISON_SCENARIOS.md)
+for expected outcomes and independent-review guidance.
+
 ### Read the outputs and run again
 
 Both `analyze` and `compare` write these files inside the directory supplied
@@ -207,7 +227,8 @@ with `--output`:
 | `graph.json` | Supplied normalized entities and relationships, including absent assertions |
 
 Use a **new output directory for each run**, such as `output/analysis-2`.
-The parent directory must exist; the final directory must not already exist.
+Missing parent directories are created automatically; no `mkdir` step is needed.
+The final directory must not already exist.
 The tool refuses to overwrite existing output. Generated `output/` files are
 ignored by Git.
 

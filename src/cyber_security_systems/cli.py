@@ -54,8 +54,9 @@ def main(argv: list[str] | None = None) -> int:
     except OSError:
         print(
             (
-                "Cannot write reports; use a new directory under an existing "
-                "writable parent. A failed write may leave partial output."
+                "Cannot write reports; choose a new output directory in a "
+                "writable location. Missing parent directories are created "
+                "automatically. A failed write may leave partial output."
             ),
             file=sys.stderr,
         )
