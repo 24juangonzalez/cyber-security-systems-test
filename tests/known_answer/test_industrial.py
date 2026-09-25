@@ -46,9 +46,9 @@ def test_known_path_and_verified_remediation():
     assert finding["remediation"]["relationship_id"] == "membership"
     assert analyze(after)["findings"] == []
     comparison = compare(before, after)
-    assert comparison["comparison"] == [
-        {"finding_id": finding["id"], "status": "resolved"}
-    ]
+    assert len(comparison["comparison"]) == 1
+    assert comparison["comparison"][0]["finding_id"] == finding["id"]
+    assert comparison["comparison"][0]["status"] == "resolved"
 
 
 def test_results_and_identity_are_deterministic(raw):
@@ -149,6 +149,13 @@ def test_resolution_requires_absence_of_the_original_policy_effect(
     assert result["findings"] == []
     assert result["comparison"][0]["status"] == expected_status
     assert result["comparison_status"] == expected_completeness
+    details = next(
+        row
+        for row in result["comparison"][0]["relationships"]
+        if row["id"] == "network"
+    )
+    assert details["before"][0]["policy"]["effect"] == "allow"
+    assert details["after"][0]["policy"]["effect"] == effect
 
 
 def test_conflicting_presence_is_incomplete(raw):
@@ -248,6 +255,10 @@ def test_resolving_one_path_does_not_hide_alternative_path(raw):
         "resolved",
         "persisting",
     }
+    resolved = next(
+        entry for entry in result["comparison"] if entry["status"] == "resolved"
+    )
+    assert resolved["remaining_paths_to_destination"] == 1
 
 
 def test_newly_introduced_path_is_reported():
@@ -262,6 +273,12 @@ def test_newly_introduced_path_is_reported():
         record["provenance"]["collected_at"] = "2026-09-19T12:00:00+00:00"
     result = compare(absent, parse_fixture(raw))
     assert result["comparison"][0]["status"] == "newly_introduced"
+    assert result["comparison"][0]["reason_codes"] == [
+        "supported_path_only_in_after_snapshot"
+    ]
+    membership = result["comparison"][0]["relationships"][0]
+    assert membership["before"][0]["observation"] == "absent"
+    assert membership["after"][0]["observation"] == "observed"
 
 
 def test_mutated_evidence_fails_integrity_check(raw):

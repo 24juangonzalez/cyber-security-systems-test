@@ -46,7 +46,8 @@ src/cyber_security_systems/
 ├── normalization/
 │   └── inventory.py      # Cross-record evidence and supported semantics
 ├── analysis/
-│   └── engine.py         # One graph rule, findings, and comparison
+│   ├── engine.py         # One graph rule, findings, and comparison decisions
+│   └── comparison.py     # Scope checks and before/after explanations
 ├── reporting/
 │   └── reports.py        # JSON and escaped Markdown output
 └── cli.py               # Command orchestration

@@ -50,6 +50,19 @@ Comparison records use `newly_introduced`, `persisting`, `resolved`, and
 human workflow record with a reason and review date; it must not overwrite the
 underlying analytical state.
 
+Each comparison entry also includes an explanation, reason codes, destination,
+count of supported current paths to that destination, and relationship details
+for both snapshots. Details include the supplied observation, policy effect,
+evidence references, source references, observation/collection timestamps, and
+completeness. Missing records remain explicitly missing; table contents are
+observations, not independent confirmation that remediation succeeded.
+
+The envelope includes `comparison_summary` counts and `comparison_issues`.
+Issue prefixes `before:` and `after:` identify the affected snapshot. The path
+count is limited to supported current findings and may be zero when evidence
+is incomplete. Explanation tables cap assertion and evidence lists at 20 items,
+report omitted counts, and retain the full inventory in the surrounding report.
+
 The current output envelope contains scope, counts, issues, versions, input
 hash, deterministic run identity, current findings, and the supplied evidence
 inventory. Comparison retains the baseline report as well. Each finding has

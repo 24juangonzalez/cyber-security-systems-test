@@ -38,3 +38,63 @@ jobs:
 
       - name: Run checks
         run: make check
+
+      - name: Build and install package in an isolated environment
+        shell: bash
+        run: |
+          uv build --no-sources --out-dir "$RUNNER_TEMP/package-dist"
+          uv export --locked --no-dev --no-emit-project \
+            --output-file "$RUNNER_TEMP/runtime-requirements.txt"
+          uv venv --python 3.13 "$RUNNER_TEMP/package-venv"
+          uv pip sync --python "$RUNNER_TEMP/package-venv/bin/python" \
+            --require-hashes "$RUNNER_TEMP/runtime-requirements.txt"
+          uv pip install --python "$RUNNER_TEMP/package-venv/bin/python" \
+            --no-deps "$RUNNER_TEMP"/package-dist/*.whl
+          uv pip check --python "$RUNNER_TEMP/package-venv/bin/python"
+          mkdir "$RUNNER_TEMP/synthetic-demo"
+          cp fixtures/industrial/vendor_access*.json "$RUNNER_TEMP/synthetic-demo/"
+
+      - name: Verify installed CLI and synthetic reports
+        shell: bash
+        working-directory: ${{ runner.temp }}/synthetic-demo
+        run: |
+          unset PYTHONPATH PYTHONHOME
+          export AWS_EC2_METADATA_DISABLED=true
+          cli="$RUNNER_TEMP/package-venv/bin/cyber-path"
+          "$cli" validate vendor_access.json
+          mkdir reports
+          "$cli" analyze vendor_access.json --output reports/analysis
+          "$cli" compare vendor_access.json vendor_access_remediated.json \
+            --output reports/comparison
+          "$RUNNER_TEMP/package-venv/bin/python" -I - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          import cyber_security_systems
+
+          assert Path(cyber_security_systems.__file__).is_relative_to(sys.prefix)
+          reports = Path("reports")
+          for directory in ("analysis", "comparison"):
+              for filename in ("finding.json", "graph.json", "report.md"):
+                  path = reports / directory / filename
+                  assert path.is_file() and path.stat().st_size > 0, path
+                  if path.suffix == ".json":
+                      json.loads(path.read_text())
+          analysis = json.loads((reports / "analysis/finding.json").read_text())
+          comparison = json.loads((reports / "comparison/finding.json").read_text())
+          assert analysis["status"] == "complete"
+          assert len(analysis["findings"]) == 1
+          assert comparison["status"] == "complete"
+          assert comparison["findings"] == []
+          assert [item["status"] for item in comparison["comparison"]] == ["resolved"]
+          print("Installed package and synthetic reports verified.")
+          PY
+
+      - name: Upload synthetic demo reports
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: synthetic-demo-reports
+          path: ${{ runner.temp }}/synthetic-demo/reports/
+          if-no-files-found: error
+          retention-days: 7

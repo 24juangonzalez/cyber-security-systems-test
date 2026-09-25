@@ -82,6 +82,105 @@ def _inventory(lines: list[str], result: dict) -> None:
         )
 
 
+def _comparison_side(assertions: list[dict], omitted: int) -> str:
+    if not assertions:
+        return "Not recorded (does not establish absence)"
+    descriptions = []
+    for assertion in assertions:
+        description = _text(assertion["id"]) + ": " + _text(assertion["observation"])
+        description += (
+            " — "
+            + _text(assertion["source_id"])
+            + " → "
+            + _text(assertion["destination_id"])
+        )
+        description += "; " + _text(assertion["kind"])
+        policy = assertion["policy"]
+        if policy:
+            description += "; " + _text(
+                f"{policy['effect']} {policy['protocol']}:{policy['port']} "
+                f"({policy['context']})"
+            )
+        for evidence in assertion["evidence"]:
+            description += "<br>Evidence: " + _text(evidence["id"])
+            if evidence["missing"]:
+                description += " (missing)"
+            else:
+                description += "; observed " + _text(evidence["observed_at"])
+                description += "; source " + _text(evidence["source_reference"])
+                description += "; " + _text(evidence["completeness"])
+        if assertion["evidence_omitted"]:
+            description += (
+                "<br>Additional evidence references omitted from this table: "
+                + str(assertion["evidence_omitted"])
+                + ". See the full inventory."
+            )
+        descriptions.append(description)
+    if omitted:
+        descriptions.append(
+            "Additional assertions omitted from this table: "
+            + str(omitted)
+            + ". See the full inventory."
+        )
+    return "<br><br>".join(descriptions)
+
+
+def _comparison(lines: list[str], result: dict) -> None:
+    lines.extend(
+        [
+            "",
+            "## Comparison",
+            "",
+            "Comparison status: " + _text(result["comparison_status"]),
+            "",
+        ]
+    )
+    for status, count in result["comparison_summary"].items():
+        lines.append("- " + _text(status) + ": " + str(count))
+    lines.extend(["", "Comparison blockers:", ""])
+    lines.extend("- " + _text(issue) for issue in result["comparison_issues"])
+    if not result["comparison_issues"]:
+        lines.append("No comparison blockers detected within the supported scope.")
+    for change in result["comparison"]:
+        lines.extend(
+            [
+                "",
+                "### " + _text(change["finding_id"]),
+                "",
+                "Status: " + _text(change["status"]),
+                "",
+                _text(change["explanation"]),
+                "",
+                "Reasons: "
+                + ", ".join(_text(reason) for reason in change["reason_codes"]),
+                "",
+                "Supported current paths to this destination: "
+                + str(change["remaining_paths_to_destination"])
+                + ". This count does not establish safety; "
+                "incomplete evidence can hide paths.",
+                "",
+                "Assertions below describe supplied records; the comparison status "
+                "determines whether a conclusion is supported.",
+                "",
+                "| Relationship | Before | After |",
+                "| --- | --- | --- |",
+            ]
+        )
+        for row in change["relationships"]:
+            label = _text(row["id"]) + (
+                " (prerequisite)" if row["prerequisite"] else ""
+            )
+            lines.append(
+                "| "
+                + label
+                + " | "
+                + _comparison_side(row["before"], row["before_omitted"])
+                + " | "
+                + _comparison_side(row["after"], row["after_omitted"])
+                + " |"
+            )
+
+
 def markdown_report(result: dict) -> str:
     lines = [
         "# Synthetic industrial access-path report",
@@ -112,19 +211,7 @@ def markdown_report(result: dict) -> str:
             "No input issues detected within the supported synthetic contract."
         )
     if "comparison" in result:
-        lines.extend(
-            [
-                "",
-                "## Comparison",
-                "",
-                "Comparison status: " + _text(result["comparison_status"]),
-                "",
-            ]
-        )
-        for change in result["comparison"]:
-            lines.append(
-                "- " + _text(change["finding_id"]) + ": " + _text(change["status"])
-            )
+        _comparison(lines, result)
     lines.extend(["", "## Current findings", ""])
     if not result["findings"]:
         lines.append(
@@ -144,7 +231,7 @@ def markdown_report(result: dict) -> str:
 
 
 def write_reports(result: dict, output: Path) -> None:
-    """Refuse existing output directories, including symlinks; never overwrite."""
+    """Create missing parents; refuse existing output paths and never overwrite."""
     graph = {
         key: result[key]
         for key in (
@@ -164,7 +251,7 @@ def write_reports(result: dict, output: Path) -> None:
         "graph.json": json.dumps(graph, indent=2, sort_keys=True) + "\n",
         "report.md": markdown_report(result),
     }
-    output.mkdir(mode=0o700)
+    output.mkdir(mode=0o700, parents=True)
     for name, content in files.items():
         descriptor = os.open(
             output / name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600

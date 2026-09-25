@@ -48,6 +48,39 @@ def test_validate_analyze_compare_commands(tmp_path, capsys):
     assert "Invalid" not in capsys.readouterr().err
 
 
+@pytest.mark.parametrize("command", ["analyze", "compare"])
+def test_missing_output_parents_are_created(tmp_path, command):
+    output = tmp_path / "new" / "nested" / "reports"
+    args = [command, str(FIXTURES / "vendor_access.json")]
+    if command == "compare":
+        args.append(str(FIXTURES / "vendor_access_remediated.json"))
+    assert main([*args, "--output", str(output)]) == 0
+    assert {path.name for path in output.iterdir()} == {
+        "finding.json",
+        "graph.json",
+        "report.md",
+    }
+    assert output.stat().st_mode & 0o777 == 0o700
+
+
+def test_output_parent_file_is_preserved(tmp_path, capsys):
+    parent = tmp_path / "existing-file"
+    parent.write_text("keep existing work")
+    assert (
+        main(
+            [
+                "analyze",
+                str(FIXTURES / "vendor_access.json"),
+                "--output",
+                str(parent / "reports"),
+            ]
+        )
+        == 2
+    )
+    assert parent.read_text() == "keep existing work"
+    assert "Cannot write reports" in capsys.readouterr().err
+
+
 def test_existing_output_is_not_overwritten(tmp_path):
     sentinel = tmp_path / "report.md"
     sentinel.write_text("keep existing work")
