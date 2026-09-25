@@ -116,23 +116,30 @@ def main() -> None:
             with st.spinner("Checking evidence and access paths…"):
                 if source == "Bundled demo":
                     baseline = load_fixture(FIXTURES / "vendor_access.json")
-                    current = (
-                        load_fixture(FIXTURES / "vendor_access_remediated.json")
-                        if comparing
-                        else None
-                    )
                 else:
+                    if before is None:
+                        st.warning(
+                            "Choose a snapshot JSON file before running analysis."
+                        )
+                        return
                     baseline = load_fixture_bytes(
                         before.getbuffer()[: MAX_BYTES + 1].tobytes()
                     )
-                    current = (
-                        load_fixture_bytes(after.getbuffer()[: MAX_BYTES + 1].tobytes())
-                        if comparing
-                        else None
-                    )
-                st.session_state["result"] = (
-                    compare(baseline, current) if comparing else analyze(baseline)
-                )
+                if comparing:
+                    if source == "Bundled demo":
+                        current = load_fixture(
+                            FIXTURES / "vendor_access_remediated.json"
+                        )
+                    else:
+                        if after is None:
+                            st.warning("Choose an after snapshot JSON file to compare.")
+                            return
+                        current = load_fixture_bytes(
+                            after.getbuffer()[: MAX_BYTES + 1].tobytes()
+                        )
+                    st.session_state["result"] = compare(baseline, current)
+                else:
+                    st.session_state["result"] = analyze(baseline)
         except FixtureError as error:
             st.error("Invalid fixture: " + str(error))
     if "result" in st.session_state:
