@@ -230,8 +230,8 @@ def markdown_report(result: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
-def write_reports(result: dict, output: Path) -> None:
-    """Create missing parents; refuse existing output paths and never overwrite."""
+def render_reports(result: dict) -> dict[str, str]:
+    """Render the same report contents for local files and browser downloads."""
     graph = {
         key: result[key]
         for key in (
@@ -246,11 +246,16 @@ def write_reports(result: dict, output: Path) -> None:
             "evidence",
         )
     }
-    files = {
+    return {
         "finding.json": json.dumps(result, indent=2, sort_keys=True) + "\n",
         "graph.json": json.dumps(graph, indent=2, sort_keys=True) + "\n",
         "report.md": markdown_report(result),
     }
+
+
+def write_reports(result: dict, output: Path) -> None:
+    """Create missing parents; refuse existing output paths and never overwrite."""
+    files = render_reports(result)
     output.mkdir(mode=0o700, parents=True)
     for name, content in files.items():
         descriptor = os.open(
