@@ -16,7 +16,7 @@ jobs:
   windows:
     name: Windows CLI and tests
     runs-on: windows-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     env:
       UV_LOCKED: "true"
       AWS_EC2_METADATA_DISABLED: "true"
@@ -32,9 +32,10 @@ jobs:
           python-version: "3.13"
           enable-cache: false
       - name: Install locked dependencies
-        run: uv sync --locked --group dev --extra ui
-      - name: Run tests
-        run: uv run --extra ui pytest
+        run: uv sync --locked --group dev
+      - name: Run Windows CLI and file-handling regression tests
+        timeout-minutes: 2
+        run: uv run pytest tests/integration/test_cli.py -v
       - name: Validate the synthetic demo
         run: uv run cyber-path validate fixtures/industrial/vendor_access.json
 

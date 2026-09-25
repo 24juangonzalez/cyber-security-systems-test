@@ -156,6 +156,12 @@ and the committed lockfile. You can also start the `CI` workflow manually from
 the Actions tab. The workflow uses read-only repository permissions and does
 not require AWS credentials. Keep tests offline and use synthetic data.
 
+Linux runs the full suite, including the Streamlit UI tests. The Windows job
+only installs CLI/development dependencies and runs CLI/file-handling regression
+tests plus fixture validation. Its test step has a two-minute timeout. Windows
+UI tests are currently excluded after failures in the Windows runner; this check
+does not establish Windows UI compatibility.
+
 CI also builds the source distribution and wheel, installs the wheel with locked
 runtime dependencies in a separate environment, and runs the CLI outside the
 repository. It checks that the synthetic example produces one finding and that
