@@ -23,6 +23,18 @@ This installs the locked optional Streamlit dependencies and starts the app at
 `http://127.0.0.1:8501`. Open that address in your browser. Stop it with **Ctrl+C**
 in the terminal.
 
+On Windows PowerShell, use this equivalent command without Make:
+
+```powershell
+uv run --locked --extra ui streamlit run streamlit_app.py --server.address 127.0.0.1
+```
+
+CLI commands work in PowerShell too. For example:
+
+```powershell
+uv run cyber-path validate fixtures/industrial/vendor_access.json
+```
+
 Choose **Bundled demo**, then **Run analysis** to see the vendor access finding.
 Choose **Compare before and after** to see why removing VPN membership resolves
 that path. **Upload JSON** accepts your own synthetic files using the
