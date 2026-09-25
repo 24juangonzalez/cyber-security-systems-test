@@ -259,7 +259,9 @@ def write_reports(result: dict, output: Path) -> None:
     output.mkdir(mode=0o700, parents=True)
     for name, content in files.items():
         descriptor = os.open(
-            output / name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600
+            output / name,
+            os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0),
+            0o600,
         )
         with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
             stream.write(content)

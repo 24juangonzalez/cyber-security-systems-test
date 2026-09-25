@@ -209,9 +209,23 @@ def load_fixture_bytes(payload: bytes) -> Snapshot:
 
 def load_fixture(path: Path) -> Snapshot:
     try:
-        descriptor = os.open(path, os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
+        before = path.lstat()
+        if not stat.S_ISREG(before.st_mode) or before.st_size > MAX_BYTES:
+            raise FixtureError("input must be a regular file within the size limit")
+        flags = os.O_RDONLY
+        for name in ("O_NONBLOCK", "O_NOFOLLOW", "O_BINARY"):
+            flags |= getattr(os, name, 0)
+        descriptor = os.open(path, flags)
         with os.fdopen(descriptor, "rb") as stream:
             info = os.fstat(stream.fileno())
+            # Check identity before reading, including where O_NOFOLLOW is absent.
+            after = path.lstat()
+            if (
+                not stat.S_ISREG(after.st_mode)
+                or not os.path.samestat(before, info)
+                or not os.path.samestat(after, info)
+            ):
+                raise FixtureError("input changed while opening")
             if not stat.S_ISREG(info.st_mode) or info.st_size > MAX_BYTES:
                 raise FixtureError("input must be a regular file within the size limit")
             payload = stream.read(MAX_BYTES + 1)
