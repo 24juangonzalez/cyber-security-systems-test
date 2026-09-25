@@ -124,6 +124,8 @@ def add_comparison_details(result: dict, before: Snapshot, after: Snapshot) -> N
     for entry in result["comparison"]:
         finding_id = entry["finding_id"]
         finding = original.get(finding_id, current.get(finding_id))
+        if finding is None:
+            raise ValueError("comparison entry references a missing finding")
         reference = before_index if finding_id in original else after_index
         reasons = (
             [REASONS[entry["status"]]]

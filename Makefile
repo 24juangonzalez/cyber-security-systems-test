@@ -1,13 +1,16 @@
-.PHONY: setup hooks test lint format format-check check clean
+.PHONY: setup ui hooks test lint format format-check check clean
 
 setup:
 	uv sync
+
+ui:
+	uv run --locked --extra ui streamlit run streamlit_app.py --server.address 127.0.0.1
 
 hooks:
 	git config --local core.hooksPath .githooks
 
 test:
-	uv run pytest
+	uv run --extra ui pytest
 
 lint:
 	uv run ruff check .

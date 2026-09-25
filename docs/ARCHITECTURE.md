@@ -143,6 +143,14 @@ before-and-after status. Reporting does not change analysis facts.
 
 ## Initial storage
 
+The local Streamlit entry point (`streamlit_app.py`, launched with `make ui`)
+uses the same engine as the CLI. Uploaded bytes go through the bounded fixture
+parser, including duplicate-key, integrity, and synthetic-only checks. Results
+remain in session memory and are cleared when input selections change.
+`render_reports` supplies both browser downloads and CLI files, so the UI does
+not introduce a second report format or analysis implementation. Streamlit is
+an optional dependency; the CLI package does not require it.
+
 Use in-memory objects and serialized reports during Phase 1. Do not add a
 database until a validated workflow requires persistence, history, or
 multi-user access.

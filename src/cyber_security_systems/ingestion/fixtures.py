@@ -193,6 +193,20 @@ def _constant(value: str) -> None:
     raise FixtureError("non-finite JSON numbers are unsupported")
 
 
+def load_fixture_bytes(payload: bytes) -> Snapshot:
+    """Validate bounded uploaded bytes with the same contract as local files."""
+    try:
+        if len(payload) > MAX_BYTES:
+            raise FixtureError("input exceeds the size limit")
+        raw = json.loads(payload, object_pairs_hook=_pairs, parse_constant=_constant)
+        snapshot = parse_fixture(raw)
+        return replace(snapshot, input_sha256=hashlib.sha256(payload).hexdigest())
+    except FixtureError:
+        raise
+    except (ValueError, RecursionError):
+        raise FixtureError("unable to read a supported JSON fixture") from None
+
+
 def load_fixture(path: Path) -> Snapshot:
     try:
         descriptor = os.open(path, os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
@@ -201,12 +215,7 @@ def load_fixture(path: Path) -> Snapshot:
             if not stat.S_ISREG(info.st_mode) or info.st_size > MAX_BYTES:
                 raise FixtureError("input must be a regular file within the size limit")
             payload = stream.read(MAX_BYTES + 1)
-        if len(payload) > MAX_BYTES:
-            raise FixtureError("input exceeds the size limit")
-        raw = json.loads(payload, object_pairs_hook=_pairs, parse_constant=_constant)
-        snapshot = parse_fixture(raw)
-        # Hash exact input bytes for reproduction, including formatting changes.
-        return replace(snapshot, input_sha256=hashlib.sha256(payload).hexdigest())
+        return load_fixture_bytes(payload)
     except FixtureError:
         raise
     except (OSError, ValueError, RecursionError):
