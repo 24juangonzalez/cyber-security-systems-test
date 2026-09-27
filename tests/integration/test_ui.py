@@ -3,6 +3,7 @@
 import io
 import json
 import socket
+import sys
 from pathlib import Path
 
 import pytest
@@ -23,11 +24,30 @@ FIXTURE = ROOT / "fixtures/industrial/vendor_access.json"
 
 @pytest.fixture(autouse=True)
 def no_network(monkeypatch):
+    original_connect = socket.socket.connect
+    fallback = getattr(socket, "_fallback_socketpair", None)
+    fallback_code = getattr(fallback, "__code__", None)
+
     def forbidden(*args, **kwargs):
         pytest.fail("UI analysis attempted a network connection")
 
+    def guarded_connect(sock, address):
+        # Windows uses a loopback connection to build asyncio's
+        # internal socket pair. Allow only that specific caller.
+        internal_socketpair = (
+            sys.platform == "win32"
+            and fallback_code is not None
+            and sys._getframe(1).f_code is fallback_code
+            and isinstance(address, tuple)
+            and address[0] in ("127.0.0.1", "::1")
+        )
+        if internal_socketpair:
+            return original_connect(sock, address)
+        return forbidden(sock, address)
+
     monkeypatch.setattr(socket, "create_connection", forbidden)
-    monkeypatch.setattr(socket.socket, "connect", forbidden)
+    monkeypatch.setattr(socket.socket, "connect", guarded_connect)
+    monkeypatch.setattr(socket.socket, "connect_ex", forbidden)
     monkeypatch.setattr(socket, "getaddrinfo", forbidden)
 
 
@@ -45,7 +65,7 @@ def test_demo_analysis_downloads_and_input_change(tmp_path):
     write_reports(result, tmp_path / "reports")
     assert len(page.get("download_button")) == 3
     for name, content in reports.items():
-        assert (tmp_path / "reports" / name).read_text() == content
+        assert (tmp_path / "reports" / name).read_text(encoding="utf-8") == content
     page.radio[0].set_value("Upload JSON").run()
     assert not page.exception
     assert not page.metric
@@ -117,6 +137,7 @@ def test_uploaded_comparison_requires_both_files(monkeypatch):
         b'{"a":NaN}',
         b"\xff",
     ],
+    ids=["oversized", "duplicate-keys", "nan-value", "invalid-utf8"],
 )
 def test_upload_validation_rejects_invalid_bytes(payload):
     with pytest.raises(FixtureError):
