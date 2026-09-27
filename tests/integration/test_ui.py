@@ -21,6 +21,7 @@ from cyber_security_systems.reporting.reports import render_reports, write_repor
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURE = ROOT / "fixtures/industrial/vendor_access.json"
 
+
 @pytest.fixture(autouse=True)
 def no_network(monkeypatch):
     original_connect = socket.socket.connect
@@ -48,6 +49,7 @@ def no_network(monkeypatch):
     monkeypatch.setattr(socket.socket, "connect", guarded_connect)
     monkeypatch.setattr(socket.socket, "connect_ex", forbidden)
     monkeypatch.setattr(socket, "getaddrinfo", forbidden)
+
 
 def app():
     return AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=15).run()
@@ -137,7 +139,6 @@ def test_uploaded_comparison_requires_both_files(monkeypatch):
     ],
     ids=["oversized", "duplicate-keys", "nan-value", "invalid-utf8"],
 )
-
 def test_upload_validation_rejects_invalid_bytes(payload):
     with pytest.raises(FixtureError):
         load_fixture_bytes(payload)
