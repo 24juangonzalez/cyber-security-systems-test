@@ -1,5 +1,6 @@
 """Local synthetic demo UI; analysis and report generation stay in the package."""
 
+import json
 from pathlib import Path
 
 import streamlit as st
@@ -11,13 +12,21 @@ from cyber_security_systems.ingestion.fixtures import (
     load_fixture,
     load_fixture_bytes,
 )
-from cyber_security_systems.reporting.reports import render_reports
+from cyber_security_systems.reporting.reports import (
+    render_reports,
+    summary_report,
+    technical_report,
+)
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "industrial"
+SCENARIOS = json.loads((FIXTURES / "scenarios.json").read_text(encoding="utf-8"))
 
 
 def clear_result() -> None:
     st.session_state.pop("result", None)
+    st.session_state.pop("result_context", None)
+    st.session_state["technical-details"] = False
+    st.session_state["raw-json"] = False
 
 
 def show_result(result: dict) -> None:
@@ -35,27 +44,38 @@ def show_result(result: dict) -> None:
     if "comparison_summary" in result:
         st.subheader("What changed")
         summary = result["comparison_summary"]
+        labels = {
+            "resolved": "Removal supported",
+            "persisting": "Still present",
+            "newly_introduced": "New paths",
+            "unassessable": "Cannot determine",
+        }
         for column, (key, value) in zip(
             st.columns(len(summary)), summary.items(), strict=True
         ):
-            column.metric(key.replace("_", " ").capitalize(), value, border=True)
-    reports = render_reports(result)
-    st.subheader("Download reports")
-    for column, (name, content) in zip(st.columns(3), reports.items(), strict=True):
-        column.download_button(
-            f"Download {name}",
-            content,
-            file_name=name,
-            mime="application/json" if name.endswith(".json") else "text/markdown",
-            on_click="ignore",
-        )
-    report_tab, evidence_tab = st.tabs(
-        ["Readable report", "Evidence and findings JSON"]
-    )
-    with report_tab:
-        st.markdown(reports["report.md"])
-    with evidence_tab:
+            column.metric(labels[key], value, border=True)
+    st.markdown(summary_report(result))
+    if st.checkbox(
+        "Show technical evidence and review details", key="technical-details"
+    ):
+        st.markdown(technical_report(result))
+    if st.checkbox("Show raw JSON", key="raw-json"):
         st.json(result)
+    with st.expander("Download report or data"):
+        reports = render_reports(result)
+        names = {
+            "report.md": "Readable report",
+            "finding.json": "Full results (JSON)",
+            "graph.json": "Relationship graph (JSON)",
+        }
+        for column, (name, content) in zip(st.columns(3), reports.items(), strict=True):
+            column.download_button(
+                names[name],
+                content,
+                file_name=name,
+                mime="application/json" if name.endswith(".json") else "text/markdown",
+                on_click="ignore",
+            )
 
 
 def main() -> None:
@@ -66,6 +86,12 @@ def main() -> None:
         "Synthetic prototype only. Upload supported synthetic inventory JSON, "
         "not customer exports. No live scanning or AWS access is performed."
     )
+    with st.expander("How to read this report · terms and scenario guide"):
+        st.markdown(
+            (FIXTURES.parents[1] / "docs" / "READING_REPORTS.md").read_text(
+                encoding="utf-8"
+            )
+        )
     with st.container(border=True):
         st.subheader("Set up your analysis")
         input_column, task_column = st.columns(2)
@@ -83,6 +109,8 @@ def main() -> None:
         )
     comparing = mode == "Compare before and after"
     before = after = None
+    scenario = SCENARIOS[0]
+    snapshot_side = "before"
     if source == "Upload JSON":
         st.caption(
             "Maximum 4 MiB per file. Both comparison files must use matching scope."
@@ -103,10 +131,39 @@ def main() -> None:
                 on_change=clear_result,
             )
     else:
-        st.caption(
-            "The demo starts with a vendor access path. The after snapshot "
-            "contains evidence that VPN group membership was removed."
+        label = st.selectbox(
+            "Demo scenario",
+            [item["label"] for item in SCENARIOS],
+            on_change=clear_result,
         )
+        scenario = next(item for item in SCENARIOS if item["label"] == label)
+        if comparing:
+            st.caption("Expected comparison: " + scenario["expectation"])
+            st.text(f"Before: {scenario['before']}\nAfter: {scenario['after']}")
+        else:
+            snapshot_side = st.selectbox(
+                "Snapshot to analyze",
+                ["before", "after"],
+                on_change=clear_result,
+            )
+            st.info(
+                "Single-snapshot mode does not measure change. Several scenarios "
+                "share the same before file and will give the same result. "
+                "Choose Compare before and after to see what changed."
+            )
+            st.text(f"Selected file: {scenario[snapshot_side]}")
+        with st.expander("Download example inputs to try Upload JSON"):
+            st.caption("Synthetic input snapshots; these are not generated reports.")
+            for side in ("before", "after"):
+                name = scenario[side]
+                st.download_button(
+                    f"Download {side} snapshot",
+                    (FIXTURES / name).read_bytes(),
+                    file_name=name,
+                    mime="application/json",
+                    key=f"example-{side}",
+                    on_click="ignore",
+                )
     ready = source == "Bundled demo" or (
         before is not None and (not comparing or after is not None)
     )
@@ -115,7 +172,7 @@ def main() -> None:
         try:
             with st.spinner("Checking evidence and access paths…"):
                 if source == "Bundled demo":
-                    baseline = load_fixture(FIXTURES / "vendor_access.json")
+                    baseline = load_fixture(FIXTURES / scenario[snapshot_side])
                 else:
                     if before is None:
                         st.warning(
@@ -127,9 +184,7 @@ def main() -> None:
                     )
                 if comparing:
                     if source == "Bundled demo":
-                        current = load_fixture(
-                            FIXTURES / "vendor_access_remediated.json"
-                        )
+                        current = load_fixture(FIXTURES / scenario["after"])
                     else:
                         if after is None:
                             st.warning("Choose an after snapshot JSON file to compare.")
@@ -140,12 +195,31 @@ def main() -> None:
                     st.session_state["result"] = compare(baseline, current)
                 else:
                     st.session_state["result"] = analyze(baseline)
+                context = [mode]
+                if source == "Bundled demo":
+                    context.append("Scenario: " + scenario["label"])
+                    context.append(
+                        f"Before: {scenario['before']}\nAfter: {scenario['after']}"
+                        if comparing
+                        else f"Snapshot: {snapshot_side} — {scenario[snapshot_side]}"
+                    )
+                else:
+                    context.append("Source: uploaded JSON")
+                st.session_state["result_context"] = "\n".join(context)
         except FixtureError as error:
             st.error("Invalid fixture: " + str(error))
     if "result" in st.session_state:
         st.divider()
         st.subheader("Analysis results")
+        st.text(
+            "This result was generated from:\n" + st.session_state["result_context"]
+        )
         show_result(st.session_state["result"])
+    else:
+        st.info(
+            "No result for this selection yet. Choose your inputs, "
+            "then click Run analysis."
+        )
 
 
 if __name__ == "__main__":

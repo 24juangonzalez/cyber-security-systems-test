@@ -1,10 +1,20 @@
-.PHONY: setup ui hooks test lint format format-check check clean
+.PHONY: help setup dev ui hooks test lint format format-check check clean
+
+help:
+	@printf '%s\n' \
+		'make dev    Start the app through the beginner launcher' \
+		'make ui     Alias for make dev' \
+		'make check  Run lint, formatting checks, and tests' \
+		'make setup  Install project dependencies' \
+		'make hooks  Enable checks before pushing'
 
 setup:
 	uv sync
 
-ui:
-	uv run --locked --extra ui streamlit run streamlit_app.py --server.address 127.0.0.1
+dev:
+	uv run --locked --extra ui python development.py
+
+ui: dev
 
 hooks:
 	git config --local core.hooksPath .githooks
