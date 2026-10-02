@@ -13,17 +13,51 @@ with control equipment.
 
 ### Run the local UI
 
-From the repository directory, run:
+**New to the project?** With Python and
+[uv](https://docs.astral.sh/uv/getting-started/installation/) installed, run this
+from the repository directory:
 
 ```bash
-make ui
+python development.py
 ```
 
-This installs the locked optional Streamlit dependencies and starts the app at
+On macOS/Linux, use `python3 development.py` if `python` is unavailable.
+On Windows, you can use `py -3 development.py`. This launcher needs Python 3.10
+or newer; uv manages the project's Python 3.13 environment separately.
+No manual environment activation, folder creation, Make, or WSL is needed.
+The first run may download dependencies. Open the URL printed in the terminal,
+then choose **Bundled demo → Run analysis**. Stop with **Ctrl+C**.
+Run `python development.py --check` to run the same lint, formatting, and test
+checks used by `make check`. WSL remains an option for Linux development on Windows;
+the launcher does not fix underlying native Windows UI issues.
+
+With Make installed (macOS/Linux/WSL), the beginner launcher also has a shortcut:
+
+```bash
+make dev
+```
+
+`make ui` remains an alias for `make dev`; both run `development.py`.
+Run `make help` to list common commands.
+
+| Task | With Make | Without Make |
+| --- | --- | --- |
+| Start the app | `make dev` | `python development.py` |
+| Run lint, formatting checks, and tests | `make check` | `python development.py --check` |
+| Show launcher options | — | `python development.py --help` |
+
+On Windows, replace `python` with `py -3` if needed.
+
+Starting the app installs the locked optional Streamlit dependencies and uses
 `http://127.0.0.1:8501`. Open that address in your browser. Stop it with **Ctrl+C**
 in the terminal.
 
-On Windows PowerShell, use this equivalent command without Make:
+For Windows development, follow the [WSL 2 setup guide](docs/WINDOWS_WSL.md)
+to use Ubuntu, a separate Linux `.venv`, and the same `make` commands as Linux CI.
+WSL runs locally on your partner's Windows computer; it does not share your app
+or connect your machines.
+
+For native Windows PowerShell, use this equivalent command without Make:
 
 ```powershell
 uv run --locked --extra ui streamlit run streamlit_app.py --server.address 127.0.0.1
@@ -37,9 +71,26 @@ uv run cyber-path validate fixtures/industrial/vendor_access.json
 
 Choose **Bundled demo**, then **Run analysis** to see the vendor access finding.
 Choose **Compare before and after** to see why removing VPN membership resolves
-that path. **Upload JSON** accepts your own synthetic files using the
+that path. The **Demo scenario** selector also covers unchanged access, missing
+evidence, an alternative path that remains, and different environments.
+Expand **Download example inputs to try Upload JSON** for uploadable before/after
+files. See [comparison scenarios](docs/COMPARISON_SCENARIOS.md) for expected results.
+**Upload JSON** accepts your own synthetic files using the
 [supported fixture format](docs/FIXTURE_FORMAT.md), up to 4 MiB each. It does not
 accept arbitrary PDFs, spreadsheets, or real customer exports.
+
+The default report explains what was found, why it matters, and what to review
+next. Open **How to read this report · terms and scenario guide** in the app, or
+read [the report reading guide](docs/READING_REPORTS.md). Single-snapshot mode
+lets you select **before** or **after**; multiple scenarios share the same before
+file. Use comparison mode to measure change, then click **Run analysis** again
+after changing a selection. Results identify their scenario and input files.
+
+Reports use system labels instead of internal IDs. Use **Show technical evidence
+and review details** or **Show raw JSON** when you need the underlying records.
+Missing evidence and remaining access paths stay visible in the summary.
+The downloaded Markdown report includes technical details in a collapsible
+section (expansion support depends on your Markdown viewer).
 
 Review the evidence on the page and download `report.md`, `finding.json`, or
 `graph.json`. Uploads and results stay in the local app session; the UI does not

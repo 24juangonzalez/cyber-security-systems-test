@@ -163,6 +163,31 @@ assign confidence, or generate severity unsupported by evidence.
 
 ## Future deployment options
 
+### Security and resource boundaries before customer use
+
+The scenario library expands synthetic coverage only. It adds no collectors,
+customer-server agents, cloud calls, database, or background analysis. The
+engine runs on the local app host, not the systems described in an input file.
+The CLI writes reports only when requested; the UI keeps results in session
+memory and offers explicit downloads. This is not a secure-erasure guarantee:
+downloaded reports, browser state, and operating-system memory handling require
+their own controls before real data is accepted.
+
+Current per-input limits are 4 MiB, 2,000 entities, 10,000 relationships, and
+10,000 evidence records. Analysis defaults cap traversal at 100,000 expansions
+and 100 findings, with a cooperative five-second deadline. These are algorithm
+limits, not a hard process memory/CPU quota or a concurrent-user capacity claim;
+comparison analyzes two snapshots and report rendering has additional cost.
+
+Before accepting business data, define an authorized, read-only export contract
+that excludes credentials and unnecessary sensitive fields. Validate retention,
+deletion, local filesystem access, and report handling. A shared service also
+needs authenticated access, tenant isolation, encrypted transport/storage,
+bounded workers, request quotas, and load tests with measured memory and latency.
+Any future collector needs a separately tested API/request budget and an
+operationally approved collection schedule. No customer infrastructure impact
+or production security guarantee is established by the synthetic benchmark.
+
 Future designs may include a local collector, hosted analysis service, or
 partner-managed deployment. None are selected yet. Safety, customer access,
 retention, and purchasing evidence should determine deployment.
