@@ -142,6 +142,10 @@ the path disappears after remediation.
 
 ## Current documents
 
+- [Current business plan and October 1 review](docs/BUSINESS_PLAN.md)
+- [Current one-page business plan](docs/ONE_PAGE_PLAN.md)
+- [Founder facts and working responsibilities](docs/FOUNDER_ALIGNMENT.md)
+
 - [Product strategy, business plan, and project charter v2 (Word)](docs/Industrial_Access_Path_Product_Strategy_Business_Plan_and_Project_Charter_.docx)
 - [North star](docs/NORTH_STAR.md)
 - [Project charter](docs/PROJECT_CHARTER.md)

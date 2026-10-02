@@ -9,6 +9,19 @@ decisions into signed documents with qualified counsel.
 
 ## Motivation and definition of success
 
+### Current founder record — 2026-10-01
+
+Juan C Gonzalez identifies the founders as **Juan C Gonzalez** and **Shawn
+Sebastian Punch**. Both currently work full-time jobs of about 40 hours weekly.
+Each spends 1–2 hours a day on this project, 4–5 days a week: **4–10 hours per
+founder, or 8–20 combined hours weekly**. This is reported availability, not a
+full-time commitment or a delivery deadline.
+
+Both contribute to product and research/development. Juan does most coding and
+engineering. Shawn works on and reviews the business aspects and will probably
+lead customer conversations/sales. Budget is unknown; no customer or pilot
+interest is reported yet. These facts come from Juan, not a signed joint agreement.
+
 - Why does each of us want to build this company?
 - Are we aiming for a venture-scale company, a profitable small business, an
   acquisition, or are we still testing?
@@ -27,10 +40,15 @@ decisions into signed documents with qualified counsel.
 
 | Area | Primary owner | Consulted | Final decision rule |
 | --- | --- | --- | --- |
-| Product | [Name] | [Name] | [Rule] |
-| Engineering/security | [Name] | [Name] | [Rule] |
-| Customer development/sales | [Name] | [Name] | [Rule] |
-| Finance/legal/operations | [Name] | [Name] | [Rule] |
+| Product and research/development | Juan and Shawn, shared | Both founders | Not yet agreed |
+| Engineering | Juan, reported working lead | Shawn | Not yet agreed |
+| Security review accountability | Not yet assigned | Both founders | Not yet agreed |
+| Customer development/sales | Shawn, proposed lead | Juan | Not yet agreed |
+| Business planning/review | Shawn contributes and reviews; both founders participate | Both founders | Not yet agreed |
+| Finance/legal/operations authority | Not yet assigned | Both founders | Not yet agreed |
+
+Working contributions do not establish spending limits, contract authority,
+equity, or independent security-review responsibility.
 
 - Which decisions require unanimous agreement?
 - What happens when we reach a deadlock?
@@ -90,18 +108,26 @@ deadlines; obtain jurisdiction-specific legal and tax advice promptly.
 
 ## Agreement record
 
-**Discussion date:** [YYYY-MM-DD]  
-**Participants:** [Names]
+**Information recorded:** 2026-10-01
+**Respondent:** Juan C Gonzalez; Shawn's independent confirmation is not recorded.
 
-### Agreed
+### Reported working arrangements
 
-- [Decision]
+- Both founders contribute to product and research/development.
+- Juan does most coding/engineering; Shawn contributes business review and is
+  the proposed lead for customer conversations/sales.
+- Each currently contributes approximately 4–10 hours weekly.
+- No formal governance or financial agreement is established by this record.
 
 ### Still open
 
-- [Question, owner, and deadline]
+- Both founders need to confirm the tentative sales lead and decision rules.
+- Allocate the available hours and identify the first reachable reviewers.
+- Establish an affordable cash ceiling, contributions, and spending authority.
+- Discuss ownership, commitments, and the remaining checklist questions.
+- Owners and dates for these decisions have not yet been agreed.
 
 ### Counsel/accountant follow-up
 
-- [Item, owner, and deadline]
-
+- Formation, equity, IP, employment obligations, and contracting arrangements
+  remain unverified. Adviser engagement, owner, and timing are not established.
