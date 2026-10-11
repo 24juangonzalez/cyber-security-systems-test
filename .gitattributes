@@ -1,0 +1,4 @@
+# Keep shell entry points usable in Linux/WSL regardless of Git checkout defaults.
+.githooks/* text eol=lf
+*.sh text eol=lf
+Makefile text eol=lf

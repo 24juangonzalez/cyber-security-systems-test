@@ -57,19 +57,31 @@ def app():
 
 def test_demo_analysis_downloads_and_input_change(tmp_path):
     page = app()
+    example_labels = {"Download before snapshot", "Download after snapshot"}
+    assert sorted(button.label for button in page.get("download_button")) == sorted(
+        example_labels
+    )
     page.button[0].click().run()
     assert not page.exception
     assert page.metric[0].value == "1"
     result = page.session_state["result"]
     reports = render_reports(result)
     write_reports(result, tmp_path / "reports")
-    assert len(page.get("download_button")) == 3
+    report_labels = {
+        "Full results (JSON)",
+        "Relationship graph (JSON)",
+        "Readable report",
+    }
+    assert sorted(button.label for button in page.get("download_button")) == sorted(
+        example_labels | report_labels
+    )
     for name, content in reports.items():
         assert (tmp_path / "reports" / name).read_text(encoding="utf-8") == content
     page.radio[0].set_value("Upload JSON").run()
     assert not page.exception
     assert not page.metric
     assert page.button[0].disabled
+    assert not page.get("download_button")
 
 
 def test_demo_comparison():

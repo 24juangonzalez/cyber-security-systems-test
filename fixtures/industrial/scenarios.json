@@ -1,0 +1,63 @@
+[
+  {
+    "id": "membership_removed",
+    "label": "VPN membership removed",
+    "before": "vendor_access.json",
+    "after": "vendor_access_remediated.json",
+    "expectation": "One resolved finding; no supported current path remains.",
+    "expected_summary": {
+      "resolved": 1
+    },
+    "expected_findings": 0,
+    "expected_status": "complete"
+  },
+  {
+    "id": "unchanged",
+    "label": "Access unchanged",
+    "before": "vendor_access.json",
+    "after": "vendor_access.json",
+    "expectation": "One persisting finding: the same snapshot is compared with itself.",
+    "expected_summary": {
+      "persisting": 1
+    },
+    "expected_findings": 1,
+    "expected_status": "complete"
+  },
+  {
+    "id": "missing_evidence",
+    "label": "Removal evidence missing",
+    "before": "vendor_access.json",
+    "after": "vendor_access_missing_evidence.json",
+    "expectation": "Unassessable: an absence claim without evidence cannot establish remediation.",
+    "expected_summary": {
+      "unassessable": 1
+    },
+    "expected_findings": 0,
+    "expected_status": "incomplete_analysis"
+  },
+  {
+    "id": "alternative",
+    "label": "Alternative access remains",
+    "before": "vendor_access_alternative_before.json",
+    "after": "vendor_access_alternative_after.json",
+    "expectation": "One path resolves, but a second VPN group still provides a supported path.",
+    "expected_summary": {
+      "resolved": 1,
+      "persisting": 1
+    },
+    "expected_findings": 1,
+    "expected_status": "complete"
+  },
+  {
+    "id": "scope_changed",
+    "label": "Different environment",
+    "before": "vendor_access.json",
+    "after": "vendor_access_different_scope.json",
+    "expectation": "Unassessable: snapshots from different scopes cannot establish remediation.",
+    "expected_summary": {
+      "unassessable": 1
+    },
+    "expected_findings": 0,
+    "expected_status": "incomplete_analysis"
+  }
+]

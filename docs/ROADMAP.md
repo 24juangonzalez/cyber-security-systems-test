@@ -2,11 +2,33 @@
 
 - **Status:** Technical sequence aligned with v2; commercial expansion proposed
 - **Owner:** Founders
-- **Last updated:** 2026-09-16
+- **Last updated:** 2026-10-01
 - **Review cadence:** At each stage exit and after a material change
 - **Related documents:** `PROJECT_CHARTER.md`, `PROTOTYPE_SCOPE.md`
 
 ## Purpose
+
+### Current position at the October 1 review
+
+The local implementation contains the domain model, synthetic parser, bounded
+rule, conservative comparison, CLI, optional UI, readable/JSON reports, and a
+five-scenario library. Some supporting files were still uncommitted at this
+review; passing working-tree tests is not a complete release record.
+
+Stage One implementation and Stage Two report/demo work have progressed, but
+no formal stage approval or independent reproduction sign-off is established
+here. Customer import, production data handling, and repeatable paid delivery
+remain future work. Juan reports no customer or pilot interest yet.
+
+Juan reports that he and Shawn Sebastian Punch each spend 4–10 project hours
+per week alongside full-time jobs: 8–20 combined hours including noncoding work.
+Juan leads most coding/engineering; both develop product and conduct research.
+Shawn reviews business work and is the proposed lead for conversations/sales.
+Budget and commitment authority remain open. The next proposed increment is
+one committed/reproduced demo and one structured discovery conversation.
+See `BUSINESS_PLAN.md` for the working business baseline.
+
+### Stage policy
 
 Sequence technical development and business validation without assuming an
 unsupported delivery date. A stage begins only when its entry conditions are

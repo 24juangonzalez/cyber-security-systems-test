@@ -2,8 +2,33 @@
 
 This is the synthetic comparison benchmark, not a real-world accuracy claim.
 Expected outcomes are documented below and checked in `tests/known_answer/`.
-Independent domain review is still pending. The extra cases are constructed
-from the two committed fixtures by tests rather than stored as duplicate JSON.
+Independent domain review is still pending. Five review scenarios are available
+in the UI with committed, uploadable snapshots. Additional edge cases are
+constructed by tests.
+
+## Try the scenario library
+
+Run `make ui`, select **Bundled demo → Compare before and after**, choose a
+**Demo scenario**, and click **Run analysis**. The expected comparison is shown
+separately from the computed result. Expand **Download example inputs to try
+Upload JSON** to download both snapshots and repeat through the upload flow.
+
+The catalog is `fixtures/industrial/scenarios.json`; it is UI/test metadata, not
+an uploadable inventory. All snapshot names below are in `fixtures/industrial/`.
+
+| UI scenario | Before file | After file |
+| --- | --- | --- |
+| VPN membership removed | `vendor_access.json` | `vendor_access_remediated.json` |
+| Access unchanged | `vendor_access.json` | `vendor_access.json` |
+| Removal evidence missing | `vendor_access.json` | `vendor_access_missing_evidence.json` |
+| Alternative access remains | `vendor_access_alternative_before.json` | `vendor_access_alternative_after.json` |
+| Different environment | `vendor_access.json` | `vendor_access_different_scope.json` |
+
+Missing evidence and changed scope intentionally produce incomplete comparisons.
+The CLI returns exit code 3 for these cases. This is the expected conservative
+result, not a broken example. “Analyze one snapshot” lets you select **before**
+or **after** (default: before); use comparison mode to examine the change.
+See [How to read an access review](READING_REPORTS.md) for the report vocabulary.
 
 | Scenario | Expected conclusion | What the explanation must show |
 | --- | --- | --- |
