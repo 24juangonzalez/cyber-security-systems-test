@@ -1,123 +1,82 @@
-# One-page plan
+# One-page business plan
 
-- **Working direction:** Cloud Attack-Path Mapper
-- **Stage:** Problem and solution validation
-- **Last updated:** 2026-09-14
-- **Owner:** Founders
-- **Review cadence:** Semi-Daily
+**Reviewed:** 2026-10-01. **Status:** Working plan for founder review.
+Aligned with DEC-003 and the September 18 v2 business plan. This replaces the
+outdated AWS-first summary; it does not approve spending or commercial terms.
 
-Everything below is a hypothesis until supported by customer evidence. The
-working direction may change after interviews or prototype feedback.
+## Founders and current position
+
+Juan C Gonzalez and Shawn Sebastian Punch both work full-time jobs of about
+40 hours a week. Juan reports project work of 1–2 hours a day on 4–5 days each
+week **for each founder**: roughly **4–10 hours each, or 8–20 combined weekly**.
+Both work on product and research/development. Juan leads most engineering;
+Shawn works on business planning and is the proposed customer/sales lead.
+These working roles are reported by Juan; decision authority remains open.
+The budget is unknown.
+Juan reports no customer or pilot interest yet as of this review.
 
 ## Customer and problem
 
-- **Ideal first customer:** A 20–300-person SaaS company running on AWS without
-  a large internal security team.
-- **Primary user:** A CTO, cloud engineer, security engineer, or MSP analyst.
-- **Buyer:** A CTO, security leader, technical founder, or MSP owner.
-- **Top problem:** Security tools produce disconnected findings, but the team
-  cannot quickly determine which combinations create a credible path to
-  sensitive data.
-- **Trigger:** A customer request, audit, leaked credential, cloud migration,
-  security incident, rapid growth, or an overwhelming scanner backlog.
-- **Current alternatives:** Native AWS security tools, cloud-security products,
-  spreadsheets, consultants, periodic penetration tests, or manual IAM review.
-- **Cost hypothesis:** Engineers lose time triaging low-value alerts while
-  high-impact permission and exposure combinations may remain unresolved.
-- **Evidence:** None yet. Customer interviews are the first milestone.
+Our first customer hypothesis is a smaller manufacturer, warehouse, or logistics
+operator that relies on vendor remote access and struggles to explain which
+operationally sensitive systems that access could reach. The 50–500 employee
+range and US geography from v2 remain discovery filters, not validated facts.
 
-## Solution
+Qualify prospects by a concrete access decision, an IT/operations sponsor,
+an operational approver, safely obtainable evidence, and a reachable buyer.
+The user may be an IT manager, automation engineer, or integrator analyst.
+Who actually pays must be established through conversations.
 
-- **Value proposition:** Show the few potential attack paths that could reach
-  valuable assets, provide the evidence behind them, and explain what to fix
-  first.
-- **First product wedge:** AWS credential and IAM blast-radius analysis.
-- **Smallest useful version:** Read a synthetic or authorized AWS inventory,
-  normalize identities and resources into a graph, find one supported path to
-  a sensitive destination, and produce a clear report.
-- **Trust model:** Deterministic collection and path analysis provide the facts.
-  An LLM may improve wording later but cannot invent findings or severity.
-- **Why us:** The founders can combine AWS, IAM, APIs, Python, and data-system
-  experience around one narrow security outcome.
+## Product and current capability
 
-## Initial scope
+The local prototype connects synthetic configuration evidence into supported
+access paths, explains uncertainty, suggests an owner-reviewed change, and
+compares before/after evidence. It has a CLI, optional Streamlit UI, readable
+and JSON reports, and five comparison scenarios with automated checks.
+It does not yet import customer exports or assess a real environment.
 
-### Included
+The primary story is vendor identity → VPN group → jump host → engineering
+network → management application → associated operational asset. Separate
+application authorization is required; association does not prove equipment
+control. AWS is a possible later adapter, not the current market priority.
 
-- AWS only.
-- IAM roles, policies, and relevant trust relationships.
-- Lambda, S3, Secrets Manager metadata, and selected database metadata.
-- Selected public/network exposure needed for the first path.
-- Read-only collection and evidence-backed reporting.
-- Synthetic fixtures and a founder-controlled sandbox before customer access.
+## Proposed offer and economics
 
-### Excluded
+Test a bounded, human-reviewed assessment of one site and one access question,
+with a findings meeting, technical appendix, and one comparable verification.
+Confirm source formats, labor, qualified review, and handling controls before
+quoting or accepting customer data.
 
-- Retrieving secret values or customer records.
-- Exploitation, destructive testing, or autonomous pentesting.
-- Automatic remediation or writes to customer accounts.
-- Azure, GCP, endpoint security, and a general compliance platform.
-- AI-agent/MCP security, API scanning, and GitHub scanning in version one.
-- A production dashboard before customers validate the report itself.
+V2 illustrates a $7,500 assessment and $12,000 annual reassessment service.
+These are unvalidated pricing hypotheses, not an approved price list. Its
+$36,000 validation envelope is not our approved budget. Recurrence, partner
+licensing, and hosting require evidence of demand and repeatable economics.
 
-## Business model hypotheses
+## Safety boundaries
 
-- **First offer:** A narrowly scoped, authorized AWS attack-path assessment
-  with human verification.
-- **Pilot hypothesis:** Fixed-fee or no-cost design-partner engagement in return
-  for structured feedback and permission to measure outcomes.
-- **Product pricing hypothesis:** $500–$2,000 per month for a small company,
-  subject to validation.
-- **Expansion customer:** MSPs and security consultants managing multiple AWS
-  environments.
-- **Sales motion:** Founder-led outreach, warm introductions, local technology
-  groups, SaaS communities, and MSP relationships.
-- **Main costs:** Founder time, AWS test infrastructure, secure data handling,
-  insurance/legal requirements, and later hosted compute and storage.
+Use synthetic demonstrations until evaluation readiness and a supported
+importer exist. No active OT scanning, secret retrieval, credential testing,
+customer-system changes, or automatic remediation. Local analysis does not
+contact systems described in fixtures. Customer exports do not belong in this
+repository and must not be relabeled as synthetic to bypass validation.
 
-## Ninety-day validation plan
+## Next work cycle
 
-- **Period:** 2026-09-14 through 2026-12-13.
-- **Prospects:** CTOs, cloud/security engineers, technical founders, and MSPs
-  serving AWS-based companies.
-- **Interview target:** 15 qualified conversations across SaaS companies and
-  MSPs.
-- **Days 1–30:** Confirm the problem and produce one end-to-end path from a
-  synthetic fixture to an evidence-backed report.
-- **Days 31–60:** Run read-only collection in a founder-controlled AWS sandbox
-  and review the report with five prospects.
-- **Days 61–90:** Conduct a narrowly scoped design-partner pilot or a sanitized
-  customer-data evaluation and validate the purchase path.
-- **Success:** At least 10 interviewees confirm the problem, 5 correctly
-  understand and trust the report, 2 agree to design-partner discussions, 1
-  completes an authorized evaluation, and 1 provides credible willingness-to-
-  pay or purchase-process evidence.
-- **Failure/change signal:** Fewer than 3 interviewees report meaningful pain,
-  or prospects will not grant narrowly scoped read-only access even with clear
-  controls.
+1. Confirm working roles, allocate the available hours, establish accountability,
+   and decide an affordable spending ceiling.
+2. Have the second developer reproduce the same committed demo and record the
+   environment, expected results, actual results, and outstanding issues.
+3. Identify five reachable qualified reviewers; start with one structured
+   conversation about a real vendor-access review before showing the demo.
+4. Ask reviewers to explain the report without coaching. Record confusion,
+   current alternatives, the responsible buyer, and a concrete next step.
+5. Use evidence availability from two independent organizations to select a
+   first importer. Do not receive customer data before the evaluation gates.
 
-## Riskiest assumptions
+The existing v2 discovery target is 15 interviews across eight organizations,
+including five budget owners or people who can explain purchasing. That is a
+future learning target, not an achieved count or a dated promise. The immediate
+proposed increment is one conversation and one documented learning decision.
 
-| Assumption | Confidence | Cheapest test | Due | Result |
-| --- | --- | --- | --- | --- |
-| Teams struggle to connect AWS findings into attack paths | Low | 10 interviews | 2026-10-13 | Pending |
-| A graph can produce useful paths without active exploitation | Low | Synthetic vertical slice | 2026-10-13 | Pending |
-| Customers trust read-only cross-account access | Low | Sandbox demo and access review | 2026-11-12 | Pending |
-| The report changes remediation priority | Low | Five report reviews | 2026-11-12 | Pending |
-| Buyers will pay $500–$2,000 monthly | Low | Pilot and pricing conversations | 2026-12-13 | Pending |
-
-## Next milestone
-
-By **2026-12-13**, decide whether to continue, narrow, or change direction using
-interview notes, prototype feedback, pilot interest, and purchasing evidence.
-Record the result in the [decision log](DECISIONS.md).
-
-## Open questions
-
-- Is the first buyer a SaaS company or an MSP serving many companies?
-- Which destination matters most initially: S3, database access, or secret
-  access?
-- What evidence must accompany a path before a customer trusts it?
-- Which minimum AWS permissions will customers accept?
-- Does the customer prefer a report, CLI output, ticket, or dashboard?
-- What outcome supports recurring pricing instead of a one-time assessment?
+Details: [Business plan](BUSINESS_PLAN.md), [roadmap](ROADMAP.md),
+[validation](BUSINESS_VALIDATION.md), and [decision log](DECISIONS.md).
