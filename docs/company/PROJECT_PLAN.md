@@ -16,9 +16,9 @@ Use 25 weeks beginning 12 October 2026 and ending 4 April 2027. Budget 200 combi
 | GOV-02 | Record cash ceiling, expense authority and professional-advice needs; no invented amounts | Both | 8 | GOV-01 | Proposed |
 | GOV-03 | Draft evaluation data-handling and incident procedures; identify qualified reviewer | Both | 8 | TECH-01 | Proposed |
 | GOV-04 | Prepare month-six decision and investor-readiness gap register | Both | 8 | Market and technical evidence | Proposed |
-| MKT-01 | Compare manual process and at least three relevant alternatives; distinguish documented and tested capabilities | Shawn | 16 | GOV-01 | Proposed |
-| MKT-02 | Identify qualified practitioners privately; record actual workflow evidence from conversations | Shawn | 20 | GOV-01 | Proposed |
-| MKT-03 | Review same bounded output with independent practitioners; record corrections and input burden | Shawn | 16 | TECH-02, MKT-02 | Proposed |
+| MKT-01 | Compare manual review, Claroty, Secomea, Tenable, BloodHound and relevant access-review tools; distinguish documented from tested capabilities | Shawn | 12 | GOV-01 | Proposed |
+| MKT-02 | Complete 12–15 structured interviews, including at least eight independent industrial integrators or OT-focused service providers; record actual workflow evidence | Shawn | 28 | GOV-01 | Proposed |
+| MKT-03 | Review the same bounded output with independent practitioners; record corrections, preparation time and input burden | Shawn | 12 | TECH-02, MKT-02 | Proposed |
 | MKT-04 | Document buyer, evaluation scope, objections and purchasing route; do not count interest as a sale | Shawn | 8 | MKT-03 | Proposed |
 | TECH-01 | Define one source contract and approval register; expected results for edge cases | Juan | 20 | GOV-01 | Proposed |
 | TECH-02 | Build synthetic reconciliation experiment without changing existing rule semantics | Juan | 30 | TECH-01 | Proposed |
@@ -31,8 +31,8 @@ Engineering 80 hours; market work 60; governance 30; reserve 30. The plan is ful
 ## Stage decisions
 
 - Weeks 1–2: approve or revise thesis and experiment; record a proposed decision before it is accepted.
-- Weeks 3–6: source contract, synthetic cases, comparison protocol and prepared report.
-- Weeks 7–10: reproducible prototype and baseline measurements.
+- Weeks 3–6: source contract, synthetic cases, comparison protocol, prepared report and initial primary-segment interviews.
+- Weeks 7–10: reproducible prototype, baseline measurements and completion of the 12–15 interview set.
 - Weeks 11–14: qualified feedback; revise or stop if preparation effort or differentiation fails.
 - Weeks 15–18: prepare a controlled evaluation only if sponsor, authorization, qualified review, approved data process and affordable cost exist.
 - Weeks 19–22: run that evaluation only within revised approved capacity; otherwise work on the specific blocker.
@@ -50,12 +50,21 @@ Record week, planned/actual hours, completed artifacts, evidence gained, defects
 
 Track qualified conversations by independent organization; usable-evidence rate; preparation and review minutes; exception correctness on labeled cases; unknown/incomplete outcomes; evaluation commitments; completed paid deliveries; all delivery labor; contribution before overhead; repeat use; and unresolved security issues. Define numerator, denominator, time period and source for each number. A zero result and a not-yet-measured result are different.
 
+The initial commercial gate requires three independent organizations to
+describe a comparable recurring workflow, two to confirm that usable
+authorized evidence could support the bounded analysis, and one identifiable
+budget owner to agree in writing to an evaluation scope and commercial
+discussion. Discovery does not authorize collecting exports. Verbal interest,
+a demonstration request, and a signed or paid evaluation are recorded as
+different outcomes.
+
 ## Immediate decision register
 
 | Decision | Current state | Needed to close |
 | --- | --- | --- |
 | Company mission | Proposed security-decision verification | Both founders record acceptance or revision |
-| First experiment | Proposed vendor-access review and closure | Confirm buyer hypothesis and time cap |
+| First experiment | Proposed vendor-access review and closure | Confirm primary segment, buyer hypothesis and time cap |
+| Price discovery | Proposed USD 2,500–5,000 assessment range | Test willingness, scope and delivery-cost floor; founders approve any quote |
 | Company name and entity | Not decided | Founder selection and appropriate professional checks |
 | Funding route | Not decided | Cash position, growth preference and obligations understood |
 | Roles and authority | Working contributions recorded | Joint responsibility and authority decision |

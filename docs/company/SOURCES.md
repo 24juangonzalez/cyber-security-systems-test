@@ -243,3 +243,84 @@ Supports: Security should be prioritized throughout product development.
 Limits and locator: General design guidance, not certification or a legal opinion.
 
 [Open source](https://www.cisa.gov/news-events/alerts/2025/01/17/cisa-and-fbi-release-updated-guidance-product-security-bad-practices)
+
+## S21
+
+**Claroty Team82 — Remote access tool sprawl in OT environments**
+
+Date: 2024-09-10. Type: Vendor research and press release.
+
+Supports: Claroty reports that 55% of organizations in its Team82 dataset had
+four or more remote-access tools in their OT environments. The underlying
+research examined data from more than 50,000 remote-access-enabled devices.
+
+Limits and locator: Proprietary vendor research. The public release does not
+provide enough sampling detail to treat the result as industrial prevalence,
+customer demand, or willingness to pay. Organizations and devices represented
+in Claroty's dataset may differ from the proposed customer segment.
+
+[Open source](https://claroty.com/press-releases/55-percent-of-ot-environments-contain-four-or-more-remote-access-tools-greatly-expanding-attack-surface-and-operational-complexity)
+
+## S22
+
+**Dragos — Industrial Ransomware Analysis for the First Quarter of 2026**
+
+Date: 2026-06-03. Type: Vendor threat-intelligence analysis.
+
+Supports: Dragos identified 1,020 ransomware incidents affecting industrial
+organizations from public disclosures and ransomware-group data-leak sites.
+Manufacturing represented 62% of the observed or claimed victims.
+
+Limits and locator: Observed and claimed victim data are not a complete census
+of confirmed attacks. The statistic provides industrial threat context; it
+does not attribute the incidents to vendor access or establish demand for this
+company's proposed workflow.
+
+[Open source](https://www.dragos.com/dragos-industrial-ransomware-analysis-q1-2026)
+
+## S23
+
+**Secomea — Secure remote access built for OT**
+
+Date: accessed 2026-10-10. Type: Vendor capability description.
+
+Supports: Secomea describes OT-specific remote access, user and session
+controls, auditability, and use by manufacturers, machine builders, OEMs,
+critical-infrastructure operators, and system integrators.
+
+Limits and locator: Vendor-described capability and customer count. Ease of
+deployment, effectiveness, pricing, and customer outcomes were not
+independently tested.
+
+[Open source](https://secomea.com/)
+
+## S24
+
+**Tenable — Tenable One OT Exposure**
+
+Date: accessed 2026-10-10. Type: Vendor capability description.
+
+Supports: Tenable describes OT asset discovery, exposure analysis, attack-path
+analysis, remediation context, reporting, and imported configuration data.
+
+Limits and locator: Vendor-described capability. Coverage, accuracy, operating
+burden, pricing, and suitability for the proposed review were not independently
+tested.
+
+[Open source](https://www.tenable.com/products/ot-security)
+
+## S25
+
+**SpecterOps — BloodHound Enterprise**
+
+Date: accessed 2026-10-10. Type: Vendor capability description.
+
+Supports: BloodHound Enterprise describes continuous identity attack-path
+mapping, prioritized choke points, guided remediation, and progress tracking
+across supported identity environments.
+
+Limits and locator: Vendor-described capability. This source does not
+establish OT remote-access coverage, comparative accuracy, pricing, or fit for
+the proposed approval-and-verification workflow.
+
+[Open source](https://specterops.io/wp-content/uploads/sites/3/2025/03/BloodHound_Enterprise_Data_Sheet_Gov_1002_4.pdf)

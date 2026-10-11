@@ -8,6 +8,8 @@ using organization codes. This template does not authorize data collection.
 ## Interview context
 
 - Organization code and interview date:
+- Segment: industrial integrator, OT-focused service provider, manufacturer,
+  automation integrator, warehouse/logistics operator, or other:
 - Interviewer's name or approved internal identifier:
 - User role, budget-owner role, and operational approver role:
 - Independent organization or repeat interview from an existing organization:
@@ -21,13 +23,18 @@ using organization codes. This template does not authorize data collection.
 2. How did you establish which systems the identity could reach? Which tools,
    exports, people, and manual steps were involved?
 3. How much actual effort did that review take? What was left unresolved?
-4. Does an existing product or service already solve the problem adequately?
+4. Which products, spreadsheets, tickets, emails, or administrator knowledge
+   support the process today? What works adequately, and what remains manual?
 5. Which configuration fields and observation times could be supplied safely?
    Who owns the evidence and can authorize sharing it? Do not request exports
    during discovery before an approved data process exists.
 6. Who would choose a remediation, approve operational impact, and own the budget?
 7. What event would justify a paid assessment now? What would block procurement?
 8. How often do the inputs change, and when would repeat analysis be useful?
+9. For a tightly bounded review, how would the organization evaluate a proposed
+   USD 2,500–5,000 range? Which scope, proof, approval, and purchasing steps
+   would determine whether that range is acceptable? This is price discovery,
+   not a quote.
 
 ## Questions after the synthetic demonstration
 
@@ -50,6 +57,7 @@ using organization codes. This template does not authorize data collection.
 | Unprompted understanding of limitations | | |
 | Action or justified acceptance | | |
 | Buyer, budget process, urgency | | |
+| Response to proposed scope and price range | | |
 | Concrete follow-up commitment | | |
 | Contrary evidence or reason to stop | | |
 

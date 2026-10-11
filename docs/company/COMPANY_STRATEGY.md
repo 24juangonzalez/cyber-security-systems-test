@@ -59,6 +59,19 @@ CIS account-management guidance describes recurring authorization checks. This e
 
 Evidence gaps remain customer-specific workflow costs, adoption barriers, available export formats, procurement timing, willingness to pay, and whether existing licenses already solve the problem. This plan does not substitute breach statistics for those facts.
 
+Claroty reports that 55% of organizations in its Team82 dataset had four or
+more remote-access tools in their OT environments. The research examined more
+than 50,000 remote-access-enabled devices [S21]. This supports investigating
+tool and account fragmentation. The public release does not establish how
+representative the dataset is of smaller manufacturers or service providers.
+
+Dragos identified 1,020 ransomware incidents affecting industrial
+organizations in Q1 2026 from public disclosures and ransomware-group
+data-leak sites. Manufacturing represented 62% of the observed or claimed
+victims [S22]. This is threat context rather than evidence that vendor access
+caused those incidents. Neither source establishes demand or willingness to
+pay for the proposed review workflow.
+
 ## Problems worth investigating
 
 Access decisions lose context as accounts, contractors, approvals, and systems change. A recurring job is to reconcile what is approved with what source systems record, then establish what changed after review. The technical challenge includes identity matching, incomplete exports, temporal consistency, nested permissions, and business exceptions. CIS and documented access-review products establish that the task recurs [S03, S08, S10].
@@ -103,6 +116,9 @@ Disqualifiers are inaccessible required evidence, excessive manual reconstructio
 | Existing approach | Publicly documented strength | Required test for our proposal |
 | --- | --- | --- |
 | Spreadsheet and administrator review | Flexible manual baseline; low tool adoption burden | Does our workflow reduce total preparation and review effort? |
+| Claroty and Secomea | OT-specific remote access, third-party controls, visibility and audit workflows [S21, S23] | Is a separate evidence-reconciliation service useful when these platforms are present or unavailable? |
+| Tenable OT Security | OT asset visibility, exposure analysis, attack paths and remediation context [S24] | Does the proposed workflow answer a narrower approval-and-verification question without duplicating exposure management? |
+| BloodHound | Identity attack-path analysis and remediation guidance [S25] | Does our industrial evidence contract cover decisions and sources outside supported identity environments? |
 | Microsoft Entra and Veza | Access review and permission context [S08, S10] | Is there a supported cross-source task not already met in the customer's configuration? |
 | Batfish and AlgoSec | Configuration analysis and change validation [S11, S12] | Can we complement these results rather than reimplement their semantics? |
 | runZero | Imported asset correlation [S13] | Does the customer need a specific evidence/approval workflow beyond inventory? |
@@ -118,7 +134,15 @@ Build-versus-integrate is a strategic choice. Reuse an existing configuration an
 
 ## First customer and commercial deliverable
 
-The proposed first user is an IT provider or industrial integrator performing a bounded vendor-access review for a smaller operator. The potential buyer is the provider owner or delivery lead; the end customer's IT or operations owner approves scope and operational decisions. This is a channel hypothesis, not an existing relationship. Direct sales remain an alternative if providers do not value the workflow.
+The proposed first user is an industrial integrator or OT-focused service
+provider that repeatedly manages vendor access for customer sites. The
+potential buyer is the provider owner or delivery lead; the end customer's IT
+or operations owner approves scope and operational decisions. Prioritize
+organizations with multiple vendors, fragmented access records, recurring
+reviews, and limited dedicated security capacity. Employee count alone is not
+a sufficient qualification. This is a channel hypothesis, not an existing
+relationship. A manufacturer is the operating environment and a secondary
+direct-buyer hypothesis if providers do not value the workflow.
 
 The trigger is a scheduled review, completion of maintenance, vendor replacement, or an access change. Scope the first deliverable to a declared set of accounts and one supported entitlement source plus a customer-maintained approval register. Do not initially promise effective access across arbitrary VPNs, firewalls, directories, and applications.
 
@@ -136,6 +160,14 @@ Microsoft documents group membership CSV exports with stable object IDs and memb
 A vendor-published ConductorOne case describes legacy-system reviews and collection of removal evidence [S19]. It supports testing the workflow, but its financial-sector customer and selection bias prevent extrapolation to small industrial buyers.
 
 Proposed customer acceptance is correct classification on agreed cases, an understandable report, manageable evidence-preparation effort, and a review outcome the customer can use. No minimum count of security findings should be promised.
+
+Conduct 12 to 15 structured discovery interviews before treating this segment
+as selected. At least eight should involve independent industrial integrators
+or OT-focused service providers. The remaining interviews may test direct
+manufacturing, automation-integrator, or warehouse hypotheses. Record the
+triggering event, current process, evidence sources, manual effort, unresolved
+work, existing products, decision owner, budget owner, and procurement path.
+Interview count alone is not validation.
 
 ## Product architecture and research program
 
@@ -169,7 +201,11 @@ Proposed acquisition sequence is a problem-specific example, technical review, b
 
 Begin with a product-assisted review service or bounded paid evaluation once customer readiness exists. It exposes actual preparation, interpretation, and review effort before the team promises a subscription. A later provider license requires repeat usage, predictable support, clear customer separation, and economics that work without founder intervention on every delivery.
 
-The following sensitivity uses an illustrative USD 2,500 price, USD 100 per delivery hour, and USD 250 other direct costs. These are author-selected planning inputs, not customer quotes, market prices, or approved commercial terms. Count founder delivery effort even when unpaid.
+Test an illustrative USD 2,500 to USD 5,000 assessment range during price
+discovery. This range is not a market average, quote, or approved commercial
+term. The sensitivity below uses the lower USD 2,500 value, USD 100 per delivery
+hour, and USD 250 of other direct costs to expose downside risk. Count founder
+delivery effort even when unpaid.
 
 | Delivery effort | Illustrative gross margin |
 | --- | ---: |
@@ -259,7 +295,14 @@ For global expansion, evaluate contractual obligations, privacy and transfer req
 
 The proposed technical gate is independent reproduction of the intended result with explicit failures on unsupported cases. The proposed usability gate is that reviewers identify the conclusion and major uncertainty without coaching. A proposed benchmark target is at least 30% lower median total review effort across five predefined synthetic cases versus a competent spreadsheet baseline, with no missed seeded critical exceptions. This is an experimental target, not an existing result or an accuracy claim. Disclose the small artificial sample and counterbalance task order to reduce learning effects.
 
-A proposed commercial gate is two independent organizations willing to evaluate the same output and one identifiable purchasing route. A scaling gate is three paid deliveries across at least two customers, positive contribution including labor, and repeat demand. These thresholds organize decisions; they do not establish statistical market validation.
+A proposed commercial gate is three independent organizations describing a
+comparable recurring workflow, two confirming that usable authorized evidence
+could support the same bounded analysis, and one identifiable budget owner
+agreeing in writing to a defined evaluation scope and commercial discussion.
+Verbal interest does not satisfy the written-sponsor criterion. A scaling gate
+is three paid deliveries across at least two customers, positive contribution
+including labor, and repeat demand. These thresholds organize decisions; they
+do not establish statistical market validation.
 
 Public research can justify or eliminate experiments. It cannot establish this team's execution quality, a customer's data access, or willingness to pay. Failure to reach a gate should produce a written explanation and a narrower test, not a fabricated success metric.
 
