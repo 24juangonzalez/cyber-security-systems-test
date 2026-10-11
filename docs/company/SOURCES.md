@@ -1,0 +1,245 @@
+# Market research source register
+
+Research cutoff: 10 October 2026. Dates distinguish publication dates from access dates. Public abstracts and vendor pages are not independent product benchmarks. Source IDs in the plan refer to this register.
+
+Government guidance is normative; surveys describe their specific samples; forecasts are estimates; product pages establish stated capabilities; customer stories are selected examples. No private database or paid analyst model was accessed.
+
+## S01
+
+**UK DSIT and Home Office — Cyber security breaches survey 2025/2026**
+
+Date: 2026-04-30. Type: Government survey.
+
+Supports: 43% of businesses report a breach or attack; 30% assess cyber risk; 15% review immediate supplier cyber risk; 6% review wider supply chains.
+
+Limits and locator: Summary; fieldwork August–December 2025. UK self-reports, not US or industrial prevalence. Activities are overlapping, not a funnel. No inference of willingness to pay.
+
+[Open source](https://www.gov.uk/government/statistics/cyber-security-breaches-survey-20252026/cyber-security-breaches-survey-20252026)
+
+## S02
+
+**Gartner — Forecast Analysis Information Security Worldwide 2026**
+
+Date: 2026-02-05. Type: Analyst public abstract.
+
+Supports: Forecast global information-security spending of USD 244 billion in 2026.
+
+Limits and locator: Public abstract only; full paid model not reviewed. Broad category forecast, not our addressable market. Supersedes the earlier July 2025 forecast for this context.
+
+[Open source](https://www.gartner.com/en/documents/7408930)
+
+## S03
+
+**CIS — Control 5 Account Management**
+
+Date: v8.1; accessed 2026-10-10. Type: Security guidance.
+
+Supports: Recurring authorization review and inventories of accounts and service accounts.
+
+Limits and locator: Sections 5.1 and 5.5. Guidance does not establish a universal legal mandate or software demand.
+
+[Open source](https://cas.docs.cisecurity.org/en/latest/source/Controls5/)
+
+## S04
+
+**Australian Signals Directorate and partners — Creating and maintaining a definitive view of your OT architecture**
+
+Date: accessed 2026-10-10. Type: Government guidance.
+
+Supports: Validate completeness, accuracy, consistency and timeliness; maintain records through change control.
+
+Limits and locator: Principles 1 and 2. Normative need; not a prevalence or spending study.
+
+[Open source](https://www.cyber.gov.au/publication/creating-and-maintaining-a-definitive-view-of-your-operational-technology-architecture)
+
+## S05
+
+**NIST — Security Segmentation in a Small Manufacturing Environment**
+
+Date: 2023-04-06. Type: Government technical publication.
+
+Supports: Small manufacturers face staffing and resource limits; segmentation requires a structured approach.
+
+Limits and locator: Abstract. Does not establish demand for this company.
+
+[Open source](https://csrc.nist.gov/pubs/cswp/28/security-segmentation-in-a-small-manufacturing-env/final)
+
+## S06
+
+**NIST — AI Agent Standards Initiative**
+
+Date: 2026-02-17. Type: Government research initiative.
+
+Supports: Interoperability, security, identity and authorization are active agent standardization topics.
+
+Limits and locator: Research direction, not a final standard, buying requirement or market forecast.
+
+[Open source](https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure)
+
+## S07
+
+**NIST — Comments on Software and Agentic AI Identity Concept Paper**
+
+Date: 2026-09-29. Type: Government project update.
+
+Supports: NCCoE reports stakeholder feedback on software and agentic identity and authorization.
+
+Limits and locator: Emerging requirements; no claim of finalized certification.
+
+[Open source](https://www.nist.gov/news-events/news/2026/09/comments-software-and-agentic-ai-identity-concept-paper)
+
+## S08
+
+**Microsoft — Manage user and guest user access with access reviews**
+
+Date: accessed 2026-10-10. Type: Product documentation.
+
+Supports: Entra supports user and guest access review and subsequent access decisions.
+
+Limits and locator: Documented capability, not independently benchmarked effectiveness or price comparison.
+
+[Open source](https://learn.microsoft.com/en-us/entra/id-governance/manage-access-review)
+
+## S09
+
+**Microsoft — Bulk download group membership list**
+
+Date: accessed 2026-10-10. Type: Product documentation.
+
+Supports: Group member CSV exports contain object ID, UPN, display name and member type.
+
+Limits and locator: Membership export is not proof of effective access, authentication, or nested membership closure.
+
+[Open source](https://learn.microsoft.com/en-us/entra/identity/users/groups-bulk-download-members)
+
+## S10
+
+**Veza — Access Reviews**
+
+Date: accessed 2026-10-10. Type: Vendor capability description.
+
+Supports: Contextual access certification and permission review.
+
+Limits and locator: Vendor-described capability; no negative capability or pricing inference.
+
+[Open source](https://veza.com/product/access-reviews/)
+
+## S11
+
+**Batfish — Network configuration analysis**
+
+Date: accessed 2026-10-10. Type: Open-source project documentation.
+
+Supports: Configuration, reachability and change analysis.
+
+Limits and locator: Not tested in this research; supported vendor semantics require separate review.
+
+[Open source](https://batfish.org/)
+
+## S12
+
+**AlgoSec — Traffic change and recertification requests validation**
+
+Date: accessed 2026-10-02. Type: Product documentation.
+
+Supports: Validates implemented rules and traffic against requested changes.
+
+Limits and locator: Specific documented version; independent performance and price not assessed.
+
+[Open source](https://techdocs.algosec.com/en/asms/a33.10/asms-help/content/ff-ug/trafficvalidation_results.htm)
+
+## S13
+
+**runZero — Inbound integrations**
+
+Date: accessed 2026-10-02. Type: Product documentation.
+
+Supports: Imports and correlates asset records from other systems.
+
+Limits and locator: Not evidence that every legacy OT format is supported.
+
+[Open source](https://help.runzero.com/docs/integrations-inbound/)
+
+## S14
+
+**Vanta — Automated Test Evidence**
+
+Date: accessed 2026-10-10. Type: Product documentation.
+
+Supports: Shows automated-test checks, evaluated resources and supporting data.
+
+Limits and locator: Evidence transparency is already a competing feature; capability not independently tested.
+
+[Open source](https://help.vanta.com/en/articles/11345529-automated-test-evidence)
+
+## S15
+
+**CyberArk — Securing Identities for the Agentic AI Landscape**
+
+Date: accessed 2026-10-10. Type: Vendor positioning.
+
+Supports: Identity security positioning includes humans, machines and AI agents.
+
+Limits and locator: Competitive signal, not independent market-size evidence.
+
+[Open source](https://www.cyberark.com/resources/blog/securing-identities-for-the-agentic-ai-landscape)
+
+## S16
+
+**Pentera — Security Validation Platform**
+
+Date: accessed 2026-10-10. Type: Vendor capability description.
+
+Supports: Exposure validation, remediation workflow and revalidation.
+
+Limits and locator: No active testing is proposed for our prototype; vendor claims not independently benchmarked.
+
+[Open source](https://pentera.io/pentera-platform/)
+
+## S17
+
+**US Census Bureau — Statistics of US Businesses**
+
+Date: accessed 2026-10-10. Type: Government statistical program.
+
+Supports: Firm and establishment data by industry and enterprise size support bottom-up account sizing.
+
+Limits and locator: No niche account count extracted. Do not substitute establishments for buying organizations.
+
+[Open source](https://www.census.gov/programs-surveys/susb.html)
+
+## S18
+
+**NIST — Connect with an MEP Center**
+
+Date: accessed 2026-10-10. Type: Government directory.
+
+Supports: Potential route to manufacturing expertise and regional ecosystem research.
+
+Limits and locator: No partnership, referral arrangement or endorsement exists.
+
+[Open source](https://www.nist.gov/mep/centers)
+
+## S19
+
+**ConductorOne — Red River Credit Union customer story**
+
+Date: accessed 2026-10-02. Type: Vendor-published customer case.
+
+Supports: Describes legacy-system access reviews, CSV needs and removal-evidence collection.
+
+Limits and locator: Financial institution, not manufacturing; selection bias; ROI claims not adopted.
+
+[Open source](https://www.conductorone.com/downloads/C1_RRCU-CostumerStory_2024-10-18.pdf)
+
+## S20
+
+**CISA and FBI — Updated Product Security Bad Practices guidance**
+
+Date: 2025-01-17. Type: Government guidance.
+
+Supports: Security should be prioritized throughout product development.
+
+Limits and locator: General design guidance, not certification or a legal opinion.
+
+[Open source](https://www.cisa.gov/news-events/alerts/2025/01/17/cisa-and-fbi-release-updated-guidance-product-security-bad-practices)

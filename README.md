@@ -140,32 +140,24 @@ the path disappears after remediation.
 - A general compliance platform
 - AI-generated security facts or findings
 
-## Current documents
+## Project direction and documents
 
-- [Current business plan and October 1 review](docs/BUSINESS_PLAN.md)
-- [Current one-page business plan](docs/ONE_PAGE_PLAN.md)
-- [Founder facts and working responsibilities](docs/FOUNDER_ALIGNMENT.md)
+Start with the [documentation guide](docs/README.md). It separates governing
+decisions, company proposals, the active product experiment, technical
+contracts, contributor guides, and historical material.
 
-- [Product strategy, business plan, and project charter v2 (Word)](docs/Industrial_Access_Path_Product_Strategy_Business_Plan_and_Project_Charter_.docx)
-- [North star](docs/NORTH_STAR.md)
-- [Project charter](docs/PROJECT_CHARTER.md)
-- [Product strategy](docs/PRODUCT_STRATEGY.md)
-- [Prototype scope](docs/PROTOTYPE_SCOPE.md)
-- [Roadmap](docs/ROADMAP.md)
-- [Synthetic fixture format and supported rule](docs/FIXTURE_FORMAT.md)
-- [Discovery interview and evaluation scorecard](docs/templates/DISCOVERY_INTERVIEW.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Domain model](docs/DOMAIN_MODEL.md)
-- [Finding schema](docs/FINDING_SCHEMA.md)
-- [Security and safety](docs/SECURITY_AND_SAFETY.md)
-- [Business validation](docs/BUSINESS_VALIDATION.md)
-- [Go to market hypotheses](docs/GO_TO_MARKET.md)
-- [Experiment register](docs/EXPERIMENTS.md)
-- [Decision log](docs/DECISIONS.md)
+The current hierarchy is:
 
-Earlier documents such as `GAME_PLAN.md` and `ONE_PAGE_PLAN.md` describe the
-previous AWS-first hypothesis. They are retained as historical context. Where
-they conflict with the documents above, the current documents govern.
+1. [Accepted decisions](docs/DECISIONS.md) govern the project.
+2. The [company strategy package](docs/company/README.md) proposes the broader
+   company direction and a first commercial experiment.
+3. The [north star](docs/NORTH_STAR.md), [prototype scope](docs/PROTOTYPE_SCOPE.md),
+   and [roadmap](docs/ROADMAP.md) govern the active synthetic prototype.
+4. Technical references define how that prototype behaves.
+
+The October 10 company strategy is a proposal. It does not silently replace
+DEC-003 or authorize a product pivot. The founders should record acceptance,
+revision, or rejection in the decision log before it changes execution.
 
 ## Development
 

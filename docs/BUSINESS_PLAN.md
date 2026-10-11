@@ -1,5 +1,10 @@
 # Industrial access path business plan
 
+For the broader October 10 company strategy, market research, charts, and
+proposed project plan, see the [company package](company/README.md). This
+October 1 document retains the industrial product baseline; the newer company
+proposal does not by itself approve a change to DEC-003.
+
 **Review date:** 2026-10-01
 **Status:** Working plan for founder review; no new commercial approval implied.
 **Baseline:** September 18 v2 Word plan and DEC-003. This Markdown document is
