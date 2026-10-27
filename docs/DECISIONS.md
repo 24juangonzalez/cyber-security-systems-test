@@ -58,6 +58,33 @@ teammate. A decision may govern only the current validation phase.
 - **Links:** `NORTH_STAR.md`, `PROJECT_CHARTER.md`, `PROTOTYPE_SCOPE.md`,
   `ROADMAP.md`
 
+## DEC-004 Adopt ten company operating principles
+
+- **Date:** 2026-10-26
+- **Status:** Accepted
+- **Owner:** Founders
+- **Context:** The company needs a durable standard for judgment and conduct as
+  product and commercial decisions expand. Juan requested a ten-principle
+  doctrine inspired by the directness of Nike's historical 1977 internal
+  principles.
+- **Decision:** Record the ten historical headings for traceability and adopt
+  the cybersecurity-specific doctrine in `company/PRINCIPLES.md` as company
+  policy. Apply our interpretation to product, customer, research, partnership,
+  hiring, and leadership decisions. Historical language that conflicts with
+  lawful, authorized, safe conduct remains context and is not policy.
+- **Evidence:** The doctrine retains useful themes of urgency, adaptability,
+  ownership, focus, and ethical business while explicitly requiring lawful,
+  authorized, safe, evidence-based conduct.
+- **Alternatives:** Copy the historical memo verbatim; use Nike's current five
+  maxims; retain only the short product principles in `NORTH_STAR.md`.
+- **Consequences:** Important proposals should identify relevant principles.
+  Material violations require correction and founder review. The doctrine does
+  not replace legal, contractual, professional, or security obligations.
+- **Revisit when:** At least annually, when both founders request revision, or
+  when company conduct exposes a material gap.
+- **Links:** `company/PRINCIPLES.md`, `company/COMPANY_STRATEGY.md`,
+  `NORTH_STAR.md`
+
 ## Decision template
 
 ```markdown

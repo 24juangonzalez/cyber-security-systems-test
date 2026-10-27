@@ -2,7 +2,7 @@
 
 Prepared for Juan C Gonzalez and Shawn Sebastian Punch
 
-Research date 10 October 2026 | Version 0.1 | Founder decision document
+Research updated 26 October 2026 | Version 0.2 | Founder decision document
 
 This plan proposes a company focused on helping organizations verify security decisions through traceable evidence. It compares possible markets, recommends a first commercial experiment, and defines the operating and financial evidence needed before expanding. The ambition is international leadership in a defensible category; no market leadership, customer traction, production readiness, or financing is claimed today.
 
@@ -28,7 +28,18 @@ Proposed mission: help organizations make and verify consequential security deci
 
 Juan C Gonzalez and Shawn Sebastian Punch are the founders identified by Juan. Both contribute to product and research. Juan performs most engineering; Shawn contributes business planning and is the proposed discovery and sales lead. Both hold full-time jobs and report 4–10 project hours each weekly. These working arrangements do not assign executive titles, legal authority, equity, or security-review credentials. Biography materials should describe demonstrable work and actual experience once supplied; no industrial expertise or prior exits are inferred.
 
-Proposed company principles are evidence before conclusions, customer control of sensitive information, explicit limits, human ownership of operational changes, and measured usefulness. Product claims must distinguish a configured relationship from usable access, a removed relationship from complete revocation, and a technical result from a legal or compliance opinion.
+The company has adopted ten [operating principles](PRINCIPLES.md) for how it
+builds, sells, and works. The principles document records both the headings of
+the 1977 Nike memo and our cybersecurity-specific interpretation of each one.
+Our policy is to adapt to evidence, act with authorized initiative, judge
+outcomes and methods, treat security work as consequential, test assumptions,
+use resources deliberately, finish usable outcomes, guard against predictable
+organizational failure, communicate clearly through difficult work, and earn
+durable business by doing right. These principles preserve customer control,
+explicit limits, human ownership of operational changes, and measured
+usefulness. Product claims must distinguish a configured relationship from
+usable access, a removed relationship from complete revocation, and a
+technical result from a legal or compliance opinion.
 
 The company should own a coherent capability, rather than an unrelated collection of security apps. The proposed common core is a versioned record connecting the business intent, permitted evidence, technical finding, reviewer decision, and subsequent verification. Customer-specific adapters and reports would surround that core. The current repository is one technical experiment within this broader direction.
 

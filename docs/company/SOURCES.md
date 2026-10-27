@@ -1,6 +1,6 @@
 # Market research source register
 
-Research cutoff: 10 October 2026. Dates distinguish publication dates from access dates. Public abstracts and vendor pages are not independent product benchmarks. Source IDs in the plan refer to this register.
+Research updated: 26 October 2026. Dates distinguish publication dates from access dates. Public abstracts and vendor pages are not independent product benchmarks. Source IDs in the plan refer to this register.
 
 Government guidance is normative; surveys describe their specific samples; forecasts are estimates; product pages establish stated capabilities; customer stories are selected examples. No private database or paid analyst model was accessed.
 
@@ -324,3 +324,37 @@ establish OT remote-access coverage, comparative accuracy, pricing, or fit for
 the proposed approval-and-verification workflow.
 
 [Open source](https://specterops.io/wp-content/uploads/sites/3/2025/03/BloodHound_Enterprise_Data_Sheet_Gov_1002_4.pdf)
+
+## S26
+
+**Rob Strasser — Nike Principles internal memo**
+
+Date: 1977; accessed 2026-10-26. Type: Historical memo transcript and image
+archive.
+
+Supports: The historical ten-part structure and themes of change, initiative,
+results, questioning assumptions, resourcefulness, completion, organizational
+dangers, difficult work, and doing right.
+
+Limits and locator: Historical material from a different company, industry,
+and regulatory context. Some original language is incompatible with lawful,
+safe cybersecurity work and is not adopted. This source does not imply Nike
+affiliation or endorsement.
+
+[Open source](https://designmanifestos.org/rob-strasser-nike-memo/)
+
+## S27
+
+**Nike — Inside the Lines Code of Conduct**
+
+Date: November 2025; accessed 2026-10-26. Type: Official corporate code of
+conduct.
+
+Supports: Nike's current public code presents five maxims rather than the
+historical ten-principle memo. This distinction prevents the historical source
+from being described as Nike's current official doctrine.
+
+Limits and locator: Nike's current culture and conduct materials are context
+only. They do not govern, endorse, or validate this company's principles.
+
+[Open source](https://investors.nike.com/_assets/_670338e20d4eb7961dc9659bd7127c86/nike/db/928/9509/file/Inside-The-Lines_Nov-2025.pdf)
