@@ -1,5 +1,11 @@
 # Game plan
 
+> **Historical AWS plan — superseded for current execution.** DEC-003 replaced
+> this direction on 2026-09-16. The dates, AWS-first scope, pricing, and gates
+> below are history, not current commitments. Use the [business plan](BUSINESS_PLAN.md),
+> [one-page plan](ONE_PAGE_PLAN.md), and [roadmap](ROADMAP.md).
+> Status clarified in the 2026-10-01 document review.
+
 - **Working product:** Cloud Attack-Path Mapper
 - **First wedge:** AWS credential and IAM blast-radius analysis
 - **Validation window:** 2026-09-14 through 2026-12-13
