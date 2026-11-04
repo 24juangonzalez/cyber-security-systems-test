@@ -1,374 +1,183 @@
 # Industrial Access Path Security Prototype
 
-This repository contains an early local synthetic prototype and validation
-program for a provider-neutral, evidence-backed access-path analysis engine.
-It is not ready to ingest customer exports or assess a real environment.
+This repository contains a local, synthetic prototype for explaining one
+modeled industrial vendor-access path and comparing it before and after a
+configuration change.
 
-The proposed north star is to help smaller industrial and logistics
-organizations understand how identities and remote-access connections could
-reach operationally sensitive systems without actively scanning or interfering
-with control equipment.
+The prototype validates a versioned JSON fixture, normalizes its declared
+entities and relationships, applies one deterministic rule, and produces
+evidence-linked JSON and Markdown reports. It does not connect to customer
+systems, collect live configuration, test credentials, scan networks, or prove
+that access is usable in practice.
 
-## Current stage
+## How we operate
 
-### Run the local UI
+Our ten company operating principles guide product, customer, and business
+decisions:
 
-**New to the project?** With Python and
-[uv](https://docs.astral.sh/uv/getting-started/installation/) installed, run this
-from the repository directory:
+1. Change is the environment we serve.
+2. Act with initiative.
+3. Outcomes and methods both matter.
+4. Treat the mission as consequential.
+5. Question assumptions and honor commitments.
+6. Use resources deliberately.
+7. Finish the outcome.
+8. Guard the company against predictable failure.
+9. Expect difficult work and communicate clearly.
+10. Earn durable business by doing right.
+
+These are working standards, not marketing claims. Read the
+[full principles and operating tests](docs/company/PRINCIPLES.md), including
+their historical inspiration and the safety and ethics boundaries we added.
+
+## Start the demo
+
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), clone the
+repository, and run:
 
 ```bash
 python development.py
 ```
 
-On macOS/Linux, use `python3 development.py` if `python` is unavailable.
-On Windows, you can use `py -3 development.py`. This launcher needs Python 3.10
-or newer; uv manages the project's Python 3.13 environment separately.
-No manual environment activation, folder creation, Make, or WSL is needed.
-The first run may download dependencies. Open the URL printed in the terminal,
-then choose **Bundled demo → Run analysis**. Stop with **Ctrl+C**.
-Run `python development.py --check` to run the same lint, formatting, and test
-checks used by `make check`. WSL remains an option for Linux development on Windows;
-the launcher does not fix underlying native Windows UI issues.
+Use `python3` on macOS or Linux if `python` is unavailable. On Windows, use
+`py -3 development.py`. The launcher installs the locked environment, starts
+the UI on `127.0.0.1`, and creates output only when you download a report.
 
-With Make installed (macOS/Linux/WSL), the beginner launcher also has a shortcut:
+In the UI:
 
-```bash
-make dev
-```
+1. Choose **Bundled demo**.
+2. Select **Analyze one snapshot** or **Compare before and after**.
+3. Choose a scenario and run the analysis.
+4. Read the summary first; open evidence details only when needed.
 
-`make ui` remains an alias for `make dev`; both run `development.py`.
-Run `make help` to list common commands.
+The local address is reachable only from the same computer unless you
+deliberately change the Streamlit server configuration. Use synthetic examples
+only. The application is not approved for customer data.
 
-| Task | With Make | Without Make |
-| --- | --- | --- |
-| Start the app | `make dev` | `python development.py` |
-| Run lint, formatting checks, and tests | `make check` | `python development.py --check` |
-| Show launcher options | — | `python development.py --help` |
+## Run the CLI
 
-On Windows, replace `python` with `py -3` if needed.
-
-Starting the app installs the locked optional Streamlit dependencies and uses
-`http://127.0.0.1:8501`. Open that address in your browser. Stop it with **Ctrl+C**
-in the terminal.
-
-For Windows development, follow the [WSL 2 setup guide](docs/WINDOWS_WSL.md)
-to use Ubuntu, a separate Linux `.venv`, and the same `make` commands as Linux CI.
-WSL runs locally on your partner's Windows computer; it does not share your app
-or connect your machines.
-
-For native Windows PowerShell, use this equivalent command without Make:
-
-```powershell
-uv run --locked --extra ui streamlit run streamlit_app.py --server.address 127.0.0.1
-```
-
-CLI commands work in PowerShell too. For example:
-
-```powershell
-uv run cyber-path validate fixtures/industrial/vendor_access.json
-```
-
-Choose **Bundled demo**, then **Run analysis** to see the vendor access finding.
-Choose **Compare before and after** to see why removing VPN membership resolves
-that path. The **Demo scenario** selector also covers unchanged access, missing
-evidence, an alternative path that remains, and different environments.
-Expand **Download example inputs to try Upload JSON** for uploadable before/after
-files. See [comparison scenarios](docs/COMPARISON_SCENARIOS.md) for expected results.
-**Upload JSON** accepts your own synthetic files using the
-[supported fixture format](docs/FIXTURE_FORMAT.md), up to 4 MiB each. It does not
-accept arbitrary PDFs, spreadsheets, or real customer exports.
-
-The default report explains what was found, why it matters, and what to review
-next. Open **How to read this report · terms and scenario guide** in the app, or
-read [the report reading guide](docs/READING_REPORTS.md). Single-snapshot mode
-lets you select **before** or **after**; multiple scenarios share the same before
-file. Use comparison mode to measure change, then click **Run analysis** again
-after changing a selection. Results identify their scenario and input files.
-
-Reports use system labels instead of internal IDs. Use **Show technical evidence
-and review details** or **Show raw JSON** when you need the underlying records.
-Missing evidence and remaining access paths stay visible in the summary.
-The downloaded Markdown report includes technical details in a collapsible
-section (expansion support depends on your Markdown viewer).
-
-Review the evidence on the page and download `report.md`, `finding.json`, or
-`graph.json`. Uploads and results stay in the local app session; the UI does not
-write them to `output/`. Changing an input clears the previous result.
-The app listens on localhost and is intended for local use, not public hosting.
-Run `make check` to include the UI regression tests along with the existing tests.
-
-### Project status
-
-- **Stage:** Prototype and market validation
-- **Current build:** Synthetic industrial remote-access path analysis
-- **Primary scenario:** Vendor account to operationally sensitive system
-- **Secondary scenario:** AWS identity to sensitive cloud resource
-- **Commercial status:** Customer, buyer, channel, pricing, and business model
-  remain hypotheses
-
-The industrial direction is accepted for prototype validation. It is not an
-irreversible company commitment. Existing AWS plans remain useful technical
-and market hypotheses, but they are not the controlling product specification.
-
-## What we are building now
-
-The first milestone is a local CLI that analyzes a synthetic environment and
-produces an evidence-backed before-and-after report for this path:
-
-```text
-Vendor account
-→ VPN access group
-→ jump host
-→ engineering network
-→ WCS or management server
-→ operationally sensitive environment
-```
-
-The prototype must show the evidence behind every relationship, identify
-unknowns, recommend the smallest change that breaks the path, and verify that
-the path disappears after remediation.
-
-## What we are not building now
-
-- Active PLC, controller, or OT scanning
-- Exploitation or autonomous penetration testing
-- Packet capture or continuous monitoring
-- A SIEM, SOC, EDR, or vulnerability scanner
-- Automatic remediation
-- Production SaaS infrastructure, billing, or multi-tenancy
-- A general compliance platform
-- AI-generated security facts or findings
-
-## Project direction and documents
-
-Start with the [documentation guide](docs/README.md). It separates governing
-decisions, company proposals, the active product experiment, technical
-contracts, contributor guides, and historical material.
-
-The current hierarchy is:
-
-1. [Accepted decisions](docs/DECISIONS.md) govern the project.
-2. The [company strategy package](docs/company/README.md) proposes the broader
-   company direction and a first commercial experiment.
-3. The [north star](docs/NORTH_STAR.md), [prototype scope](docs/PROTOTYPE_SCOPE.md),
-   and [roadmap](docs/ROADMAP.md) govern the active synthetic prototype.
-4. Technical references define how that prototype behaves.
-
-The October 10 company strategy is a proposal. It does not silently replace
-DEC-003 or authorize a product pivot. The founders should record acceptance,
-revision, or rejection in the decision log before it changes execution.
-
-## Development
-
-The project uses Python 3.13 and `uv`.
-
-Use one root `.venv` for this project's source code and tests. Run `uv sync`
-after cloning or changing dependencies. Subdirectories do not need their own
-environments.
-
-For VS Code, open the repository root and install the recommended Python
-extensions. Workspace settings default to `.venv` and enable activation in
-new integrated terminals. If you previously selected another interpreter, use
-**Python: Select Interpreter** to choose `.venv/bin/python` once, then open a
-new terminal. These settings do not activate environments in standalone
-terminals; `uv run` and the Makefile commands select the project environment
-without manual activation.
-
-```bash
-uv sync
-uv run --extra ui pytest
-uv run ruff check .
-uv run ruff format .
-```
-
-The equivalent shortcuts are `make test`, `make lint`, and `make format`.
-Use `make format-check` to check formatting without changing files, or
-`make check` to run linting, formatting checks, and tests together.
-
-Enable automatic checks before pushing once per clone:
-
-```bash
-make hooks
-```
-
-This sets the clone's Git hooks directory to `.githooks`. The pre-push hook
-runs `make check` with locked dependencies and blocks the push if a check
-fails. It checks the current working tree, so commit the changes you intend
-to push and keep the working tree clean. GitHub Actions also checks the pushed
-commits independently. Git hooks can be bypassed; they do not replace CI.
-
-GitHub Actions runs `make check` on pushes and pull requests using Python 3.13
-and the committed lockfile. You can also start the `CI` workflow manually from
-the Actions tab. The workflow uses read-only repository permissions and does
-not require AWS credentials. Keep tests offline and use synthetic data.
-
-Linux runs the full suite, including the Streamlit UI tests. The Windows job
-only installs CLI/development dependencies and runs CLI/file-handling regression
-tests plus fixture validation. Its test step has a two-minute timeout. Windows
-UI tests are currently excluded after failures in the Windows runner; this check
-does not establish Windows UI compatibility.
-
-CI also builds the source distribution and wheel, installs the wheel with locked
-runtime dependencies in a separate environment, and runs the CLI outside the
-repository. It checks that the synthetic example produces one finding and that
-the remediated comparison marks it resolved. This catches packaging and CLI
-integration problems; it does not establish accuracy on customer environments.
-After a successful run, open **Actions → CI → the run → Artifacts** and download
-`synthetic-demo-reports` to inspect the analysis and comparison JSON/Markdown
-reports. These synthetic reports are retained for seven days.
-
-Dependabot checks Python dependencies (`pyproject.toml` and `uv.lock`) and
-GitHub Actions references weekly after `.github/dependabot.yml` reaches the
-default branch. Python minor and patch updates are grouped; major updates and
-action updates are reviewed separately. Review each update PR and its CI
-results before merging. This configuration does not enable automatic merging
-or change repository-level Dependabot alerts and security-update settings.
-
-## Run and understand the demo
-
-You are running `cyber-path`, this project's local Python command-line tool.
-`uv run` runs it using the project's virtual environment and dependencies.
-The tool reads the supplied JSON files, checks their evidence, evaluates one
-industrial access-path rule, and writes reports to your computer. It does not
-connect to AWS, scan a network, test credentials, or change any systems.
-
-A **fixture** is a fictional example with a known expected result. The two
-included fixtures describe the same environment before and after a modeled
-change. You do not need to create an input file for your first run.
-
-| File or folder | Purpose |
-| --- | --- |
-| `fixtures/industrial/vendor_access.json` | Input with the supported vendor-access path |
-| `fixtures/industrial/vendor_access_remediated.json` | Input with explicit evidence that the vendor group membership is absent |
-| `schemas/synthetic-fixture.schema.json` | Defines the input structure; this is not the environment data |
-| `output/analysis/` | Generated report for the original environment |
-| `output/comparison/` | Generated before-and-after comparison |
-
-Run the following commands from the repository root, where `pyproject.toml`
-and the Makefile live.
-
-### 1. Install the project and check the input
+The CLI creates missing output directories automatically.
 
 ```bash
 uv sync --locked
+
 uv run cyber-path validate fixtures/industrial/vendor_access.json
-```
 
-`validate` checks the JSON structure, identifiers, references, and evidence
-consistency. It prints a summary without writing reports. For the included
-fixture, expect `"valid": true`, `"status": "complete"`, and an empty issues list.
-Valid input does not mean that no access path exists.
-
-### 2. Analyze the original example
-
-```bash
 uv run cyber-path analyze \
-  fixtures/industrial/vendor_access.json --output output/analysis
-```
+  fixtures/industrial/vendor_access.json \
+  --output output/demo-analysis
 
-`analyze` builds a directed graph from supported relationships and checks for
-the vendor → group → jump host → network → application → operational-asset
-scenario. A separate application-authorization assertion is required;
-network reachability alone cannot establish login permission.
-
-Expect `"status": "complete"` and `"findings": 1` in the terminal. Open
-`output/analysis/report.md` in your editor to inspect the path, evidence,
-limitations, and suggested membership change. The application-to-asset
-relationship is an association, not proof of operational control.
-
-### 3. Compare with the remediated example
-
-```bash
 uv run cyber-path compare \
   fixtures/industrial/vendor_access.json \
-  fixtures/industrial/vendor_access_remediated.json --output output/comparison
+  fixtures/industrial/vendor_access_remediated.json \
+  --output output/demo-comparison
 ```
 
-`compare` analyzes both snapshots and checks whether comparable evidence
-establishes removal of the original path. It does not perform the remediation;
-the second fixture already describes the modeled change.
+Analysis and comparison write:
 
-Expect `"status": "complete"` and `"findings": 0` in the terminal. Open
-`output/comparison/report.md` and look for `resolved` in its Comparison section.
-The zero count refers to current findings; the report retains the original
-finding and its evidence. Missing data alone would not establish resolution.
+```text
+finding.json   Complete structured result
+graph.json     Normalized entities and relationships
+report.md      Human-readable review
+```
 
-The Comparison section now includes a status summary, reasons for each result,
-and a before/after table of relationship assertions and evidence timestamps.
-It shows how many supported current paths remain to the same destination, so
-resolving one path does not hide an alternative. Missing records are labeled
-as not recorded, not as confirmed absence. Scope or evidence problems appear as
-comparison blockers, including when no findings can be assessed.
+Exit code `0` means the supported analysis completed. Exit code `2` means the
+input or output operation failed. Exit code `3` means the input was accepted,
+but missing evidence or incomparable scope prevented a complete conclusion.
+An incomplete result must not be interpreted as safe or remediated.
 
-These details are also available in `finding.json` as `comparison_summary`,
-`comparison_issues`, and each comparison entry's `reason_codes`, `explanation`,
-and `relationships`. See the [comparison scenarios](docs/COMPARISON_SCENARIOS.md)
-for expected outcomes and independent-review guidance.
+See the [scenario catalog](docs/technical/COMPARISON_SCENARIOS.md),
+[fixture contract](docs/technical/FIXTURE_FORMAT.md), and
+[report-reading guide](docs/guides/READING_REPORTS.md) for the supported
+semantics.
 
-### Read the outputs and run again
+## What the prototype establishes
 
-Both `analyze` and `compare` write these files inside the directory supplied
-with `--output`:
+For the committed synthetic scenario, the engine can:
 
-| Output | What to read it for |
-| --- | --- |
-| `report.md` | Human-readable explanation; start here |
-| `finding.json` | Full structured results, evidence, and comparison details where applicable |
-| `graph.json` | Supplied normalized entities and relationships, including absent assertions |
+- identify one declared path from a vendor identity to an operationally
+  associated destination;
+- cite evidence for each supported relationship;
+- distinguish authentication, routing, network connectivity, and association;
+- recommend removing one modeled relationship, subject to operational review;
+- compare later, equivalent evidence and classify the finding as resolved,
+  remaining, changed, or unassessable; and
+- preserve missing or conflicting evidence as an incomplete result.
 
-Use a **new output directory for each run**, such as `output/analysis-2`.
-Missing parent directories are created automatically; no `mkdir` step is needed.
-The final directory must not already exist.
-The tool refuses to overwrite existing output. Generated `output/` files are
-ignored by Git.
+Passing tests confirm behavior against the repository's specified synthetic
+cases. They do not measure real-world detection accuracy, customer value,
+production performance, or security effectiveness.
 
-Exit codes are `0` for a completed supported analysis, `2` for invalid input or
-an output error, and `3` for incomplete analysis/comparison. Zero findings or
-exit code zero never establishes that an environment is safe.
+## Current boundaries
 
-### What this demonstrates and what comes next
+The repository does not currently provide:
 
-This demonstrates one supported path and evidence-based comparison using
-synthetic JSON. Arbitrary PDF/Word reports, vendor exports, and real customer
-configurations are not supported inputs. The accepted fields and policy limits
-are documented in [Fixture format](docs/FIXTURE_FORMAT.md).
+- a supported customer import format;
+- AWS, VPN, firewall, identity-provider, or OT-platform collection;
+- active scanning, exploitation, credential testing, or automatic remediation;
+- continuous monitoring, hosted SaaS, authentication, billing, or tenancy;
+- legal, compliance, plant-safety, or breach-prevention conclusions; or
+- independent validation of source truth.
 
-Next, have another developer reproduce these results using the
-[review checklist](docs/templates/REPRODUCTION_REVIEW.md), review whether the
-report is understandable with qualified prospects, and use that feedback to
-select a future input adapter. Independent reproduction, qualified review,
-and discovery remain separate from passing automated tests.
+The accepted prototype direction is recorded in the
+[decision log](docs/governance/DECISIONS.md). The broader
+[company strategy](docs/company/README.md) remains a founder proposal and does
+not silently expand the implemented product.
 
-No real credentials, customer data, private network details, or secret values
-belong in source control, fixtures, test output, or logs.
-
-## Source layout
-
-The package scaffold follows [Architecture](docs/ARCHITECTURE.md) and the active
-[Prototype scope](docs/PROTOTYPE_SCOPE.md):
+## Repository structure
 
 ```text
 src/cyber_security_systems/
-├── domain/          # Provider-neutral entities and evidence
-├── ingestion/       # Fixtures and authorized source adapters
-├── normalization/   # Source records to domain objects
-├── analysis/        # Graph construction and deterministic rules
-└── reporting/       # Findings and human-readable reports
+├── domain/          Validated records and controlled vocabulary
+├── ingestion/       Bounded synthetic JSON parsing
+├── normalization/   Cross-record and evidence checks
+├── analysis/        Deterministic path and comparison logic
+├── reporting/       JSON and readable Markdown rendering
+└── cli.py           Command-line orchestration
 
-tests/
-├── unit/            # Individual component behavior
-├── integration/     # Local fixture-to-report flow
-├── known_answer/    # Expected paths and negative cases
-└── fixtures/        # Synthetic test inputs and expected results
+fixtures/industrial/ Synthetic examples and scenario catalog
+schemas/             Synthetic JSON schema
+tests/               Unit, integration, and known-answer tests
+streamlit_app.py     Optional local UI
+development.py       Cross-platform beginner launcher
+docs/                Product, technical, research, governance, and company docs
 ```
 
-The `domain/` package implements entities, evidence, relationships, scope,
-provenance, and analysis-run metadata. Ingestion validates bounded JSON;
-normalization checks evidence across records; analysis evaluates one rule and
-compares snapshots; reporting produces JSON and Markdown. See
-[Domain model](docs/DOMAIN_MODEL.md) for validation rules. Existing
-`infrastructure/` and `lambdas/` modules are earlier placeholders.
-Next, independently reproduce and review the demo while running discovery.
-Select any future adapter from obtainable customer evidence. Keep provider SDKs
-out of `domain/` and `analysis/`.
+There is no deployment, Lambda, or infrastructure package. Add provider or
+deployment code only after an approved requirement defines its data contract,
+authorization boundary, and tests.
+
+## Development
+
+Run all required checks:
+
+```bash
+python development.py --check
+```
+
+Equivalent Make targets are available on macOS, Linux, and WSL:
+
+```bash
+make setup
+make check
+make ui
+make hooks
+```
+
+`make hooks` configures the repository's pre-push hook to run linting,
+formatting checks, and tests. GitHub Actions repeats the checks in a clean
+environment.
+
+For native Windows development, the Python launcher is the shortest path. WSL
+instructions are in the [Windows guide](docs/guides/WINDOWS_WSL.md).
+
+## Documentation
+
+Start with the [documentation map](docs/README.md). It identifies which files
+govern the active prototype, which documents are proposals, and which material
+is retained only for history.
+
+Security-sensitive work must follow [AGENTS.md](AGENTS.md) and the mandatory
+[security policy](docs/technical/SECURITY_AND_SAFETY.md). Never commit
+credentials, customer exports, private interview notes, contracts, or other
+sensitive business records.
