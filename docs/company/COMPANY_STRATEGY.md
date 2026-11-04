@@ -182,7 +182,7 @@ Interview count alone is not validation.
 
 ## Product architecture and research program
 
-The existing repository contains a modular Python prototype with synthetic ingestion, domain records, normalization checks, a bounded path rule, conservative comparison, reports, and an optional local UI. This is useful engineering groundwork. It is not an implementation of the proposed access-approval reconciliation workflow, a validated real-data importer, or a production evidence platform. The recorded validation baseline is 156 passing tests on 2 October 2026; this strategy review is not a fresh test or security audit.
+The existing repository contains a modular Python prototype with synthetic ingestion, domain records, normalization checks, a bounded path rule, conservative comparison, reports, and an optional local UI. This is useful engineering groundwork. It is not an implementation of the proposed access-approval reconciliation workflow, a validated real-data importer, or a production evidence platform. The current working baseline is 154 passing tests on 3 November 2026. Passing tests establish behavior against the repository contract; they are not a security audit or customer validation.
 
 Preserve the current industrial demonstration while testing the new workflow in a separately named module and contract. Reuse validation patterns, provenance, report rendering, and comparable-scope logic when semantics actually match. Do not reinterpret a membership exception as an attack path. The public CLI and existing fixture schema should remain compatible until a separately reviewed implementation specifies otherwise.
 
@@ -231,7 +231,7 @@ excluded. High gross margin does not imply positive cash flow.
 
 At 12 delivery hours the contribution before acquisition and overhead is USD 1,050. At 20 hours it is USD 250. An illustrative USD 1,000 monthly fixed cash cost would require at least one or four completed, collected engagements respectively, ignoring collection delays and additional acquisition costs. This demonstrates sensitivity, not a recommended spending budget.
 
-If the full 80-hour engineering/delivery allocation in the six-month plan were used for 12-hour engagements, it could support at most six whole engagements and no engineering work. Actual paid capacity would be lower. Capacity limits must constrain any revenue scenario.
+If the full 40-hour technical allocation in the 12-week validation plan were used for 12-hour engagements, it could support at most three whole engagements and no engineering work. Actual paid capacity would be lower. Capacity limits must constrain any revenue scenario.
 
 Before quoting, price source preparation, manual review, customer meetings, rework, verification, and support. Define what happens when evidence is unusable. Do not hide unsupported formats or unlimited review inside a fixed fee. Separate nonrecurring setup from recurring work and avoid counting annual contract value as immediate recognized or collected revenue.
 
@@ -249,31 +249,32 @@ The data room should eventually contain formation and ownership records, IP and 
 
 Current strengths are a working synthetic demonstration and explicit attention to evidence limits. Gaps are customer access, specialized independent review, operational delivery experience verified for this use case, funding decisions, and contractual readiness. Adviser recruitment should address specific gaps; unnamed future advisers are not members of the team.
 
-## Six month operating plan
+## Twelve week validation plan
 
-Use 12 October 2026 through 4 April 2027 as a provisional 25-week window. At 8 combined hours weekly it provides 200 hours; at 20 hours it would provide 500. Schedule against the lower figure. All dates are review points, not customer commitments. Delays move work or reduce scope; they do not waive readiness gates.
+Begin a fresh 12-week cycle only after both founders accept the experiment and
+owners. At the conservative baseline of eight combined hours each week, the
+cycle provides 96 hours. Founder availability above that baseline is optional
+capacity and does not expand scope automatically. All dates are review points,
+not customer commitments.
 
 | Work area | Proposed combined hours |
 | --- | ---: |
-| Engineering and tests | 80 |
-| Market and customer work | 60 |
-| Governance and finance | 30 |
-| Review and contingency | 30 |
+| Engineering and tests | 40 |
+| Market and customer work | 32 |
+| Governance and readiness | 12 |
+| Review and contingency | 12 |
 
-The proposed allocation totals 200 combined hours. Additional availability is
+The proposed allocation totals 96 combined hours. Additional availability is
 not assumed in deliverables. Owners must confirm allocations.
 
 | Window | Output and acceptance |
 | --- | --- |
-| Weeks 1–2 | Founder thesis and experiment selection; preserve alternatives and approve an hours cap |
-| Weeks 3–6 | One input contract, synthetic cases, baseline report and manual/competitor comparison protocol |
-| Weeks 7–10 | Bounded prototype and measured end-to-end benchmark; no unsupported conclusions |
-| Weeks 11–14 | Practitioner review and repeatability evidence; record disagreement and input burden |
-| Weeks 15–18 | Proceed only with a credible sponsor: evaluation scope, data procedures, review owner and cost cap |
-| Weeks 19–22 | One controlled evaluation if readiness passes; otherwise resolve the specific blockers |
-| Weeks 23–25 | Continue, narrow or stop decision; revised business model and next-quarter backlog |
+| Weeks 1–2 | Approve or revise the mission, experiment, owners, exclusions, hour cap, and stop conditions; define one source and approval contract |
+| Weeks 3–6 | Conduct primary-segment discovery and prepare synthetic reconciliation cases and a manual comparison protocol |
+| Weeks 7–9 | Build the bounded experiment, measure the manual baseline, and obtain independent reproduction and practitioner review |
+| Weeks 10–12 | Complete discovery, seek one written evaluation sponsor, and record a continue, narrow, change, or stop decision |
 
-Keep one active implementation work package and one active market-learning package. Juan is the proposed technical accountable owner; Shawn is the proposed market-research accountable owner; both review strategy and finance. These are proposed accountabilities pending joint confirmation.
+Keep one active implementation work package and one active market-learning package. Juan is the proposed technical accountable owner; Shawn is the proposed market-research accountable owner; both review strategy and finance. These are proposed accountabilities pending joint confirmation. The detailed work packages and gates are maintained in the [project plan](PROJECT_PLAN.md) and [Word founder action plan](FOUNDER_ACTION_PLAN.docx).
 
 Every task requires a purpose, owner, hour estimate, evidence dependency, acceptance criterion, and safety boundary. Every week record planned/actual hours, completed output, unresolved assumptions, and the next smallest test. Every month review costs, results, and competitive evidence. Do not schedule a full platform launch within this capacity envelope.
 
