@@ -65,6 +65,7 @@ collection, production readiness, or support for arbitrary customer exports.
 - [Formatted Word plan](company/Company_Strategy_and_Business_Plan.docx)
 - [Company operating principles](company/PRINCIPLES.md)
 - [Proposed project plan](company/PROJECT_PLAN.md)
+- [Founder action plan in Word](company/FOUNDER_ACTION_PLAN.docx)
 - [Research sources](company/SOURCES.md)
 
 The company package is structured for founder review. It does not establish

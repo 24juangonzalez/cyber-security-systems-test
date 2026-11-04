@@ -47,12 +47,14 @@ teammate. A decision may govern only the current validation phase.
   market commitment.
 - **Decision:** Build a provider-neutral evidence-backed access-path engine.
   Use a synthetic industrial vendor remote-access path as the primary
-  prototype and an AWS identity path as a secondary fixture.
+  prototype. Preserve AWS only as a possible future fixture or adapter when
+  customer or technical evidence justifies it.
 - **Why:** This creates a demonstrable product, preserves reusable technical
   foundations, supports safe parallel discovery, and avoids allowing existing
   AWS repository work to dictate the final company direction.
-- **Consequences:** Reframe AWS as an adapter and fixture. Do not build active
-  OT discovery or production SaaS infrastructure during Phase 1.
+- **Consequences:** Do not build AWS support merely to demonstrate breadth.
+  Do not build active OT discovery or production SaaS infrastructure during
+  Phase 1.
 - **Revisit when:** Phase 2 demonstrations are complete or customer evidence
   invalidates the problem, access model, user, buyer, or channel.
 - **Links:** `../product/NORTH_STAR.md`, `../product/PROTOTYPE_SCOPE.md`,
@@ -85,6 +87,32 @@ teammate. A decision may govern only the current validation phase.
   when company conduct exposes a material gap.
 - **Links:** `../company/PRINCIPLES.md`, `../company/COMPANY_STRATEGY.md`,
   `../product/NORTH_STAR.md`
+
+## DEC-005 Validate vendor access review and closure
+
+- **Date:** 2026-11-03
+- **Status:** Proposed
+- **Owner:** Founders
+- **Context:** The synthetic access-path prototype is a useful demonstration,
+  but it does not yet implement the proposed commercial workflow. The company
+  needs direct evidence that a defined buyer has a recurring problem before
+  expanding the platform.
+- **Proposed decision:** Run a 12-week validation cycle for a local, read-only
+  vendor-access review that compares one supported access export with an
+  approval register, records exceptions and human decisions, and verifies a
+  later change. Test industrial integrators and OT-focused service providers as
+  the primary segment. Keep direct manufacturers as a secondary hypothesis.
+- **Evidence required for acceptance:** Both founders approve the mission,
+  segment hypothesis, owners, 96-hour baseline, exclusions, spending rule, and
+  stop conditions.
+- **Consequences if accepted:** Keep the existing path demonstration stable.
+  Build the reconciliation experiment as a separate contract. Do not accept
+  customer exports until data-handling and evaluation controls are approved.
+- **Revisit when:** The 12-week cycle ends, a written evaluation sponsor is
+  obtained, or evidence invalidates the workflow sooner.
+- **Links:** `../company/PROJECT_PLAN.md`,
+  `../company/FOUNDER_ACTION_PLAN.docx`,
+  `../company/COMPANY_STRATEGY.md`
 
 ## Decision template
 
