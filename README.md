@@ -1,4 +1,4 @@
-# Industrial Access Path Security Prototype
+# Industrial Access Path Security Prototype (Project Mihari)
 
 This repository contains a local, synthetic prototype for explaining one
 modeled industrial vendor-access path and comparing it before and after a
