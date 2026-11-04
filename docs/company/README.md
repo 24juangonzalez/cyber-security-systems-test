@@ -22,6 +22,10 @@ Chart images and machine-generated build inputs are intentionally omitted from
 the repository. Their relevant values and assumptions remain in the editable
 strategy, and the presentation charts remain embedded in the Word edition.
 
-The October 1 [product business plan](../BUSINESS_PLAN.md) remains context for the earlier industrial offer. This package broadens company planning and proposes an experiment. Company name, legal structure, funding, spending and first commercial offer remain open decisions. Read the recommendation as proposed until the founders record acceptance.
+The archived October 1 [product business plan](../archive/BUSINESS_PLAN.md)
+remains context for the earlier industrial offer. This package broadens company
+planning and proposes an experiment. Company name, legal structure, funding,
+spending, and the first commercial offer remain open decisions. Read the
+recommendation as proposed until the founders record acceptance.
 
 External sources support the problem landscape and competing capabilities. They do not establish customer willingness to pay or current company traction. Sensitive founder records, contacts, contracts, financial records and customer data should remain outside the repository.

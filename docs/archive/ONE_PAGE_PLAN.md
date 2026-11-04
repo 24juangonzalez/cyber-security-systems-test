@@ -78,5 +78,7 @@ including five budget owners or people who can explain purchasing. That is a
 future learning target, not an achieved count or a dated promise. The immediate
 proposed increment is one conversation and one documented learning decision.
 
-Details: [Business plan](BUSINESS_PLAN.md), [roadmap](ROADMAP.md),
-[validation](BUSINESS_VALIDATION.md), and [decision log](DECISIONS.md).
+Historical details: [Business plan](BUSINESS_PLAN.md), current
+[roadmap](../product/ROADMAP.md), current
+[validation plan](../research/BUSINESS_VALIDATION.md), and
+[decision log](../governance/DECISIONS.md).

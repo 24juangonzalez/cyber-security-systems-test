@@ -24,7 +24,8 @@ review. Use synthetic data only.
    references, timestamps, limitations, and comparison statuses agree.
 5. Review negative-case tests: incomplete evidence, reduced scope, missing
    records, alternative paths, authorization versus reachability, and limits.
-6. Review the supported synthetic semantics in `FIXTURE_FORMAT.md`. Confirm
+6. Review the supported synthetic semantics in
+   `docs/technical/FIXTURE_FORMAT.md`. Confirm
    the report does not imply exploitation or operational control.
 
 ## Review record

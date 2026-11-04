@@ -3,7 +3,8 @@
 > **Historical AWS plan — superseded for current execution.** DEC-003 replaced
 > this direction on 2026-09-16. The dates, AWS-first scope, pricing, and gates
 > below are history, not current commitments. Use the [business plan](BUSINESS_PLAN.md),
-> [one-page plan](ONE_PAGE_PLAN.md), and [roadmap](ROADMAP.md).
+> [one-page plan](ONE_PAGE_PLAN.md), and current
+> [roadmap](../product/ROADMAP.md).
 > Status clarified in the 2026-10-01 document review.
 
 - **Working product:** Cloud Attack-Path Mapper
@@ -421,7 +422,7 @@ large.
 
 ### Change direction
 
-Return to the [idea catalog](IDEAS.md) when the problem is not urgent, prospects
+Return to the [idea catalog](../research/IDEAS.md) when the problem is not urgent, prospects
 will not permit safe read-only access, the report does not change decisions, or
 no buyer owns the problem.
 
@@ -432,4 +433,5 @@ no buyer owns the problem.
 3. Create the interview script and recruit the first five interviewees.
 4. Write the first synthetic AWS path as a test fixture.
 5. Define the expected one-page customer report.
-6. Record the direction decision in [DEC-002](DECISIONS.md#dec-002-validate-the-cloud-attack-path-direction).
+6. Review the replaced direction in
+   [DEC-002](../governance/DECISIONS.md#dec-002-validate-an-aws-cloud-attack-path-product).

@@ -28,7 +28,8 @@ Missing evidence and changed scope intentionally produce incomplete comparisons.
 The CLI returns exit code 3 for these cases. This is the expected conservative
 result, not a broken example. “Analyze one snapshot” lets you select **before**
 or **after** (default: before); use comparison mode to examine the change.
-See [How to read an access review](READING_REPORTS.md) for the report vocabulary.
+See [How to read an access review](../guides/READING_REPORTS.md) for the report
+vocabulary.
 
 | Scenario | Expected conclusion | What the explanation must show |
 | --- | --- | --- |

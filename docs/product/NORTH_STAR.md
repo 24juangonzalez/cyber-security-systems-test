@@ -2,7 +2,7 @@
 
 - **Status:** Active for prototype validation
 - **Owner:** Founders
-- **Last updated:** 2026-09-16
+- **Last updated:** 2026-11-03
 - **Review date:** End of the first controlled pilot
 - **Related decision:** DEC-003
 
@@ -59,8 +59,10 @@ Vendor account
 
 - Build a provider-neutral access-path core.
 - Use a synthetic industrial remote-access scenario first.
-- Keep AWS as a secondary fixture or future adapter.
-- Begin with a local CLI and reports rather than a web dashboard.
+- Preserve AWS only as a possible secondary fixture or future adapter; it is
+  not implemented and is not the current work priority.
+- Use the local CLI and reports as the product contract; the Streamlit UI is a
+  demonstration layer over the same engine.
 - Run product development and customer discovery in parallel.
 - Seek a design partner before building production SaaS infrastructure.
 

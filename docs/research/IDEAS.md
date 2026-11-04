@@ -533,4 +533,5 @@ assumption behind every score.
 
 By **[date]**, select no more than three ideas for customer interviews. After
 the interviews, choose one 30-day prototype with a measurable success and
-failure threshold. Record that choice in the [decision log](DECISIONS.md).
+failure threshold. Record that choice in the
+[decision log](../governance/DECISIONS.md).

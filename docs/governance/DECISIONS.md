@@ -55,8 +55,8 @@ teammate. A decision may govern only the current validation phase.
   OT discovery or production SaaS infrastructure during Phase 1.
 - **Revisit when:** Phase 2 demonstrations are complete or customer evidence
   invalidates the problem, access model, user, buyer, or channel.
-- **Links:** `NORTH_STAR.md`, `PROJECT_CHARTER.md`, `PROTOTYPE_SCOPE.md`,
-  `ROADMAP.md`
+- **Links:** `../product/NORTH_STAR.md`, `../product/PROTOTYPE_SCOPE.md`,
+  `../product/ROADMAP.md`, `../archive/PROJECT_CHARTER.md`
 
 ## DEC-004 Adopt ten company operating principles
 
@@ -76,14 +76,15 @@ teammate. A decision may govern only the current validation phase.
   ownership, focus, and ethical business while explicitly requiring lawful,
   authorized, safe, evidence-based conduct.
 - **Alternatives:** Copy the historical memo verbatim; use Nike's current five
-  maxims; retain only the short product principles in `NORTH_STAR.md`.
+  maxims; retain only the short product principles in
+  `../product/NORTH_STAR.md`.
 - **Consequences:** Important proposals should identify relevant principles.
   Material violations require correction and founder review. The doctrine does
   not replace legal, contractual, professional, or security obligations.
 - **Revisit when:** At least annually, when both founders request revision, or
   when company conduct exposes a material gap.
-- **Links:** `company/PRINCIPLES.md`, `company/COMPANY_STRATEGY.md`,
-  `NORTH_STAR.md`
+- **Links:** `../company/PRINCIPLES.md`, `../company/COMPANY_STRATEGY.md`,
+  `../product/NORTH_STAR.md`
 
 ## Decision template
 

@@ -1,7 +1,7 @@
 # Industrial access path business plan
 
 For the broader October 10 company strategy, market research, charts, and
-proposed project plan, see the [company package](company/README.md). This
+proposed project plan, see the [company package](../company/README.md). This
 October 1 document retains the industrial product baseline; the newer company
 proposal does not by itself approve a change to DEC-003.
 

@@ -2,20 +2,21 @@
 
 - **Status:** Current synthetic prototype structure
 - **Owner:** Technical founder
-- **Last updated:** 2026-09-18
+- **Last updated:** 2026-11-03
 - **Review date:** End of Phase 1
 
 ## Architectural objective
 
-Build a modular monolith with a provider-neutral analysis core and replaceable
-input adapters. The first industrial fixture and secondary AWS fixture must use
-the same domain and analysis layers.
+Maintain a modular monolith with a provider-neutral analysis core and explicit
+input boundaries. The only implemented adapter reads the versioned synthetic
+JSON contract. Any future provider adapter must use the same domain and
+analysis layers without adding provider types to the core.
 
 ## Data flow
 
 ```mermaid
 flowchart TD
-    INPUT[JSON CSV exports or read only APIs]
+    INPUT[Synthetic JSON today or future authorized sources]
     ADAPTER[Source adapters]
     NORMALIZE[Normalization]
     EVIDENCE[Evidence records]
@@ -62,14 +63,11 @@ tests/
 └── fixtures/
 ```
 
-The `domain` and `analysis` packages must not import `boto3` or another
-provider SDK.
-
-Existing `infrastructure/` and `lambdas/` packages are earlier placeholders,
-not part of the working analysis flow. An AWS adapter is deferred. Findings
-and recommendations currently use report dictionaries rather than separate
-domain classes. Split modules when distinct behavior warrants it, not simply
-to allocate one file per class.
+The `domain` and `analysis` packages must not import a provider SDK. There are
+no infrastructure, Lambda, cloud-collection, or deployment packages in the
+current application. Findings and recommendations currently use report
+dictionaries rather than separate domain classes. Split modules when distinct
+behavior warrants it, not simply to allocate one file per class.
 
 ## Where values belong
 
