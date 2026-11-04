@@ -1,4 +1,4 @@
-# Architecture
+# Mihari Architecture
 
 - **Status:** Current synthetic prototype structure
 - **Owner:** Technical founder

@@ -12,7 +12,8 @@ and stop conditions before Week 1 begins.
 
 ## Current state
 
-The repository contains a working synthetic industrial access-path prototype.
+The repository contains Mihari, a working synthetic industrial access-path
+prototype. Mihari is the prototype name; the company name remains undecided.
 It does not yet implement access-approval reconciliation, support real customer
 exports, or provide production data handling. No customers, revenue, pilots,
 advisers, or commercial partnerships are claimed.

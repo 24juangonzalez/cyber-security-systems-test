@@ -183,7 +183,7 @@ def _comparison(lines: list[str], result: dict) -> None:
 
 def technical_report(result: dict) -> str:
     lines = [
-        "# Synthetic industrial access-path report",
+        "# Mihari synthetic industrial access-path report",
         "",
         "Analysis status: " + _text(result["status"]),
         "",
@@ -235,7 +235,7 @@ def summary_report(result: dict) -> str:
     status = result.get("comparison_status", result["status"])
     count = len(result["findings"])
     labels = {item["id"]: item["label"] for item in result["entities"]}
-    lines = ["# Access review", ""]
+    lines = ["# Mihari access review", ""]
     if "baseline" in result:
         before_count = len(result["baseline"]["findings"])
         lines.extend(

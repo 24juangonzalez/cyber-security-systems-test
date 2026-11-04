@@ -1,5 +1,8 @@
 # Documentation map
 
+The active prototype is named **Mihari**. This does not select a company or
+legal-entity name.
+
 Use this page to find the current source of truth. Documents are grouped by
 purpose so a proposal, technical contract, and historical plan are not mistaken
 for one another.

@@ -36,6 +36,7 @@ def test_validate_analyze_compare_commands(tmp_path, capsys):
     result = json.loads((tmp_path / "comparison/finding.json").read_text())
     assert result["comparison"][0]["status"] == "resolved"
     report = (tmp_path / "comparison/report.md").read_text()
+    assert report.startswith("# Mihari access review")
     assert "resolved" in report
     assert "membership" in report
     assert "not prove compromise" in report

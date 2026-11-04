@@ -4,6 +4,9 @@ Prepared 10 October 2026 and updated 26 October 2026 for founder review, with an
 structure. This is a proposed company strategy; it does not replace DEC-003 or
 imply an approved pivot.
 
+**Mihari** is the working prototype name. It is not currently the legal or
+company name, both of which remain open founder decisions.
+
 The durable package contains six documents:
 
 - [Business plan and company strategy](COMPANY_STRATEGY.md): editable narrative

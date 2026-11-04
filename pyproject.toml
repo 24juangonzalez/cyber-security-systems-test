@@ -1,7 +1,7 @@
 [project]
 name = "cyber-security-systems"
 version = "0.1.0"
-description = "Local evidence-backed synthetic industrial access-path analysis"
+description = "Mihari local evidence-backed synthetic industrial access-path analysis"
 readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
