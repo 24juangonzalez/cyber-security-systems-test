@@ -1,10 +1,10 @@
-# North Star
+# Mihari North Star
 
 - **Status:** Active for prototype validation
 - **Owner:** Founders
 - **Last updated:** 2026-11-03
 - **Review date:** End of the first controlled pilot
-- **Related decision:** DEC-003
+- **Related decisions:** DEC-003, DEC-006
 
 ## Direction
 

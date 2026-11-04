@@ -1,10 +1,13 @@
-# Industrial Access Path Security Prototype
+# Mihari
+
+**Mihari** is the working name of this industrial access-review prototype. The
+company name remains undecided.
 
 This repository contains a local, synthetic prototype for explaining one
 modeled industrial vendor-access path and comparing it before and after a
 configuration change.
 
-The prototype validates a versioned JSON fixture, normalizes its declared
+Mihari validates a versioned JSON fixture, normalizes its declared
 entities and relationships, applies one deterministic rule, and produces
 evidence-linked JSON and Markdown reports. It does not connect to customer
 systems, collect live configuration, test credentials, scan networks, or prove

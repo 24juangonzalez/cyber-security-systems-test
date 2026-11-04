@@ -81,9 +81,12 @@ def show_result(result: dict) -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="Industrial access paths", layout="wide")
-    st.title("Industrial access paths")
-    st.caption("Explore access paths and compare remediation evidence locally.")
+    st.set_page_config(page_title="Mihari", layout="wide")
+    st.title("Mihari")
+    st.caption(
+        "Industrial access review · Explore access paths and compare remediation "
+        "evidence locally."
+    )
     st.info(
         "Synthetic prototype only. Upload supported synthetic inventory JSON, "
         "not customer exports. No live scanning or AWS access is performed."

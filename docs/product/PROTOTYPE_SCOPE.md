@@ -1,10 +1,10 @@
-# Prototype Scope
+# Mihari Prototype Scope
 
 - **Status:** Active implementation contract
 - **Owner:** Technical founder
 - **Last updated:** 2026-11-03
 - **Review date:** Completion of Phase 1
-- **Related decisions:** DEC-003
+- **Related decisions:** DEC-003, DEC-006
 
 ## Objective
 

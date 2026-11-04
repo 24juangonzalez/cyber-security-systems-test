@@ -114,6 +114,26 @@ teammate. A decision may govern only the current validation phase.
   `../company/FOUNDER_ACTION_PLAN.docx`,
   `../company/COMPANY_STRATEGY.md`
 
+## DEC-006 Name the prototype Mihari
+
+- **Date:** 2026-11-03
+- **Status:** Accepted for prototype validation
+- **Owner:** Founders
+- **Context:** The prototype needs a concise public name that can identify the
+  demonstration without prematurely selecting the company or legal-entity
+  name. The founders selected Mihari, associated with a lookout or watch.
+- **Decision:** Use **Mihari** as the working prototype and product name. Keep
+  the company name, legal name, and final commercial brand as separate open
+  decisions.
+- **Consequences:** Use Mihari in user-facing documentation, the local UI, and
+  readable reports. Preserve the `cyber_security_systems` Python package,
+  `cyber-path` CLI command, fixture contracts, schemas, and stored identifiers
+  until a separate migration is justified and planned.
+- **Revisit when:** Trademark, language, domain, customer, or company-formation
+  review identifies a conflict, or the prototype becomes a commercial product.
+- **Links:** `../product/NORTH_STAR.md`, `../product/PROTOTYPE_SCOPE.md`,
+  `../../README.md`
+
 ## Decision template
 
 ```markdown

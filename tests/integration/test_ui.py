@@ -57,6 +57,7 @@ def app():
 
 def test_demo_analysis_downloads_and_input_change(tmp_path):
     page = app()
+    assert page.title[0].value == "Mihari"
     example_labels = {"Download before snapshot", "Download after snapshot"}
     assert sorted(button.label for button in page.get("download_button")) == sorted(
         example_labels
