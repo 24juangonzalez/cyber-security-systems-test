@@ -2,7 +2,7 @@
 
 - **Status:** Active implementation contract
 - **Owner:** Technical founder
-- **Last updated:** 2026-09-16
+- **Last updated:** 2026-11-03
 - **Review date:** Completion of Phase 1
 - **Related decisions:** DEC-003
 
@@ -94,9 +94,10 @@ output/
 ## Current implementation boundary
 
 The local CLI implements one normalized synthetic rule described in
-`FIXTURE_FORMAT.md`, with TCP port 443 and exact-match deny precedence in one
-explicit policy context. It does not interpret raw vendor policies or perform
-live collection. Synthetic declarations and hashes do not establish authenticity.
+`../technical/FIXTURE_FORMAT.md`, with TCP port 443 and exact-match deny
+precedence in one explicit policy context. It does not interpret raw vendor
+policies or perform live collection. Synthetic declarations and hashes do not
+establish authenticity.
 Independent reproduction and qualified review remain required before declaring
 Stage One complete. No benchmark or production performance promise is implied.
 
@@ -105,12 +106,12 @@ Stage One complete. No benchmark or production performance promise is implied.
 After Phase 1 passes:
 
 - Improve the report based on demonstrations.
-- Add a secondary AWS fixture using the same domain model.
+- Add a secondary provider example only if it tests reusable domain semantics
+  without delaying review of the industrial workflow.
 - Show the prototype to qualified prospects.
 - Select the first real input format from evidence.
 
-Do not build a live AWS collector merely because AWS is already present in the
-repository.
+Do not add a cloud SDK or live collector merely to demonstrate future scope.
 
 ## Phase 3
 

@@ -1,100 +1,110 @@
-# Documentation guide
+# Documentation map
 
-This directory is organized by **decision level**, even though most files stay
-flat so links remain stable. Start here instead of treating every document as
-equally current or authoritative.
+Use this page to find the current source of truth. Documents are grouped by
+purpose so a proposal, technical contract, and historical plan are not mistaken
+for one another.
 
-## How the project is governed
+## Authority order
 
-The project uses both top-down direction and bottom-up validation:
+When documents disagree, use this order:
 
-1. **Founders choose a direction.** Record accepted choices in
-   [DECISIONS.md](DECISIONS.md).
-2. **Strategy defines the problem and customer hypothesis.** The current
-   company proposal is in [company/COMPANY_STRATEGY.md](company/COMPANY_STRATEGY.md).
-3. **Product scope turns the hypothesis into a bounded experiment.** Use
-   [NORTH_STAR.md](NORTH_STAR.md), [PROTOTYPE_SCOPE.md](PROTOTYPE_SCOPE.md), and
-   [ROADMAP.md](ROADMAP.md).
-4. **Architecture and contracts constrain implementation.** Use
-   [ARCHITECTURE.md](ARCHITECTURE.md), [DOMAIN_MODEL.md](DOMAIN_MODEL.md), and
-   [FIXTURE_FORMAT.md](FIXTURE_FORMAT.md).
-5. **Tests, demonstrations, and customer research return evidence.** Use that
-   evidence to continue, narrow, replace, or reject the original hypothesis.
+1. Accepted entries in the [decision log](governance/DECISIONS.md).
+2. The active [product direction](product/NORTH_STAR.md) and
+   [prototype scope](product/PROTOTYPE_SCOPE.md).
+3. Implemented behavior, schemas, and passing tests.
+4. Proposed company, market, and execution plans.
+5. Historical material in `archive/`.
 
-An accepted decision outranks a proposal. A newer proposal does not silently
-replace an accepted direction. When documents conflict, check the decision log
-and record a new founder decision rather than choosing the most ambitious text.
+A proposal does not replace an accepted decision. Record a new decision when
+the founders approve a material change in product direction, customer data,
+spending, or commercial scope.
 
-## Read these first
+## Start here
 
-| Need | Document | Status |
-| --- | --- | --- |
-| Understand the repository | [Root README](../README.md) | Current usage guide |
-| See accepted decisions | [Decision log](DECISIONS.md) | Governing record |
-| Review the proposed company direction | [Company strategy package](company/README.md) | Proposed for founder review |
-| Understand the active prototype | [North star](NORTH_STAR.md) | Accepted for prototype validation |
-| See the execution sequence | [Roadmap](ROADMAP.md) | Current stage gates |
-| Understand what may be built | [Prototype scope](PROTOTYPE_SCOPE.md) | Active technical boundary |
+| Question | Source |
+| --- | --- |
+| What can I run today? | [Root README](../README.md) |
+| What direction is accepted? | [Decision log](governance/DECISIONS.md) |
+| What is the active product experiment? | [North star](product/NORTH_STAR.md) |
+| What behavior is in scope? | [Prototype scope](product/PROTOTYPE_SCOPE.md) |
+| What happens next? | [Roadmap](product/ROADMAP.md) |
+| How does the code work? | [Architecture](technical/ARCHITECTURE.md) |
+| What is the broader company proposal? | [Company strategy package](company/README.md) |
 
-## Company and market planning
+## Product
 
-- [Company strategy package](company/README.md) — current company-level
-  proposal, research sources, Word report, and six-month work plan.
-- [Company operating principles](company/PRINCIPLES.md) — the ten principles
-  governing how the company builds, sells, and works.
-- [Industrial business plan](BUSINESS_PLAN.md) — October 1 product-level
-  baseline; narrower than the company proposal.
-- [One-page plan](ONE_PAGE_PLAN.md) — concise industrial product hypothesis.
-- [Founder alignment](FOUNDER_ALIGNMENT.md) — working founder facts and open
-  governance questions.
-- [Business validation](BUSINESS_VALIDATION.md) — discovery process and
-  evidence requirements.
-- [Go-to-market hypotheses](GO_TO_MARKET.md) — unvalidated buyer, offer, and
-  channel assumptions.
-- [Experiment register](EXPERIMENTS.md) — planned tests and success signals.
-- [Idea catalog](IDEAS.md) — alternatives, not an execution backlog.
+`product/` defines the active synthetic experiment:
 
-## Product and execution
-
-- [Project charter](PROJECT_CHARTER.md) — purpose, responsibilities, and
-  boundaries for the industrial prototype.
-- [Product strategy](PRODUCT_STRATEGY.md) — product positioning and sequence.
-- [Roadmap](ROADMAP.md) — stage gates from reproducible prototype through
-  controlled evaluation.
-- [Prototype scope](PROTOTYPE_SCOPE.md) — included behavior and explicit
-  exclusions.
-- [Company project plan](company/PROJECT_PLAN.md) — proposed 25-week founder
-  work budget; it is not yet an accepted replacement for the roadmap.
+- [North star](product/NORTH_STAR.md) — accepted direction and product
+  principles.
+- [Prototype scope](product/PROTOTYPE_SCOPE.md) — implemented contract,
+  exclusions, and completion criteria.
+- [Roadmap](product/ROADMAP.md) — evidence-gated progression from prototype to
+  a possible controlled evaluation.
 
 ## Technical reference
 
-- [Architecture](ARCHITECTURE.md)
-- [Domain model](DOMAIN_MODEL.md)
-- [Finding schema](FINDING_SCHEMA.md)
-- [Synthetic fixture format](FIXTURE_FORMAT.md)
-- [Comparison scenarios](COMPARISON_SCENARIOS.md)
-- [How to read reports](READING_REPORTS.md)
-- [Security and safety](SECURITY_AND_SAFETY.md)
+`technical/` describes implemented behavior and mandatory boundaries:
 
-## Contributor guides and templates
+- [Architecture](technical/ARCHITECTURE.md)
+- [Domain model](technical/DOMAIN_MODEL.md)
+- [Synthetic fixture contract](technical/FIXTURE_FORMAT.md)
+- [Finding contract](technical/FINDING_SCHEMA.md)
+- [Comparison scenarios](technical/COMPARISON_SCENARIOS.md)
+- [Security and safety](technical/SECURITY_AND_SAFETY.md)
 
-- [Windows and WSL setup](WINDOWS_WSL.md)
-- [Agent sources](AGENT_SOURCES.md)
-- [Templates](templates/)
+These documents describe a synthetic local prototype. They do not imply live
+collection, production readiness, or support for arbitrary customer exports.
 
-## Historical material
+## Company strategy
 
-- [GAME_PLAN.md](GAME_PLAN.md) is the replaced AWS-first plan. It remains for
-  decision history and is not current execution guidance.
-- `Industrial_Access_Path_Product_Strategy_Business_Plan_and_Project_Charter_.docx`
-  is the dated product-plan reference that preceded the current Markdown
-  review and company proposal.
+`company/` contains the current company-level proposal:
 
-## Repository boundaries
+- [Package guide](company/README.md)
+- [Company strategy and business plan](company/COMPANY_STRATEGY.md)
+- [Formatted Word plan](company/Company_Strategy_and_Business_Plan.docx)
+- [Company operating principles](company/PRINCIPLES.md)
+- [Proposed project plan](company/PROJECT_PLAN.md)
+- [Research sources](company/SOURCES.md)
+
+The company package is structured for founder review. It does not establish
+customer traction, approve spending, authorize customer-data handling, or
+replace the active prototype without a recorded decision.
+
+## Research and validation
+
+`research/` contains hypotheses and planned evidence collection:
+
+- [Business validation](research/BUSINESS_VALIDATION.md)
+- [Experiment register](research/EXPERIMENTS.md)
+- [Go-to-market hypotheses](research/GO_TO_MARKET.md)
+- [Idea catalog](research/IDEAS.md)
+
+Planned interviews, pilots, prices, and success thresholds are proposals until
+actual results are recorded.
+
+## Governance and guides
+
+`governance/` contains the [decision log](governance/DECISIONS.md) and
+[founder alignment checklist](governance/FOUNDER_ALIGNMENT.md).
+
+`guides/` contains practical instructions:
+
+- [Read an access review](guides/READING_REPORTS.md)
+- [Develop with Windows or WSL](guides/WINDOWS_WSL.md)
+- [Project agent sources](guides/AGENT_SOURCES.md)
+
+Reusable working documents are in [templates](templates/).
+
+## Archive
+
+`archive/` contains replaced or superseded plans. They are retained for
+decision history and source tracing, not current execution. See the
+[archive guide](archive/README.md).
+
+## Repository boundary
 
 Commit durable decisions, specifications, sanitized research summaries, and
-reproducible synthetic examples. Keep generated output, private interview
-notes, customer data, contact lists, contracts, financial records, and document
-build intermediates outside the repository. Charts needed only for a published
-Word report should stay embedded in that report rather than being committed as
-separate generated assets.
+reproducible synthetic examples. Keep customer data, private contact lists,
+raw interview notes, credentials, contracts, financial identifiers, and
+generated local output outside the repository.

@@ -2,31 +2,32 @@
 
 - **Status:** Technical sequence aligned with v2; commercial expansion proposed
 - **Owner:** Founders
-- **Last updated:** 2026-10-01
+- **Last updated:** 2026-11-03
 - **Review cadence:** At each stage exit and after a material change
-- **Related documents:** `PROJECT_CHARTER.md`, `PROTOTYPE_SCOPE.md`
+- **Related documents:** `NORTH_STAR.md`, `PROTOTYPE_SCOPE.md`
 
 ## Purpose
 
-### Current position at the October 1 review
+### Current position at the November 3 review
 
 The local implementation contains the domain model, synthetic parser, bounded
-rule, conservative comparison, CLI, optional UI, readable/JSON reports, and a
-five-scenario library. Some supporting files were still uncommitted at this
-review; passing working-tree tests is not a complete release record.
+rule, conservative comparison, CLI, optional UI, readable and JSON reports,
+and a five-scenario library. The repository has no live collectors,
+infrastructure code, or supported customer import.
 
-Stage One implementation and Stage Two report/demo work have progressed, but
-no formal stage approval or independent reproduction sign-off is established
-here. Customer import, production data handling, and repeatable paid delivery
-remain future work. Juan reports no customer or pilot interest yet.
+Stage One implementation and Stage Two report and demo work have progressed,
+but no formal stage approval, independent reproduction sign-off, qualified
+domain review, or customer evidence is recorded. Customer import, production
+data handling, and repeatable paid delivery remain future work.
 
 Juan reports that he and Shawn Sebastian Punch each spend 4–10 project hours
 per week alongside full-time jobs: 8–20 combined hours including noncoding work.
 Juan leads most coding/engineering; both develop product and conduct research.
 Shawn reviews business work and is the proposed lead for conversations/sales.
-Budget and commitment authority remain open. The next proposed increment is
-one committed/reproduced demo and one structured discovery conversation.
-See `BUSINESS_PLAN.md` for the working business baseline.
+Budget and commitment authority remain open. The next increment is independent
+reproduction of the committed demo and structured discovery using synthetic
+material. See the [company strategy](../company/COMPANY_STRATEGY.md) for the
+broader proposal and its evidence limits.
 
 ### Stage policy
 
@@ -43,7 +44,7 @@ met and ends only when its acceptance conditions are satisfied.
 ### Deliverables
 
 - Approved north star
-- Approved project charter
+- Recorded product direction and implementation scope
 - Named technical and discovery owners
 - Initial decision, risk, assumption, issue, and dependency records
 - Repository access and development environment confirmed
@@ -78,7 +79,8 @@ met and ends only when its acceptance conditions are satisfied.
 
 ### Exit
 
-- Every technical acceptance criterion in `PROTOTYPE_SCOPE.md` passes.
+- Every technical acceptance criterion in
+  [the prototype scope](PROTOTYPE_SCOPE.md) passes.
 - Another developer reproduces the expected before-and-after result from the
   documented setup.
 - No prohibited operation or provider-specific core dependency is present.
@@ -95,8 +97,8 @@ met and ends only when its acceptance conditions are satisfied.
 - Refine report clarity and limitations using reviewer feedback
 - Five-minute demonstration
 - Structured feedback script and record
-- Secondary AWS fixture, if it can be added without delaying industrial
-  validation or changing the core model
+- A secondary provider example only if it tests reusable semantics without
+  delaying industrial validation or adding live collection
 
 ### Exit
 
@@ -171,15 +173,16 @@ to collect customer data, commit spending, or promise a service.
   effort. Consider partner delivery only after two partner analysts reproduce
   accepted outputs without founder correction.
 - Founders must approve offers, budgets, owners, and expansion decisions in
-  `DECISIONS.md`. All v2 pricing and financial figures remain assumptions.
+  [the decision log](../governance/DECISIONS.md). All pricing and financial
+  figures remain assumptions.
 
-## Current implementation sequence
+## Current next steps
 
-1. Align the technical contract with v2 and retain the safety exclusions.
-2. Extend scope, provenance, and structured policy metadata.
-3. Validate synthetic positive, remediated, and negative inputs.
-4. Build one bounded deterministic rule, reports, and conservative comparison.
-5. Independently reproduce the demo and run structured discovery in parallel.
+1. Run the full checks from a clean checkout and record the reviewed commit.
+2. Have another developer reproduce the bundled analysis and comparison.
+3. Obtain qualified review of the rule, evidence contract, and report wording.
+4. Run structured discovery with synthetic material and record actual results.
+5. Decide whether evidence supports a customer-relevant import experiment.
 
 Passing local tests is not Stage One sign-off or evidence of customer demand.
 Record independent reproduction, qualified review, and founder stage decisions
@@ -190,7 +193,7 @@ before claiming the relevant gate has passed.
 For each active stage, maintain a short prioritized backlog. Every work item
 must identify the user outcome, supporting evidence, owner, scope, acceptance
 criteria, tests, safety considerations, and documentation changes. Use
-`docs/templates/TECHNICAL_TASK.md` for implementation work.
+`../templates/TECHNICAL_TASK.md` for implementation work.
 
 Work in progress should remain small enough that the team can demonstrate a
 completed increment, review evidence, and change direction without abandoning
