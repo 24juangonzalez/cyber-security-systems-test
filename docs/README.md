@@ -40,6 +40,8 @@ and record a new founder decision rather than choosing the most ambitious text.
 
 - [Company strategy package](company/README.md) — current company-level
   proposal, research sources, Word report, and six-month work plan.
+- [Company operating principles](company/PRINCIPLES.md) — the ten principles
+  governing how the company builds, sells, and works.
 - [Industrial business plan](BUSINESS_PLAN.md) — October 1 product-level
   baseline; narrower than the company proposal.
 - [One-page plan](ONE_PAGE_PLAN.md) — concise industrial product hypothesis.
