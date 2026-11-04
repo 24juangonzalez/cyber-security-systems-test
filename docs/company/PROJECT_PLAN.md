@@ -1,76 +1,170 @@
-# Company research and execution plan
+# Company validation project plan
 
-Baseline proposed 10 October 2026. This is a management backlog, not authorization to spend, contact third parties, or accept customer data. Strategy: [Company business plan](COMPANY_STRATEGY.md). Evidence: [Sources](SOURCES.md). All owners below are proposed; Shawn's commercial lead remains subject to joint confirmation.
+- **Status:** Proposed for founder approval
+- **Prepared:** 3 November 2026
+- **Owners:** Juan C Gonzalez and Shawn Sebastian Punch
+- **Related proposal:** DEC-005
+
+This plan converts the company strategy into one bounded 12-week validation
+cycle. It does not authorize spending, customer-data intake, or commercial
+commitments. Both founders must accept the experiment, ownership, hour budget,
+and stop conditions before Week 1 begins.
 
 ## Current state
 
-Company-level research and a first business-plan package are prepared. No company name or funding route is selected. The existing synthetic industrial prototype remains the accepted technical scope. The new review-and-closure workflow is a proposal, not an implemented capability. No real customers, recurring revenue, advisers, or commercial partnerships are claimed.
+The repository contains a working synthetic industrial access-path prototype.
+It does not yet implement access-approval reconciliation, support real customer
+exports, or provide production data handling. No customers, revenue, pilots,
+advisers, or commercial partnerships are claimed.
+
+The proposed first experiment is a local, read-only vendor-access review that
+compares one supported access export with an approval register, identifies
+exceptions, records a human decision, and verifies a later change. Industrial
+integrators and OT-focused service providers are the primary segment
+hypothesis. Direct manufacturers remain a secondary hypothesis.
 
 ## Capacity and ownership
 
-Use 25 weeks beginning 12 October 2026 and ending 4 April 2027. Budget 200 combined hours at 8 hours per week, including 30 hours reserve. An hour allocated to customer delivery cannot also be counted as product development. Founder availability above this baseline is optional capacity, not permission to expand the backlog automatically.
+Use a conservative baseline of eight combined founder hours each week for 12
+weeks, or 96 hours. Juan is the proposed technical owner. Shawn is the proposed
+market and customer-research owner. Both founders approve strategy, spending,
+data handling, and any external commitment. Availability above the baseline is
+optional capacity and does not expand scope automatically.
 
-| ID | Work package and concrete acceptance | Proposed owner | Hours | Dependency | Status |
-| --- | --- | --- | --- | --- | --- |
-| GOV-01 | Record selected mission, one experiment, scope exclusions and stop criteria | Both | 6 | Review company plan | Proposed |
-| GOV-02 | Record cash ceiling, expense authority and professional-advice needs; no invented amounts | Both | 8 | GOV-01 | Proposed |
-| GOV-03 | Draft evaluation data-handling and incident procedures; identify qualified reviewer | Both | 8 | TECH-01 | Proposed |
-| GOV-04 | Prepare month-six decision and investor-readiness gap register | Both | 8 | Market and technical evidence | Proposed |
-| MKT-01 | Compare manual review, Claroty, Secomea, Tenable, BloodHound and relevant access-review tools; distinguish documented from tested capabilities | Shawn | 12 | GOV-01 | Proposed |
-| MKT-02 | Complete 12–15 structured interviews, including at least eight independent industrial integrators or OT-focused service providers; record actual workflow evidence | Shawn | 28 | GOV-01 | Proposed |
-| MKT-03 | Review the same bounded output with independent practitioners; record corrections, preparation time and input burden | Shawn | 12 | TECH-02, MKT-02 | Proposed |
-| MKT-04 | Document buyer, evaluation scope, objections and purchasing route; do not count interest as a sale | Shawn | 8 | MKT-03 | Proposed |
-| TECH-01 | Define one source contract and approval register; expected results for edge cases | Juan | 20 | GOV-01 | Proposed |
-| TECH-02 | Build synthetic reconciliation experiment without changing existing rule semantics | Juan | 30 | TECH-01 | Proposed |
-| TECH-03 | Run blind or counterbalanced manual comparison; record all effort, errors and limits | Juan | 20 | TECH-02, MKT-01 | Proposed |
-| TECH-04 | Independent reproduction and review-driven corrections; record exact commit and environment | Juan | 10 | TECH-03 | Proposed |
-| RES-01 | Reserve for review, failure investigation and scope adjustment | Both | 30 | Release only against recorded need | Reserved |
+| Work area | Owner | Hours |
+| --- | --- | ---: |
+| Governance and readiness | Both | 12 |
+| Market and customer evidence | Shawn | 32 |
+| Technical experiment and review | Juan | 40 |
+| Review and contingency reserve | Both | 12 |
+| **Total** |  | **96** |
 
-Engineering 80 hours; market work 60; governance 30; reserve 30. The plan is fully allocated and does not fund an additional platform, database, live collector, or separate AI product. A real evaluation needs a revised allocation if it cannot fit remaining capacity; it is not secretly added on top.
+## Work packages
 
-## Stage decisions
+| ID | Deliverable and acceptance | Owner | Hours | Dependency |
+| --- | --- | --- | ---: | --- |
+| GOV-01 | Record mission, experiment, exclusions, owners, hour cap, spending rule, and stop conditions | Both | 4 | Founder review |
+| GOV-02 | Define evaluation data handling, incident contact, retention, deletion, and qualified-review requirements | Both | 5 | TECH-01 |
+| GOV-03 | Record the Week 12 continue, narrow, change, or stop decision and remaining investor-readiness gaps | Both | 3 | All evidence |
+| MKT-01 | Compare the manual workflow with relevant access-review and OT products; label documented and tested capabilities separately | Shawn | 6 | GOV-01 |
+| MKT-02 | Complete 12 to 15 structured interviews, including at least eight independent industrial integrators or OT-focused providers | Shawn | 18 | GOV-01 |
+| MKT-03 | Review the same bounded output with qualified practitioners; record corrections, preparation time, and input burden | Shawn | 5 | TECH-02 |
+| MKT-04 | Document the buyer, objections, purchasing route, and any written evaluation interest without counting interest as a sale | Shawn | 3 | MKT-02 |
+| TECH-01 | Define one synthetic access-export contract, approval register, stable identifiers, and expected edge cases | Juan | 10 | GOV-01 |
+| TECH-02 | Build a separately named synthetic reconciliation experiment without changing existing path-rule semantics | Juan | 16 | TECH-01 |
+| TECH-03 | Compare the experiment with a competent spreadsheet baseline; record time, errors, unknowns, and limitations | Juan | 8 | TECH-02, MKT-01 |
+| TECH-04 | Obtain independent reproduction and qualified review; correct supported issues and record the exact commit and environment | Juan | 6 | TECH-03 |
+| RES-01 | Reserve for review, failure investigation, and approved scope correction | Both | 12 | Recorded need |
 
-- Weeks 1–2: approve or revise thesis and experiment; record a proposed decision before it is accepted.
-- Weeks 3–6: source contract, synthetic cases, comparison protocol, prepared report and initial primary-segment interviews.
-- Weeks 7–10: reproducible prototype, baseline measurements and completion of the 12–15 interview set.
-- Weeks 11–14: qualified feedback; revise or stop if preparation effort or differentiation fails.
-- Weeks 15–18: prepare a controlled evaluation only if sponsor, authorization, qualified review, approved data process and affordable cost exist.
-- Weeks 19–22: run that evaluation only within revised approved capacity; otherwise work on the specific blocker.
-- Weeks 23–25: summarize evidence, economics, scope changes and next decision.
+## Timeline and gates
 
-## Definition of done
+### Weeks 1 and 2 Founder alignment and contracts
 
-A task is done when its artifact exists, acceptance criteria are checked, evidence and limitations are recorded, relevant tests pass, and a second founder reviews the result. Research completion is not customer validation. Synthetic success is not production approval. A failed experiment can be complete if its outcome supports a decision.
+- Accept, revise, or reject DEC-005.
+- Confirm owners, 96-hour cap, spending rule, and stop conditions.
+- Freeze the current synthetic demo except for defects and clarity corrections.
+- Define the first synthetic access export and approval register.
+- Prepare the discovery script and evidence log.
+
+**Gate:** Both founders approve the experiment and the input contract is precise
+enough to create positive, negative, stale, conflicting, and incomplete cases.
+
+### Weeks 3 through 6 Customer discovery and synthetic cases
+
+- Conduct at least eight structured interviews, prioritizing industrial
+  integrators and OT-focused providers.
+- Record recent triggering events, current process, source systems, manual
+  effort, unresolved work, buyer, budget owner, and current tools.
+- Do not request or accept customer exports during discovery.
+- Create synthetic reconciliation cases and a manual comparison protocol.
+
+**Gate:** At least three independent organizations describe a materially
+similar recurring workflow, or the founders narrow or change the hypothesis.
+
+### Weeks 7 through 9 Experiment and benchmark
+
+- Implement the bounded synthetic reconciliation workflow.
+- Produce an exceptions register, reviewer decision record, later comparison,
+  and evidence appendix.
+- Compare it with a competent spreadsheet baseline.
+- Obtain independent reproduction and practitioner review.
+
+**Gate:** The experiment handles the defined cases without unsupported
+conclusions, another developer reproduces it, and reviewers can explain the
+result and its main limitation without coaching.
+
+### Weeks 10 through 12 Commercial evidence and decision
+
+- Complete 12 to 15 interviews, including at least eight primary-segment
+  interviews.
+- Confirm whether usable authorized evidence exists and what preparation it
+  requires.
+- Seek one identifiable budget owner willing to document an evaluation scope
+  and commercial discussion.
+- Record the final decision and the next quarter's scope.
+
+**Gate:** Continue only if three organizations report a comparable recurring
+workflow, two confirm usable authorized evidence, and one budget owner agrees
+in writing to discuss a defined evaluation. Otherwise narrow, change, or stop
+the experiment and record why.
+
+## Measures
+
+Track qualified conversations by independent organization, workflow frequency,
+usable-evidence rate, preparation minutes, review minutes, exception results on
+labeled cases, unknown or incomplete outcomes, independent reproduction,
+written evaluation interest, all founder hours, and cash spending. Define the
+source and time period for every measure. Record zero and not measured as
+different states.
+
+The proposed benchmark target is at least 30 percent lower median total review
+effort across five predefined synthetic cases than a competent spreadsheet
+baseline, with no missed seeded critical exceptions. This is an experiment
+target, not a current result or customer-value claim.
+
+## Security boundary before customer data
+
+Do not accept private exports until both founders approve written scope,
+permitted fields, prohibited secrets, transfer method, storage, access,
+retention, deletion, incident contact, report handling, reviewer competence,
+and default prohibition on data reuse. A local application does not by itself
+provide secure storage or deletion.
+
+## Work excluded from this cycle
+
+- Production SaaS, authentication, billing, multi-tenancy, or a database
+- AWS or live OT collectors
+- Active scanning, exploitation, credential testing, or automatic remediation
+- Additional product lines or broad compliance automation
+- AI-generated security facts, relationships, confidence, or severity
+- Multiple provider integrations
+- Investor forecasts presented as measured demand
 
 ## Weekly review
 
-Record week, planned/actual hours, completed artifacts, evidence gained, defects, spend incurred, budget remaining, open decisions, and next two work items. Limit work in progress to one technical task and one market task. Use the existing experiment and technical-task templates rather than creating a second tracking system. Keep raw interview notes and personal contact data outside the repository.
+Record planned and actual hours, completed artifacts, evidence gained, defects,
+spending, remaining reserve, open decisions, and the next two work items. Keep
+one technical work package and one market-learning package active. A task is
+complete when its artifact exists, acceptance criteria are checked, limits are
+recorded, relevant tests pass, and the other founder reviews it.
 
-## Monthly measures
+## Immediate founder decisions
 
-Track qualified conversations by independent organization; usable-evidence rate; preparation and review minutes; exception correctness on labeled cases; unknown/incomplete outcomes; evaluation commitments; completed paid deliveries; all delivery labor; contribution before overhead; repeat use; and unresolved security issues. Define numerator, denominator, time period and source for each number. A zero result and a not-yet-measured result are different.
-
-The initial commercial gate requires three independent organizations to
-describe a comparable recurring workflow, two to confirm that usable
-authorized evidence could support the bounded analysis, and one identifiable
-budget owner to agree in writing to an evaluation scope and commercial
-discussion. Discovery does not authorize collecting exports. Verbal interest,
-a demonstration request, and a signed or paid evaluation are recorded as
-different outcomes.
-
-## Immediate decision register
-
-| Decision | Current state | Needed to close |
+| Decision | Current state | Required action |
 | --- | --- | --- |
-| Company mission | Proposed security-decision verification | Both founders record acceptance or revision |
-| First experiment | Proposed vendor-access review and closure | Confirm primary segment, buyer hypothesis and time cap |
-| Price discovery | Proposed USD 2,500–5,000 assessment range | Test willingness, scope and delivery-cost floor; founders approve any quote |
-| Company name and entity | Not decided | Founder selection and appropriate professional checks |
-| Funding route | Not decided | Cash position, growth preference and obligations understood |
-| Roles and authority | Working contributions recorded | Joint responsibility and authority decision |
-| Customer intake | Not ready | Scope, handling controls, qualified review and contract readiness |
-| International expansion | Long-term ambition | Concrete demand, partner capability and jurisdiction review |
+| Company mission | Proposed security-decision verification | Both founders accept or revise it |
+| First experiment | Proposed vendor-access review and closure | Accept, revise, or reject DEC-005 |
+| Owners | Juan technical; Shawn market and customer research | Both founders confirm authority and handoffs |
+| Time budget | Proposed 96-hour baseline | Confirm the cap and treatment of additional hours |
+| Spending | No ceiling recorded | Set an affordable cash ceiling and approval rule |
+| Customer intake | Not ready | Approve controls before accepting private exports |
+| Price discovery | USD 2,500 to USD 5,000 remains illustrative | Test scope and willingness; approve any actual quote separately |
+| Company name and funding | Open | Defer unless they block an evaluation or legal step |
 
 ## Change control
 
-Update the plan when an assumption changes; never alter historical results to meet a target. A product direction change belongs in the main decision log. A source or inference change needs targeted security and correctness review. Routine documentation work does not require new spending approval. Before promising delivery dates, estimate the actual remaining work and agree on capacity.
+Update this plan when evidence changes an assumption. Do not rewrite historical
+results to match a target. A product-direction change belongs in the decision
+log. An input, inference, or customer-data change requires focused security and
+correctness review. Dates move or scope shrinks when capacity is insufficient;
+acceptance gates do not disappear.

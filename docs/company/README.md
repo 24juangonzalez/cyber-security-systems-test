@@ -4,7 +4,7 @@ Prepared 10 October 2026 and updated 26 October 2026 for founder review, with an
 structure. This is a proposed company strategy; it does not replace DEC-003 or
 imply an approved pivot.
 
-The durable package contains five documents:
+The durable package contains six documents:
 
 - [Business plan and company strategy](COMPANY_STRATEGY.md): editable narrative
   covering mission, opportunities, competition, proposed offer, economics,
@@ -13,6 +13,9 @@ The durable package contains five documents:
   review copy with the four charts embedded.
 - [Project plan](PROJECT_PLAN.md): proposed owners, hour budgets, work packages,
   and decision gates.
+- [Founder action plan](FOUNDER_ACTION_PLAN.docx): Word review copy of the
+  proposed 12-week validation cycle, including owners, gates, security
+  boundaries, measures, and immediate decisions.
 - [Company operating principles](PRINCIPLES.md): the ten principles governing
   product, customer, research, and company decisions.
 - [Source register](SOURCES.md): public evidence, access dates, limitations, and
