@@ -18,7 +18,9 @@ from cyber_security_systems.reporting.reports import (
     technical_report,
 )
 
-FIXTURES = Path(__file__).resolve().parent / "fixtures" / "industrial"
+ROOT = Path(__file__).resolve().parent
+FIXTURES = ROOT / "fixtures" / "industrial"
+REPORT_GUIDE = ROOT / "docs" / "guides" / "READING_REPORTS.md"
 SCENARIOS = json.loads((FIXTURES / "scenarios.json").read_text(encoding="utf-8"))
 
 
@@ -87,11 +89,7 @@ def main() -> None:
         "not customer exports. No live scanning or AWS access is performed."
     )
     with st.expander("How to read this report · terms and scenario guide"):
-        st.markdown(
-            (FIXTURES.parents[1] / "docs" / "READING_REPORTS.md").read_text(
-                encoding="utf-8"
-            )
-        )
+        st.markdown(REPORT_GUIDE.read_text(encoding="utf-8"))
     with st.container(border=True):
         st.subheader("Set up your analysis")
         input_column, task_column = st.columns(2)

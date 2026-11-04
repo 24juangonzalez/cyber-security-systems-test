@@ -38,4 +38,4 @@ security controls. A new Codex session may be needed to discover added agents.
 
 Configuration reference: https://learn.chatgpt.com/docs/agent-configuration/subagents
 
-Template selection and rationale: [Agent sources](docs/AGENT_SOURCES.md).
+Template selection and rationale: [Agent sources](docs/guides/AGENT_SOURCES.md).
