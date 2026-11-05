@@ -68,6 +68,7 @@ collection, production readiness, or support for arbitrary customer exports.
 - [Formatted Word plan](company/Company_Strategy_and_Business_Plan.docx)
 - [Company operating principles](company/PRINCIPLES.md)
 - [Proposed project plan](company/PROJECT_PLAN.md)
+- [Market and discovery brief](company/MARKET_DISCOVERY.md)
 - [Founder action plan in Word](company/FOUNDER_ACTION_PLAN.docx)
 - [Research sources](company/SOURCES.md)
 
