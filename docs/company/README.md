@@ -7,7 +7,7 @@ imply an approved pivot.
 **Mihari** is the working prototype name. It is not currently the legal or
 company name, both of which remain open founder decisions.
 
-The durable package contains six documents:
+The durable package contains seven documents:
 
 - [Business plan and company strategy](COMPANY_STRATEGY.md): editable narrative
   covering mission, opportunities, competition, proposed offer, economics,
@@ -16,6 +16,9 @@ The durable package contains six documents:
   review copy with the four charts embedded.
 - [Project plan](PROJECT_PLAN.md): proposed owners, hour budgets, work packages,
   and decision gates.
+- [Market and discovery brief](MARKET_DISCOVERY.md): target segments, buyer
+  roles, prospect sources, outreach guidance, interview questions, market
+  boundary, and evidence milestones.
 - [Founder action plan](FOUNDER_ACTION_PLAN.docx): Word review copy of the
   proposed 12-week validation cycle, including owners, gates, security
   boundaries, measures, and immediate decisions.
