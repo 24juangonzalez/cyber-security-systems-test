@@ -2,6 +2,7 @@
 
 **Mihari** is the working name of this industrial access-review prototype. The
 company name remains undecided.
+# Industrial Access Path Security Prototype (Project Mihari)
 
 This repository contains a local, synthetic prototype for explaining one
 modeled industrial vendor-access path and comparing it before and after a
